@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bnv_navigation"
+    app:startDestination="@id/berandaFragment">
+
+    <fragment
+        android:id="@+id/berandaFragment"
+        android:name="id.kodesumsi.telkompengmas.ui.main.BerandaFragment"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" />
+    <fragment
+        android:id="@+id/artikelFragment"
+        android:name="id.kodesumsi.telkompengmas.ui.main.ArtikelFragment"
+        android:label="fragment_artikel"
+        tools:layout="@layout/fragment_artikel" />
+    <fragment
+        android:id="@+id/posyanduFragment"
+        android:name="id.kodesumsi.telkompengmas.ui.main.PosyanduFragment"
+        android:label="fragment_posyandu"
+        tools:layout="@layout/fragment_posyandu" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="id.kodesumsi.telkompengmas.ui.main.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+</navigation>

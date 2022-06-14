@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/berandaFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/beranda"/>
+    <item
+        android:id="@+id/artikelFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_article_24"
+        android:title="@string/artikel"/>
+    <item
+        android:id="@+id/posyanduFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_local_hospital_24"
+        android:title="@string/posyandu"/>
+    <item
+        android:id="@+id/chatFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_chat_24"
+        android:title="@string/chat"/>
+</menu>
