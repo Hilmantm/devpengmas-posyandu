@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/item_posyandu_image_card"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/item_posyandu_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/posyandu_image_example" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/item_posyandu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Posyandu dayeuhkolot"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toTopOf="@id/item_posyandu_image_card"
+            app:layout_constraintStart_toEndOf="@id/item_posyandu_image_card"/>
+
+        <TextView
+            android:id="@+id/item_posyandu_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buka"
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="12sp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toBottomOf="@id/item_posyandu_name"
+            app:layout_constraintStart_toEndOf="@id/item_posyandu_image_card"/>
+
+        <ImageView
+            android:id="@+id/item_posyandu_direction"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_directions_24"
+            app:tint="@color/primary"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/item_posyandu_range_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toBottomOf="@id/item_posyandu_status"
+            app:layout_constraintStart_toStartOf="@id/item_posyandu_status">
+
+            <TextView
+                android:id="@+id/item_posyandu_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 m"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
