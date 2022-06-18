@@ -27,10 +27,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
 
         binding.btnLogin.setOnClickListener {
+            // get current role
+            val role = arguments?.getInt(ChooseRoleFragment.ROLE) ?: 1
+
             // save user data with token
 
             // intent to main activity
             val toMain = Intent(requireContext(), MainActivity::class.java)
+            toMain.putExtra(ChooseRoleFragment.ROLE, role)
             startActivity(toMain)
             activity?.finish()
         }

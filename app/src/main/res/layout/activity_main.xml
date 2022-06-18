@@ -7,18 +7,19 @@
     tools:context=".ui.main.MainActivity">
 
     <fragment
-        android:id="@+id/main_navigation"
+        android:id="@+id/main_nav"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/bnv_navigation"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bnv"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/bnv_navigation"/>
+        app:layout_constraintBottom_toTopOf="@id/bnv"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/root"
@@ -33,7 +34,6 @@
         android:id="@+id/bnv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:menu="@menu/bnv_main_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
