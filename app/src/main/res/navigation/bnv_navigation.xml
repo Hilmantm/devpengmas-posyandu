@@ -21,13 +21,18 @@
         android:label="fragment_posyandu"
         tools:layout="@layout/fragment_posyandu" />
     <fragment
-        android:id="@+id/chatFragment"
-        android:name="id.kodesumsi.telkompengmas.ui.main.ChatFragment"
+        android:id="@+id/babyDocFragment"
+        android:name="id.kodesumsi.telkompengmas.ui.main.parents.BabyDocFragment"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_baby_doc" />
     <fragment
         android:id="@+id/rekapFragment"
         android:name="id.kodesumsi.telkompengmas.ui.main.posyandu.RekapFragment"
         android:label="fragment_rekap"
         tools:layout="@layout/fragment_rekap" />
+    <fragment
+        android:id="@+id/chatDocFragment"
+        android:name="id.kodesumsi.telkompengmas.ui.main.posyandu.ChatDocFragment"
+        android:label="fragment_chat_doc"
+        tools:layout="@layout/fragment_chat_doc" />
 </navigation>

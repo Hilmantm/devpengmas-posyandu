@@ -16,7 +16,7 @@
         android:icon="@drawable/ic_baseline_local_hospital_24"
         android:title="@string/posyandu"/>
     <item
-        android:id="@+id/chatFragment"
+        android:id="@+id/babyDocFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_chat_24"
         android:title="@string/chat"/>

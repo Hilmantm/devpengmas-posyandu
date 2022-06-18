@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_doc_avatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/child_image_example"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/chat_doc_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Siti Suka Soto"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/root"
+            app:layout_constraintTop_toTopOf="@id/chat_doc_avatar"
+            app:layout_constraintStart_toEndOf="@id/chat_doc_avatar"/>
+
+        <TextView
+            android:id="@+id/chat_doc_problem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:textSize="12sp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/chat_doc_answer"
+            app:layout_constraintStart_toStartOf="@+id/chat_doc_name"
+            app:layout_constraintTop_toBottomOf="@+id/chat_doc_name"
+            tools:text="Anak mengalami pembengkakkan pada belakang kepala" />
+
+        <Button
+            android:id="@+id/chat_doc_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jawab"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/chat_doc_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/chat_doc_avatar" />
+
+        <TextView
+            android:id="@+id/chat_doc_child_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Umur anak: 1 tahun 2 bulan"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/chat_doc_problem"
+            app:layout_constraintStart_toStartOf="@id/chat_doc_problem" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

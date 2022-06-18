@@ -44,5 +44,8 @@
     <string name="kader_posyandu">Kader Posyandu</string>
     <string name="orang_tua_anak">Orang Tua Anak</string>
     <string name="rekap">Rekap</string>
+    <string name="jawab">Jawab</string>
+    <string name="chat_doc">Chat Doc</string>
+    <string name="atasi_segera">Atasi segera</string>
 
 </resources>

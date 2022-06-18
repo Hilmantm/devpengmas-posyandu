@@ -17,6 +17,7 @@
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_artikel.xml" value="0.17552083333333332" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_beranda.xml" value="0.16666666666666666" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_chat.xml" value="0.3625" />
+        <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_chat_doc.xml" value="0.3484375" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_choose_role.xml" value="0.3625" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_onboarding.xml" value="0.3625" />
@@ -24,6 +25,7 @@
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_register.xml" value="0.22" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/fragment_rekap.xml" value="0.3625" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/item_artikel.xml" value="0.3625" />
+        <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/item_chat_doc.xml" value="0.3625" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/item_child_parent.xml" value="0.6" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/item_child_posyandu.xml" value="0.3625" />
         <entry key="..\:/MASTER PROGRAM/Project/project-android/telkom-pengmas/app/src/main/res/layout/item_posyandu.xml" value="0.3625" />
