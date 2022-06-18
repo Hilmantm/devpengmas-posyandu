@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.ui.main.MainActivity
+import id.kodesumsi.telkompengmas.ui.onboarding.OnboardingActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.SPLASHSCREEN_DELAY
 
 @SuppressLint("CustomSplashScreen")
@@ -16,7 +17,7 @@ class SplashscreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splashscreen)
 
         Handler(mainLooper).postDelayed({
-            val intentToOnboarding = Intent(this, MainActivity::class.java)
+            val intentToOnboarding = Intent(this, OnboardingActivity::class.java)
             startActivity(intentToOnboarding)
             finish()
         }, SPLASHSCREEN_DELAY)

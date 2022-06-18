@@ -33,4 +33,15 @@
     <string name="tambahkan_anak">Tambahkan Anak</string>
     <string name="reminder">Reminder</string>
     <string name="data_anak">Data Anak</string>
+    <string name="lewati">Lewati</string>
+    <string name="selanjutnya">Selanjutnya</string>
+
+    <!--  onboarding  -->
+    <string name="onboarding_1_desc">Lihat Perkembangan Buah Hati Anda Secara Digital</string>
+    <string name="onboarding_2_desc">Fitur Lengkap Agar Si Buah Hati Sehat</string>
+    <string name="onboarding_3_desc">Konsultasi 24 jam bersama Dokter yang ahli dalam bidang kesehatan anak</string>
+    <string name="masuk">Masuk</string>
+    <string name="kader_posyandu">Kader Posyandu</string>
+    <string name="orang_tua_anak">Orang Tua Anak</string>
+
 </resources>
