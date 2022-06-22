@@ -2,8 +2,11 @@ package id.kodesumsi.telkompengmas.data.source.dummy
 
 import id.kodesumsi.telkompengmas.domain.model.dummy.Child
 import id.kodesumsi.telkompengmas.domain.model.dummy.User
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.MAN
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
 
-class DummyData {
+object DummyData {
 
     fun getCurrentUser(role: Int): User {
         return when (role) {
@@ -16,11 +19,11 @@ class DummyData {
                     phone = "081214738859"
                 )
             }
-            ROLE_USER -> {
+            ROLE_PARENT -> {
                 User(
                     email = "hilmanmuttaqin345@gmail.com",
                     name = "Hilman Taris Muttaqin",
-                    role = ROLE_USER,
+                    role = ROLE_PARENT,
                     pass = "testing123",
                     phone = "081214738859"
                 )
@@ -29,7 +32,7 @@ class DummyData {
                 User(
                     email = "hilmanmuttaqin345@gmail.com",
                     name = "Hilman Taris Muttaqin",
-                    role = ROLE_USER,
+                    role = ROLE_PARENT,
                     pass = "testing123",
                     phone = "081214738859"
                 )
@@ -48,7 +51,7 @@ class DummyData {
             height = 80.0f,
             weight = 10.0f,
             headCircumference = 100.0f,
-            gender = MEN
+            gender = MAN
         )
         result.add(child1)
 
@@ -60,7 +63,7 @@ class DummyData {
             height = 80.0f,
             weight = 10.0f,
             headCircumference = 100.0f,
-            gender = MEN
+            gender = MAN
         )
         result.add(child2)
 
@@ -72,19 +75,11 @@ class DummyData {
             height = 80.0f,
             weight = 10.0f,
             headCircumference = 100.0f,
-            gender = MEN
+            gender = MAN
         )
         result.add(child3)
 
         return result
-    }
-
-    companion object {
-        const val ROLE_POSYANDU = 1
-        const val ROLE_USER = 2
-
-        const val WOMAN = 1
-        const val MEN = 2
     }
 
 }
