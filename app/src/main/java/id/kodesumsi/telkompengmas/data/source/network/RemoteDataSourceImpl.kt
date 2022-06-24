@@ -14,7 +14,7 @@ class RemoteDataSourceImpl @Inject constructor(
 ): RemoteDataSource {
     override fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<User>> {
         val result = PublishSubject.create<ApiResponse<User>>()
-        val client = networkService.postOrangtuaLogin(username, password)
+        val client = networkService.postPosyanduLogin(username, password)
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)

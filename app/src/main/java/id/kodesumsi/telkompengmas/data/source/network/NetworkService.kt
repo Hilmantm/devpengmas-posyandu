@@ -10,13 +10,13 @@ import retrofit2.http.Query
 
 interface NetworkService {
 
-    @POST("posyandu/login")
+    @POST("auth/posyandu/login")
     fun postPosyanduLogin(
         @Field("username") username: String,
         @Field("password") password: String
     ): Flowable<BaseResponse<User>>
 
-    @POST("orangtua/login")
+    @POST("auth/orang-tua/login")
     fun postOrangtuaLogin(
         @Field("username") username: String,
         @Field("password") password: String
