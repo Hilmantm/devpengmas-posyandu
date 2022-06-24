@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/root">
+
+        <TextView
+            android:id="@+id/bottom_sheet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_data_anak"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/height_body_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tinggi Badan (cm)"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/bottom_sheet_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/height_body_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_form_add_child"
+            android:hint="Masukkan tinggi anak"
+            android:padding="10dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/height_body_title"
+            app:layout_constraintStart_toStartOf="@id/height_body_title"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/weight_body_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berat Badan (kg)"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/height_body_field"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/weight_body_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_form_add_child"
+            android:hint="Masukkan berat anak"
+            android:padding="10dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/weight_body_title"
+            app:layout_constraintStart_toStartOf="@id/weight_body_title"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/head_circumference_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lingkar Kepala"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/weight_body_field"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/head_circumference_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_form_add_child"
+            android:hint="Masukkan lingkar kepala"
+            android:padding="10dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/head_circumference_title"
+            app:layout_constraintStart_toStartOf="@id/head_circumference_title"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_add_child"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tambahkan_anak"
+            android:layout_marginTop="30dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintTop_toBottomOf="@id/head_circumference_field"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

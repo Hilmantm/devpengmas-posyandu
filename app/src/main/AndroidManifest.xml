@@ -13,7 +13,7 @@
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.detail.ChildDetailActivity"
+            android:name=".ui.splashscreen.SplashscreenActivity"
             android:exported="false" />
         <activity
             android:name=".ui.forms.TambahDataAnakActivity"
@@ -25,7 +25,7 @@
             android:name=".ui.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.splashscreen.SplashscreenActivity"
+            android:name=".ui.detail.ChildDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
