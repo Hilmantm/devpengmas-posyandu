@@ -22,4 +22,22 @@ interface NetworkService {
         @Field("password") password: String
     ): Flowable<BaseResponse<User>>
 
+    @POST("auth/posyandu/register")
+    fun postPosyanduRegister(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("id_desa") idDesa: Int,
+        @Field("id_posyandu") idPosyandu: Int
+    ): Flowable<BaseResponse<User>>
+
+    @POST("auth/orang-tua/register")
+    fun postOrangtuaRegister(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String,
+        @Field("id_desa") idDesa: Int,
+        @Field("id_posyandu") idPosyandu: Int
+    ): Flowable<BaseResponse<User>>
+
 }

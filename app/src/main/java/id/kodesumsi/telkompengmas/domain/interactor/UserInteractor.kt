@@ -1,6 +1,7 @@
 package id.kodesumsi.telkompengmas.domain.interactor
 
 import id.kodesumsi.telkompengmas.data.source.Resource
+import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.domain.model.dummy.User
 import id.kodesumsi.telkompengmas.domain.repository.UserRepository
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
@@ -22,6 +23,14 @@ class UserInteractor @Inject constructor(
             ROLE_POSYANDU -> userRepository.posyanduLogin(username, password)
             ROLE_PARENT -> userRepository.orangtuaLogin(username, password)
             else -> userRepository.orangtuaLogin(username, password)
+        }
+    }
+
+    override fun register(registerRequest: RegisterRequest): Flowable<Resource<User>> {
+        return when(registerRequest.userRole) {
+            ROLE_POSYANDU -> userRepository.posyanduRegister(registerRequest)
+            ROLE_PARENT -> userRepository.orangtuaRegister(registerRequest)
+            else -> userRepository.orangtuaRegister(registerRequest)
         }
     }
 

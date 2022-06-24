@@ -1,6 +1,7 @@
 package id.kodesumsi.telkompengmas.data.source.network
 
 import android.util.Log
+import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.domain.model.dummy.User
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
@@ -31,6 +32,50 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<User>> {
         val result = PublishSubject.create<ApiResponse<User>>()
         val client = networkService.postOrangtuaLogin(username, password)
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val user = response.results
+                result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<User>> {
+        val result = PublishSubject.create<ApiResponse<User>>()
+        val client = networkService.postPosyanduRegister(
+            name = registerRequest.name,
+            email = registerRequest.email,
+            password = registerRequest.password,
+            idDesa = registerRequest.idDesa,
+            idPosyandu = registerRequest.idPosyandu
+        )
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val user = response.results
+                result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<User>> {
+        val result = PublishSubject.create<ApiResponse<User>>()
+        val client = networkService.postOrangtuaRegister(
+            name = registerRequest.name,
+            email = registerRequest.email,
+            password = registerRequest.password,
+            idDesa = registerRequest.idDesa,
+            idPosyandu = registerRequest.idPosyandu
+        )
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
