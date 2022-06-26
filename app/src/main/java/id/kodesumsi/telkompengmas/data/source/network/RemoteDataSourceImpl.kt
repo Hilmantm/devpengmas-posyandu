@@ -96,7 +96,7 @@ class RemoteDataSourceImpl @Inject constructor(
 
     override fun getChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
         val result = PublishSubject.create<ApiResponse<ListOfResponse<Child>>>()
-        val client = networkService.getChildList(token)
+        val client = networkService.getChildList("Bearer $token")
 
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
