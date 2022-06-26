@@ -2,7 +2,7 @@ package id.kodesumsi.telkompengmas.domain.interactor
 
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
-import id.kodesumsi.telkompengmas.domain.model.dummy.User
+import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.UserRepository
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT

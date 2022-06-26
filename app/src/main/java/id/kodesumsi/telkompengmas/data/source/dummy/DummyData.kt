@@ -1,7 +1,7 @@
 package id.kodesumsi.telkompengmas.data.source.dummy
 
-import id.kodesumsi.telkompengmas.domain.model.dummy.Child
-import id.kodesumsi.telkompengmas.domain.model.dummy.User
+import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.MAN
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU

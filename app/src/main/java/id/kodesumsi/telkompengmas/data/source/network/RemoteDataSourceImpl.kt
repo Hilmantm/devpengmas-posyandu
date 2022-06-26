@@ -2,7 +2,8 @@ package id.kodesumsi.telkompengmas.data.source.network
 
 import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
-import id.kodesumsi.telkompengmas.domain.model.dummy.User
+import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
+import id.kodesumsi.telkompengmas.utils.toAuthResponse
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -13,14 +14,14 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor(
     private val networkService: NetworkService
 ): RemoteDataSource {
-    override fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<User>> {
-        val result = PublishSubject.create<ApiResponse<User>>()
+    override fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>> {
+        val result = PublishSubject.create<ApiResponse<AuthResponse>>()
         val client = networkService.postPosyanduLogin(username, password)
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
             .subscribe({ response ->
-                val user = response.results
+                val user = response.data
                 result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
@@ -29,14 +30,14 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<User>> {
-        val result = PublishSubject.create<ApiResponse<User>>()
+    override fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>> {
+        val result = PublishSubject.create<ApiResponse<AuthResponse>>()
         val client = networkService.postOrangtuaLogin(username, password)
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
             .subscribe({ response ->
-                val user = response.results
+                val user = response.data
                 result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
@@ -45,8 +46,8 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<User>> {
-        val result = PublishSubject.create<ApiResponse<User>>()
+    override fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>> {
+        val result = PublishSubject.create<ApiResponse<AuthResponse>>()
         val client = networkService.postPosyanduRegister(
             name = registerRequest.name,
             email = registerRequest.email,
@@ -58,8 +59,9 @@ class RemoteDataSourceImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
             .subscribe({ response ->
-                val user = response.results
-                result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
+                val code = response.code
+                val registeredUser = registerRequest.toAuthResponse()
+                result.onNext(if (code == 200) ApiResponse.Success(registeredUser) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("RemoteDataSource", error.toString())
@@ -67,8 +69,8 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<User>> {
-        val result = PublishSubject.create<ApiResponse<User>>()
+    override fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>> {
+        val result = PublishSubject.create<ApiResponse<AuthResponse>>()
         val client = networkService.postOrangtuaRegister(
             name = registerRequest.name,
             email = registerRequest.email,
@@ -80,8 +82,9 @@ class RemoteDataSourceImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
             .subscribe({ response ->
-                val user = response.results
-                result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
+                val code = response.code
+                val registeredUser = registerRequest.toAuthResponse()
+                result.onNext(if (code == 200) ApiResponse.Success(registeredUser) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("RemoteDataSource", error.toString())

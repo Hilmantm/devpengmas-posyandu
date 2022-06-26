@@ -5,8 +5,9 @@ import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
 import id.kodesumsi.telkompengmas.data.source.network.RemoteDataSource
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
-import id.kodesumsi.telkompengmas.domain.model.dummy.User
+import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.UserRepository
+import id.kodesumsi.telkompengmas.utils.toUser
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -30,7 +31,7 @@ class UserRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data )
+                            Resource.Success( data = response.data.toUser() )
                         )
                     }
                     is ApiResponse.Error -> {
@@ -54,7 +55,7 @@ class UserRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data )
+                            Resource.Success( data = response.data.toUser() )
                         )
                     }
                     is ApiResponse.Error -> {
@@ -78,7 +79,7 @@ class UserRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data )
+                            Resource.Success( data = response.data.toUser() )
                         )
                     }
                     is ApiResponse.Error -> {
@@ -102,7 +103,7 @@ class UserRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data )
+                            Resource.Success( data = response.data.toUser() )
                         )
                     }
                     is ApiResponse.Error -> {

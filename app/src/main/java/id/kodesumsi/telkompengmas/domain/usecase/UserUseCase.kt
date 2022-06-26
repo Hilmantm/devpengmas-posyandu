@@ -2,7 +2,7 @@ package id.kodesumsi.telkompengmas.domain.usecase
 
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
-import id.kodesumsi.telkompengmas.domain.model.dummy.User
+import id.kodesumsi.telkompengmas.domain.model.User
 import io.reactivex.rxjava3.core.Flowable
 
 interface UserUseCase {

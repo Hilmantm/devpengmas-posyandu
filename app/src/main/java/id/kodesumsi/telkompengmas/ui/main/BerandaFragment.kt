@@ -2,19 +2,17 @@ package id.kodesumsi.telkompengmas.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseAdapter
 import id.kodesumsi.telkompengmas.base.BaseFragment
 import id.kodesumsi.telkompengmas.data.source.dummy.DummyData
 import id.kodesumsi.telkompengmas.databinding.FragmentBerandaBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChildParentBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChildPosyanduBinding
-import id.kodesumsi.telkompengmas.domain.model.dummy.Child
+import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.ui.detail.ChildDetailActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU

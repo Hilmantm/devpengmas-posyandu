@@ -1,4 +1,4 @@
-package id.kodesumsi.telkompengmas.domain.model.dummy
+package id.kodesumsi.telkompengmas.domain.model
 
 data class Doctor(
 
