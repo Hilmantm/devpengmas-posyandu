@@ -3,6 +3,8 @@ package id.kodesumsi.telkompengmas.data.source.network
 import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
+import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
+import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.utils.toAuthResponse
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
@@ -89,6 +91,24 @@ class RemoteDataSourceImpl @Inject constructor(
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("RemoteDataSource", error.toString())
             })
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
+        val result = PublishSubject.create<ApiResponse<ListOfResponse<Child>>>()
+        val client = networkService.getChildList(token)
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                result.onNext(if (code == 200 && response.data!!.data.isNotEmpty()) ApiResponse.Success(response.data) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 }

@@ -5,10 +5,11 @@ import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.utils.toUserEntity
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Maybe
 
 class LocalDataSourceImpl(private val userDao: UserDao): LocalDataSource {
-    override fun saveUser(authResponse: AuthResponse): Maybe<UserEntity> {
+    override fun saveUser(authResponse: AuthResponse): Completable {
         return userDao.saveUser(authResponse.toUserEntity())
     }
 }

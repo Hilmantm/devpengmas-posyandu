@@ -29,7 +29,7 @@ class UserRepositoryImpl @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 result.onNext(
-                    Resource.Success( data = it.toUser() )
+                    Resource.Success( data = response.toUser() )
                 )
             }, {
                 Log.d("UserRepository", "error : ${it.message.toString()}")

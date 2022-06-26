@@ -2,30 +2,30 @@ package id.kodesumsi.telkompengmas.domain.model
 
 data class Child(
 
-    val id: Int,
+    val id: Int? = null,
 
-    val name: String,
+    val name: String? = null,
 
-    val surname: String,
+    val surname: String? = null,
 
-    val birthDate: String,
+    val birthDate: String? = null,
 
-    val address: String,
+    val address: String? = null,
 
-    val idDesa: Int,
+    val idDesa: Int? = null,
 
-    val idPosyandu: Int,
+    val idPosyandu: Int? = null,
 
-    val idParent: Int,
+    val idParent: Int? = null,
 
-    val parentName: String,
+    val parentName: String? = null,
 
-    val height: Float,
+    val height: Float? = null,
 
-    val weight: Float,
+    val weight: Float? = null,
 
-    val headCircumference: Float,
+    val headCircumference: Float? = null,
 
-    val gender: Int
+    val gender: Int? = null
 
 )

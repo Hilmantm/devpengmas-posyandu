@@ -12,6 +12,6 @@ import io.reactivex.rxjava3.core.Maybe
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveUser(user: UserEntity): Maybe<UserEntity>
+    fun saveUser(user: UserEntity): Completable
 
 }
