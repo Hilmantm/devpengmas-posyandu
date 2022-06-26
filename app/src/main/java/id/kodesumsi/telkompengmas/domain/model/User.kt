@@ -14,6 +14,8 @@ data class User(
 
     val idDesa: Int? = null,
 
-    val iDPosyandu: Int? = null
+    val iDPosyandu: Int? = null,
+
+    val token: String? = null
 
 )

@@ -1,6 +1,14 @@
 package id.kodesumsi.telkompengmas.data.source.local
 
 import id.kodesumsi.telkompengmas.data.source.local.dao.UserDao
+import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
+import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
+import id.kodesumsi.telkompengmas.domain.model.User
+import id.kodesumsi.telkompengmas.utils.toUserEntity
+import io.reactivex.rxjava3.core.Maybe
 
-class LocalDataSourceImpl(val userDao: UserDao): LocalDataSource {
+class LocalDataSourceImpl(private val userDao: UserDao): LocalDataSource {
+    override fun saveUser(authResponse: AuthResponse): Maybe<UserEntity> {
+        return userDao.saveUser(authResponse.toUserEntity())
+    }
 }
