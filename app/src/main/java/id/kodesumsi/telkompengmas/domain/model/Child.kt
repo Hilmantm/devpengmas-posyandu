@@ -10,6 +10,16 @@ data class Child(
 
     val birthDate: String,
 
+    val address: String,
+
+    val idDesa: Int,
+
+    val idPosyandu: Int,
+
+    val idParent: Int,
+
+    val parentName: String,
+
     val height: Float,
 
     val weight: Float,
