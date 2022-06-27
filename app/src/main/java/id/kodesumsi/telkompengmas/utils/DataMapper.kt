@@ -4,13 +4,8 @@ import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
-import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ChildStatisticsResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.TokenResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.UserResponse
-import id.kodesumsi.telkompengmas.domain.model.Child
-import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
-import id.kodesumsi.telkompengmas.domain.model.User
+import id.kodesumsi.telkompengmas.data.source.network.response.*
+import id.kodesumsi.telkompengmas.domain.model.*
 
 fun RegisterRequest.toAuthResponse(): AuthResponse {
     return AuthResponse(
@@ -71,5 +66,22 @@ fun ChildStatisticsResponse.toChildStatistics(): ChildStatistics {
         weight = this.berat,
         headCircumference = this.lingkar_kepala,
         date = this.date
+    )
+}
+
+fun DesaResponse.toDesa(): Desa {
+    return Desa(
+        id = this.id,
+        name = this.name
+    )
+}
+
+fun PosyanduResponse.toPosyandu(): Posyandu {
+    return Posyandu(
+        id = this.id,
+        desaId = this.id_desa,
+        lat = this.latitude,
+        lng = this.longitude,
+        address = this.alamat
     )
 }

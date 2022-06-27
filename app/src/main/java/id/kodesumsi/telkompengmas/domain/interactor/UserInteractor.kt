@@ -4,11 +4,10 @@ import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
-import id.kodesumsi.telkompengmas.domain.model.Child
-import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
-import id.kodesumsi.telkompengmas.domain.model.User
+import id.kodesumsi.telkompengmas.domain.model.*
 import id.kodesumsi.telkompengmas.domain.repository.ParentRepository
 import id.kodesumsi.telkompengmas.domain.repository.PosyanduRepository
+import id.kodesumsi.telkompengmas.domain.repository.PublicRepository
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
@@ -17,7 +16,8 @@ import javax.inject.Inject
 
 class UserInteractor @Inject constructor(
     private val parentRepository: ParentRepository,
-    private val posyanduRepository: PosyanduRepository
+    private val posyanduRepository: PosyanduRepository,
+    private val publicRepository: PublicRepository
 ): UserUseCase {
 
     override fun login(
@@ -85,6 +85,14 @@ class UserInteractor @Inject constructor(
             ROLE_PARENT -> parentRepository.postOrangtuaStatistics(token, updateChildDataRequest)
             else -> parentRepository.postOrangtuaStatistics(token, updateChildDataRequest)
         }
+    }
+
+    override fun getListDesa(): Flowable<Resource<List<Desa>>> {
+        return publicRepository.getDesaList()
+    }
+
+    override fun getListPosyandu(desaId: Int): Flowable<Resource<List<Posyandu>>> {
+        return publicRepository.getPosyanduList(desaId)
     }
 
 }

@@ -3,13 +3,16 @@ package id.kodesumsi.telkompengmas.data.source.network
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
-import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ChildStatisticsResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
+import id.kodesumsi.telkompengmas.data.source.network.response.*
 import id.kodesumsi.telkompengmas.domain.model.Child
 import io.reactivex.rxjava3.core.Flowable
 
 interface RemoteDataSource {
+
+    // =========== ORANG TUA ===========
+    fun getDesaList(): Flowable<ApiResponse<ListOfResponse<DesaResponse>>>
+
+    fun getPosyanduList(desaId: Int): Flowable<ApiResponse<ListOfResponse<PosyanduResponse>>>
 
     // =========== ORANG TUA ===========
     fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>>

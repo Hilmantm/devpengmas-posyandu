@@ -1,23 +1,30 @@
 package id.kodesumsi.telkompengmas.data.source.network
 
-import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.BaseResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ChildStatisticsResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
+import id.kodesumsi.telkompengmas.data.source.network.response.*
 import id.kodesumsi.telkompengmas.domain.model.Child
 import io.reactivex.rxjava3.core.Flowable
 import retrofit2.http.*
 
 interface NetworkService {
 
+    // =========== PUBLIC ===========
+    @GET("/api/desa")
+    fun getDesaList(): Flowable<BaseResponse<ListOfResponse<DesaResponse>>>
+
+    @GET("/api/posyandu")
+    fun getPosyanduList(
+        @Query("id_desa") desaId: Int
+    ): Flowable<BaseResponse<ListOfResponse<PosyanduResponse>>>
+
+
     // =========== ORANG TUA ===========
-    @POST("auth/orang-tua/login")
+    @POST("/api/auth/orang-tua/login")
     fun postOrangtuaLogin(
         @Field("username") username: String,
         @Field("password") password: String
     ): Flowable<BaseResponse<AuthResponse>>
 
-    @POST("auth/orang-tua/register")
+    @POST("/api/auth/orang-tua/register")
     fun postOrangtuaRegister(
         @Field("name") name: String,
         @Field("email") email: String,

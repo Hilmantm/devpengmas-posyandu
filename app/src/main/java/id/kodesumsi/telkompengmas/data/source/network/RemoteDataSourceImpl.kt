@@ -4,9 +4,7 @@ import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
-import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ChildStatisticsResponse
-import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
+import id.kodesumsi.telkompengmas.data.source.network.response.*
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.utils.toAuthResponse
 import id.kodesumsi.telkompengmas.utils.toChild
@@ -29,6 +27,38 @@ class RemoteDataSourceImpl @Inject constructor(
             .subscribe({ response ->
                 val user = response.data
                 result.onNext(if (user != null) ApiResponse.Success(user) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getDesaList(): Flowable<ApiResponse<ListOfResponse<DesaResponse>>> {
+        val result = PublishSubject.create<ApiResponse<ListOfResponse<DesaResponse>>>()
+        val client = networkService.getDesaList()
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val desa = response.data
+                result.onNext(if (desa?.data!!.isNotEmpty()) ApiResponse.Success(desa) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getPosyanduList(desaId: Int): Flowable<ApiResponse<ListOfResponse<PosyanduResponse>>> {
+        val result = PublishSubject.create<ApiResponse<ListOfResponse<PosyanduResponse>>>()
+        val client = networkService.getPosyanduList(desaId)
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val posyandu = response.data
+                result.onNext(if (posyandu?.data!!.isNotEmpty()) ApiResponse.Success(posyandu) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("RemoteDataSource", error.toString())

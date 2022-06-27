@@ -2,22 +2,24 @@ package id.kodesumsi.telkompengmas.domain.model
 
 data class Posyandu(
 
-    val id: Int,
+    val id: Int? = null,
 
-    val thumbUrl: String,
+    val thumbUrl: String? = null,
 
-    val name: String,
+    val name: String? = null,
 
-    val lat: String,
+    val lat: String? = null,
 
-    val lng: String,
+    val lng: String? = null,
 
-    val status: Boolean, // 0 => tutup; 1 => buka
+    val status: Boolean? = null, // 0 => tutup; 1 => buka
 
-    val address: String,
+    val address: String? = null,
 
-    val rating: Float,
+    val rating: Float? = null,
 
-    val phone: String
+    val phone: String? = null,
+
+    val desaId: Int? = null
 
 )
