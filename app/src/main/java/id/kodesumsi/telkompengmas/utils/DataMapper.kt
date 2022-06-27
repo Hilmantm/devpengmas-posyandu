@@ -1,10 +1,12 @@
 package id.kodesumsi.telkompengmas.utils
 
 import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
+import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.TokenResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.UserResponse
+import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.User
 
 fun RegisterRequest.toAuthResponse(): AuthResponse {
@@ -35,5 +37,16 @@ fun UserEntity.toUser(): User {
         idDesa = this.idDesa,
         iDPosyandu = this.idPosyandu,
         token = this.token
+    )
+}
+
+fun CreateNewChildRequest.toChild(): Child {
+    return Child(
+        name = this.name,
+        surname = this.panggilan,
+        birthDate = this.tanggal_lahir,
+        height = this.tinggi.toFloat(),
+        weight = this.berat.toFloat(),
+        headCircumference = this.lingkar_kepala.toFloat()
     )
 }

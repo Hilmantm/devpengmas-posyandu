@@ -43,8 +43,19 @@ interface NetworkService {
     ): Flowable<BaseResponse<AuthResponse>>
 
     @GET("/api/orang-tua/data-anak")
-    fun getChildList(
+    fun getOrangtuaChildList(
         @Header("Authorization") token: String
     ): Flowable<BaseResponse<ListOfResponse<Child>>>
+
+    @POST("/api/orang-tua/data-anak")
+    fun postOrangtuaNewChildData(
+        @Header("Authorization") token: String,
+        @Field("nama") name: String,
+        @Field("panggilan") surname: String,
+        @Field("tanggal_lahir") birthDate: String,
+        @Field("tinggi") height: String,
+        @Field("berat") weight: String,
+        @Field("lingkar_kepala") headCircumference: String
+    ): Flowable<BaseResponse<Child>>
 
 }

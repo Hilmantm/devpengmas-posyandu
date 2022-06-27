@@ -5,8 +5,10 @@ import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
 import id.kodesumsi.telkompengmas.data.source.network.RemoteDataSource
+import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
+import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.UserRepository
 import id.kodesumsi.telkompengmas.utils.toUser
@@ -128,4 +130,57 @@ class UserRepositoryImpl @Inject constructor(
 
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
+
+    override fun postOrangtuaNewChildData(
+        token: String,
+        createNewChildRequest: CreateNewChildRequest
+    ): Flowable<Resource<Child>> {
+        val result = PublishSubject.create<Resource<Child>>()
+
+        result.onNext(Resource.Loading(null))
+        remoteDataSource.postOrangtuaNewChildData(token, createNewChildRequest)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe { response ->
+                when (response) {
+                    is ApiResponse.Success -> {
+                        result.onNext(
+                            Resource.Success( data = response.data )
+                        )
+                    }
+                    is ApiResponse.Error -> {
+                        result.onNext(Resource.Error(response.errorMessage))
+                    }
+                }
+            }
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getOrangtuaChildList(token: String): Flowable<Resource<List<Child>>> {
+        val result = PublishSubject.create<Resource<List<Child>>>()
+
+        result.onNext(Resource.Loading(null))
+        remoteDataSource.getOrangtuaChildList(token)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe { response ->
+                when (response) {
+                    is ApiResponse.Success -> {
+                        result.onNext(
+                            Resource.Success( data = response.data.data )
+                        )
+                    }
+                    is ApiResponse.Error -> {
+                        result.onNext(Resource.Error(response.errorMessage))
+                    }
+                }
+            }
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+
 }

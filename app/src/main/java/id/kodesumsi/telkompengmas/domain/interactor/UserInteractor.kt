@@ -1,7 +1,9 @@
 package id.kodesumsi.telkompengmas.domain.interactor
 
 import id.kodesumsi.telkompengmas.data.source.Resource
+import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
+import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.UserRepository
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
@@ -32,6 +34,17 @@ class UserInteractor @Inject constructor(
             ROLE_PARENT -> userRepository.orangtuaRegister(registerRequest)
             else -> userRepository.orangtuaRegister(registerRequest)
         }
+    }
+
+    override fun getChildList(token: String): Flowable<Resource<List<Child>>> {
+        return userRepository.getOrangtuaChildList(token)
+    }
+
+    override fun createNewChildData(
+        token: String,
+        createNewChildRequest: CreateNewChildRequest
+    ): Flowable<Resource<Child>> {
+        return userRepository.postOrangtuaNewChildData(token, createNewChildRequest)
     }
 
 }

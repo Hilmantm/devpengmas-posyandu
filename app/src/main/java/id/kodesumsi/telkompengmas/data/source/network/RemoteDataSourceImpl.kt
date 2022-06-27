@@ -1,11 +1,13 @@
 package id.kodesumsi.telkompengmas.data.source.network
 
 import android.util.Log
+import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.utils.toAuthResponse
+import id.kodesumsi.telkompengmas.utils.toChild
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -94,9 +96,9 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun getChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
+    override fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
         val result = PublishSubject.create<ApiResponse<ListOfResponse<Child>>>()
-        val client = networkService.getChildList("Bearer $token")
+        val client = networkService.getOrangtuaChildList("Bearer $token")
 
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -104,6 +106,36 @@ class RemoteDataSourceImpl @Inject constructor(
             .subscribe({ response ->
                 val code = response.code
                 result.onNext(if (code == 200 && response.data!!.data.isNotEmpty()) ApiResponse.Success(response.data) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun postOrangtuaNewChildData(
+        token: String,
+        createNewChildRequest: CreateNewChildRequest
+    ): Flowable<ApiResponse<Child>> {
+        val result = PublishSubject.create<ApiResponse<Child>>()
+        val client = networkService.postOrangtuaNewChildData(
+            token = "Bearer $token",
+            name = createNewChildRequest.name,
+            surname = createNewChildRequest.panggilan,
+            birthDate = createNewChildRequest.tanggal_lahir,
+            height = createNewChildRequest.tinggi,
+            weight = createNewChildRequest.berat,
+            headCircumference = createNewChildRequest.lingkar_kepala
+        )
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                val newChild = createNewChildRequest.toChild()
+                result.onNext(if (code == 200) ApiResponse.Success(newChild) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("RemoteDataSource", error.toString())

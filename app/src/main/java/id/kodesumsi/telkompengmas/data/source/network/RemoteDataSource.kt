@@ -1,5 +1,6 @@
 package id.kodesumsi.telkompengmas.data.source.network
 
+import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
@@ -16,6 +17,8 @@ interface RemoteDataSource {
 
     fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 
-    fun getChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>>
+    fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>>
+
+    fun postOrangtuaNewChildData(token: String, createNewChildRequest: CreateNewChildRequest): Flowable<ApiResponse<Child>>
 
 }
