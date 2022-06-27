@@ -73,6 +73,56 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
+    override fun getPosyanduChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
+        val result = PublishSubject.create<ApiResponse<ListOfResponse<Child>>>()
+        val client = networkService.getPosyanduChildList("Bearer $token")
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                result.onNext(if (code == 200 && response.data!!.data.isNotEmpty()) ApiResponse.Success(response.data) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun postPosyanduNewChildData(
+        token: String,
+        createNewChildRequest: CreateNewChildRequest
+    ): Flowable<ApiResponse<Child>> {
+        val result = PublishSubject.create<ApiResponse<Child>>()
+        val client = networkService.postPosyanduNewChildData(
+            token = "Bearer $token",
+            name = createNewChildRequest.name,
+            surname = createNewChildRequest.panggilan,
+            birthDate = createNewChildRequest.tanggal_lahir,
+            height = createNewChildRequest.tinggi,
+            weight = createNewChildRequest.berat,
+            headCircumference = createNewChildRequest.lingkar_kepala,
+            parentName = createNewChildRequest.nama_orang_tua.toString(),
+            address = createNewChildRequest.alamat.toString()
+        )
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                val newChild = createNewChildRequest.toChild()
+                result.onNext(if (code == 200) ApiResponse.Success(newChild) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
     override fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>> {
         val result = PublishSubject.create<ApiResponse<AuthResponse>>()
         val client = networkService.postOrangtuaRegister(

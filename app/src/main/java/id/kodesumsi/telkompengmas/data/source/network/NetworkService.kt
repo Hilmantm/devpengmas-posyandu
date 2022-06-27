@@ -67,7 +67,7 @@ interface NetworkService {
     ): Flowable<BaseResponse<ListOfResponse<Child>>>
 
     @POST("/api/posyandu/data-anak")
-    fun postOrangtuaNewChildData(
+    fun postPosyanduNewChildData(
         @Header("Authorization") token: String,
         @Field("nama") name: String,
         @Field("panggilan") surname: String,

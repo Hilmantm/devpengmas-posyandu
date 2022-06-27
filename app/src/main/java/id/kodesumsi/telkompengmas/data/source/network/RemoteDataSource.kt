@@ -9,16 +9,22 @@ import io.reactivex.rxjava3.core.Flowable
 
 interface RemoteDataSource {
 
-    fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>>
-
+    // =========== ORANG TUA ===========
     fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>>
-
-    fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 
     fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 
     fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>>
 
     fun postOrangtuaNewChildData(token: String, createNewChildRequest: CreateNewChildRequest): Flowable<ApiResponse<Child>>
+
+    // =========== POSYANDU ===========
+    fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>>
+
+    fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
+
+    fun getPosyanduChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>>
+
+    fun postPosyanduNewChildData(token: String, createNewChildRequest: CreateNewChildRequest): Flowable<ApiResponse<Child>>
 
 }

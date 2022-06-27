@@ -12,6 +12,10 @@ data class CreateNewChildRequest(
 
     val berat: String,
 
-    val lingkar_kepala: String
+    val lingkar_kepala: String,
+
+    val nama_orang_tua: String? = null,
+
+    val alamat: String? = null
 
 )
