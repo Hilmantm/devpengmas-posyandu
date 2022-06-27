@@ -1,16 +1,14 @@
 package id.kodesumsi.telkompengmas.data
 
-import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
 import id.kodesumsi.telkompengmas.data.source.network.RemoteDataSource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
-import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.User
-import id.kodesumsi.telkompengmas.domain.repository.ParentRepository
+import id.kodesumsi.telkompengmas.domain.repository.PosyanduRepository
 import id.kodesumsi.telkompengmas.utils.RepositoryUtility.saveAuthResponseToLocal
 import id.kodesumsi.telkompengmas.utils.toUser
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -20,16 +18,15 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor(
+class PosyanduRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
-): ParentRepository {
-
-    override fun orangtuaLogin(username: String, password: String): Flowable<Resource<User>> {
+): PosyanduRepository {
+    override fun posyanduLogin(username: String, password: String): Flowable<Resource<User>> {
         val result = PublishSubject.create<Resource<User>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.orangtuaLogin(username, password)
+        remoteDataSource.posyanduLogin(username, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -47,11 +44,11 @@ class UserRepositoryImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<Resource<User>> {
+    override fun posyanduRegister(registerRequest: RegisterRequest): Flowable<Resource<User>> {
         val result = PublishSubject.create<Resource<User>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.orangtuaRegister(registerRequest)
+        remoteDataSource.posyanduRegister(registerRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -71,14 +68,11 @@ class UserRepositoryImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun postOrangtuaNewChildData(
-        token: String,
-        createNewChildRequest: CreateNewChildRequest
-    ): Flowable<Resource<Child>> {
-        val result = PublishSubject.create<Resource<Child>>()
+    override fun getPosyanduChildList(token: String): Flowable<Resource<List<Child>>> {
+        val result = PublishSubject.create<Resource<List<Child>>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.postOrangtuaNewChildData(token, createNewChildRequest)
+        remoteDataSource.getPosyanduChildList(token)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -86,7 +80,7 @@ class UserRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data )
+                            Resource.Success( data = response.data.data )
                         )
                     }
                     is ApiResponse.Error -> {
@@ -98,11 +92,14 @@ class UserRepositoryImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun getOrangtuaChildList(token: String): Flowable<Resource<List<Child>>> {
-        val result = PublishSubject.create<Resource<List<Child>>>()
+    override fun postPosyanduNewChildData(
+        token: String,
+        createNewChildRequest: CreateNewChildRequest
+    ): Flowable<Resource<Child>> {
+        val result = PublishSubject.create<Resource<Child>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.getOrangtuaChildList(token)
+        remoteDataSource.postPosyanduNewChildData(token, createNewChildRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -110,7 +107,7 @@ class UserRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data.data )
+                            Resource.Success( data = response.data )
                         )
                     }
                     is ApiResponse.Error -> {

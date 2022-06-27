@@ -11,10 +11,10 @@ interface UserUseCase {
 
     fun login(username: String, password: String, userRole: Int): Flowable<Resource<User>>
 
-    fun register(registerRequest: RegisterRequest): Flowable<Resource<User>>
+    fun register(userRole: Int, registerRequest: RegisterRequest): Flowable<Resource<User>>
 
-    fun getChildList(token: String): Flowable<Resource<List<Child>>>
+    fun getChildList(token: String, userRole: Int): Flowable<Resource<List<Child>>>
 
-    fun createNewChildData(token: String, createNewChildRequest: CreateNewChildRequest): Flowable<Resource<Child>>
+    fun createNewChildData(token: String, userRole: Int, createNewChildRequest: CreateNewChildRequest): Flowable<Resource<Child>>
 
 }

@@ -10,8 +10,6 @@ data class RegisterRequest(
 
     val idDesa: Int,
 
-    val idPosyandu: Int,
-
-    val userRole: Int
+    val idPosyandu: Int
 
 )

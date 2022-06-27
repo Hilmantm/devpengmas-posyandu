@@ -7,13 +7,9 @@ import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.User
 import io.reactivex.rxjava3.core.Flowable
 
-interface UserRepository {
-
-    fun posyanduLogin(username: String, password: String): Flowable<Resource<User>>
+interface ParentRepository {
 
     fun orangtuaLogin(username: String, password: String): Flowable<Resource<User>>
-
-    fun posyanduRegister(registerRequest: RegisterRequest): Flowable<Resource<User>>
 
     fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<Resource<User>>
 

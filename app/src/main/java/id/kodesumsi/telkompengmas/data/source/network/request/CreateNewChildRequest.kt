@@ -16,6 +16,6 @@ data class CreateNewChildRequest(
 
     val nama_orang_tua: String? = null,
 
-    val alamat: String? = null
+    val alamat: String? = null,
 
 )

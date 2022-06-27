@@ -12,6 +12,6 @@ class RegisterFragmentViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ): ViewModel() {
 
-    fun register(registerRequest: RegisterRequest) = LiveDataReactiveStreams.fromPublisher(userUseCase.register(registerRequest))
+    fun register(userRole: Int, registerRequest: RegisterRequest) = LiveDataReactiveStreams.fromPublisher(userUseCase.register(userRole, registerRequest))
 
 }
