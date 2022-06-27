@@ -3,7 +3,9 @@ package id.kodesumsi.telkompengmas.domain.interactor
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
+import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.ParentRepository
 import id.kodesumsi.telkompengmas.domain.repository.PosyanduRepository
@@ -58,6 +60,30 @@ class UserInteractor @Inject constructor(
             ROLE_POSYANDU -> posyanduRepository.postPosyanduNewChildData(token, createNewChildRequest)
             ROLE_PARENT -> parentRepository.postOrangtuaNewChildData(token, createNewChildRequest)
             else -> parentRepository.postOrangtuaNewChildData(token, createNewChildRequest)
+        }
+    }
+
+    override fun getChildStatistics(
+        token: String,
+        userRole: Int,
+        childId: Int
+    ): Flowable<Resource<List<ChildStatistics>>> {
+        return when(userRole) {
+            ROLE_POSYANDU -> posyanduRepository.getPosyanduStatistics(token, childId)
+            ROLE_PARENT -> parentRepository.getOrangtuaStatistics(token, childId)
+            else -> parentRepository.getOrangtuaStatistics(token, childId)
+        }
+    }
+
+    override fun updateChildData(
+        token: String,
+        userRole: Int,
+        updateChildDataRequest: UpdateChildDataRequest
+    ): Flowable<Resource<Child>> {
+        return when(userRole) {
+            ROLE_POSYANDU -> posyanduRepository.postPosyanduStatistics(token, updateChildDataRequest)
+            ROLE_PARENT -> parentRepository.postOrangtuaStatistics(token, updateChildDataRequest)
+            else -> parentRepository.postOrangtuaStatistics(token, updateChildDataRequest)
         }
     }
 

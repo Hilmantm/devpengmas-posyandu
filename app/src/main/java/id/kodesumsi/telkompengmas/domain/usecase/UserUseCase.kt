@@ -3,7 +3,9 @@ package id.kodesumsi.telkompengmas.domain.usecase
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
+import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
 import id.kodesumsi.telkompengmas.domain.model.User
 import io.reactivex.rxjava3.core.Flowable
 
@@ -16,5 +18,9 @@ interface UserUseCase {
     fun getChildList(token: String, userRole: Int): Flowable<Resource<List<Child>>>
 
     fun createNewChildData(token: String, userRole: Int, createNewChildRequest: CreateNewChildRequest): Flowable<Resource<Child>>
+
+    fun getChildStatistics(token: String, userRole: Int, childId: Int): Flowable<Resource<List<ChildStatistics>>>
+
+    fun updateChildData(token: String, userRole: Int, updateChildDataRequest: UpdateChildDataRequest): Flowable<Resource<Child>>
 
 }

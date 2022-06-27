@@ -3,10 +3,13 @@ package id.kodesumsi.telkompengmas.utils
 import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
+import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
+import id.kodesumsi.telkompengmas.data.source.network.response.ChildStatisticsResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.TokenResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.UserResponse
 import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
 import id.kodesumsi.telkompengmas.domain.model.User
 
 fun RegisterRequest.toAuthResponse(): AuthResponse {
@@ -48,5 +51,25 @@ fun CreateNewChildRequest.toChild(): Child {
         height = this.tinggi.toFloat(),
         weight = this.berat.toFloat(),
         headCircumference = this.lingkar_kepala.toFloat()
+    )
+}
+
+fun UpdateChildDataRequest.toChild(): Child {
+    return Child(
+        id = this.childId,
+        height = this.height.toFloat(),
+        weight = this.weight.toFloat(),
+        headCircumference = this.headCircumference.toFloat()
+    )
+}
+
+fun ChildStatisticsResponse.toChildStatistics(): ChildStatistics {
+    return ChildStatistics(
+        id = this.id,
+        childId = this.id_anak,
+        height = this.tinggi,
+        weight = this.berat,
+        headCircumference = this.lingkar_kepala,
+        date = this.date
     )
 }

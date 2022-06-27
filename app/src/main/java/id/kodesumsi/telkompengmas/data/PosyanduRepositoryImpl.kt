@@ -6,10 +6,13 @@ import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
 import id.kodesumsi.telkompengmas.data.source.network.RemoteDataSource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
+import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.PosyanduRepository
 import id.kodesumsi.telkompengmas.utils.RepositoryUtility.saveAuthResponseToLocal
+import id.kodesumsi.telkompengmas.utils.toChildStatistics
 import id.kodesumsi.telkompengmas.utils.toUser
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
@@ -100,6 +103,60 @@ class PosyanduRepositoryImpl @Inject constructor(
 
         result.onNext(Resource.Loading(null))
         remoteDataSource.postPosyanduNewChildData(token, createNewChildRequest)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe { response ->
+                when (response) {
+                    is ApiResponse.Success -> {
+                        result.onNext(
+                            Resource.Success( data = response.data )
+                        )
+                    }
+                    is ApiResponse.Error -> {
+                        result.onNext(Resource.Error(response.errorMessage))
+                    }
+                }
+            }
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getPosyanduStatistics(
+        token: String,
+        childId: Int
+    ): Flowable<Resource<List<ChildStatistics>>> {
+        val result = PublishSubject.create<Resource<List<ChildStatistics>>>()
+
+        result.onNext(Resource.Loading(null))
+        remoteDataSource.getOrangtuaStatistics(token, childId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe { response ->
+                when (response) {
+                    is ApiResponse.Success -> {
+                        result.onNext(
+                            Resource.Success( data = response.data.map { it.toChildStatistics() } )
+                        )
+                    }
+                    is ApiResponse.Error -> {
+                        result.onNext(Resource.Error(response.errorMessage))
+                    }
+                }
+            }
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun postPosyanduStatistics(
+        token: String,
+        updateChildDataRequest: UpdateChildDataRequest
+    ): Flowable<Resource<Child>> {
+        val result = PublishSubject.create<Resource<Child>>()
+
+        result.onNext(Resource.Loading(null))
+        remoteDataSource.postOrangtuaStatistics(token, updateChildDataRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)

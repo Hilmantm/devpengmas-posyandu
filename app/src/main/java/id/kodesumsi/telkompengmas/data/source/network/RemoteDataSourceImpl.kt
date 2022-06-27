@@ -3,7 +3,9 @@ package id.kodesumsi.telkompengmas.data.source.network
 import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
+import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
+import id.kodesumsi.telkompengmas.data.source.network.response.ChildStatisticsResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.ListOfResponse
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.utils.toAuthResponse
@@ -123,6 +125,55 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
+    override fun getPosyanduStatistics(
+        token: String,
+        childId: Int
+    ): Flowable<ApiResponse<List<ChildStatisticsResponse>>> {
+        val result = PublishSubject.create<ApiResponse<List<ChildStatisticsResponse>>>()
+        val client = networkService.getPosyanduStatistics("Bearer $token", childId)
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                result.onNext(if (code == 200 && response.data != null) ApiResponse.Success(response.data) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun postPosyanduStatistics(
+        token: String,
+        updateChildDataRequest: UpdateChildDataRequest
+    ): Flowable<ApiResponse<Child>> {
+        val result = PublishSubject.create<ApiResponse<Child>>()
+        val client = networkService.postPosyanduStatistics(
+            token = "Bearer $token",
+            childId = updateChildDataRequest.childId,
+            height = updateChildDataRequest.height,
+            weight = updateChildDataRequest.weight,
+            headCircumference = updateChildDataRequest.headCircumference
+        )
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                val dataUpdate = updateChildDataRequest.toChild()
+                result.onNext(if (code == 200) ApiResponse.Success(dataUpdate) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
     override fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>> {
         val result = PublishSubject.create<ApiResponse<AuthResponse>>()
         val client = networkService.postOrangtuaRegister(
@@ -186,6 +237,55 @@ class RemoteDataSourceImpl @Inject constructor(
                 val code = response.code
                 val newChild = createNewChildRequest.toChild()
                 result.onNext(if (code == 200) ApiResponse.Success(newChild) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getOrangtuaStatistics(
+        token: String,
+        childId: Int
+    ): Flowable<ApiResponse<List<ChildStatisticsResponse>>> {
+        val result = PublishSubject.create<ApiResponse<List<ChildStatisticsResponse>>>()
+        val client = networkService.getOrangtuaStatistics("Bearer $token", childId)
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                result.onNext(if (code == 200 && response.data != null) ApiResponse.Success(response.data) else ApiResponse.Empty)
+            }, { error ->
+                result.onNext(ApiResponse.Error(error.message.toString()))
+                Log.e("RemoteDataSource", error.toString())
+            })
+
+        return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun postOrangtuaStatistics(
+        token: String,
+        updateChildDataRequest: UpdateChildDataRequest
+    ): Flowable<ApiResponse<Child>> {
+        val result = PublishSubject.create<ApiResponse<Child>>()
+        val client = networkService.postOrangtuaStatistics(
+            token = "Bearer $token",
+            childId = updateChildDataRequest.childId,
+            height = updateChildDataRequest.height,
+            weight = updateChildDataRequest.weight,
+            headCircumference = updateChildDataRequest.headCircumference
+        )
+
+        client.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ response ->
+                val code = response.code
+                val dataUpdate = updateChildDataRequest.toChild()
+                result.onNext(if (code == 200) ApiResponse.Success(dataUpdate) else ApiResponse.Empty)
             }, { error ->
                 result.onNext(ApiResponse.Error(error.message.toString()))
                 Log.e("RemoteDataSource", error.toString())
