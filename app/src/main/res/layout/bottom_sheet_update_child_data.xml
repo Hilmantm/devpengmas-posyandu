@@ -92,14 +92,16 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
-            android:id="@+id/btn_add_child"
+            android:id="@+id/btn_update_child"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/tambahkan_anak"
+            android:text="Update Data Anak"
             android:layout_marginTop="30dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginBottom="40dp"
+            android:translationZ="999dp"
+            android:backgroundTint="@color/primary"
             app:layout_constraintTop_toBottomOf="@id/head_circumference_field"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

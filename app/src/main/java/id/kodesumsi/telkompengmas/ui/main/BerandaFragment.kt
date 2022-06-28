@@ -2,9 +2,11 @@ package id.kodesumsi.telkompengmas.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.kodesumsi.telkompengmas.base.BaseAdapter
 import id.kodesumsi.telkompengmas.base.BaseFragment
@@ -16,6 +18,11 @@ import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.ui.detail.ChildDetailActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
+import id.kodesumsi.telkompengmas.utils.Utility
+import java.time.LocalDate
+import java.time.Period
+import java.time.temporal.ChronoUnit
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 
 class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
@@ -49,6 +56,10 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
             binding.dataAnakRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.dataAnakRv.adapter = childAdapterPosyandu
         }
+
+//        val dataDate = "2022-06-27"
+//        val birthDate = "2021-01-20"
+//        Log.d("BerandaActivity", "date count: ${Utility.countMonthDiff(birthDate, dataDate)} ")
     }
 
 }

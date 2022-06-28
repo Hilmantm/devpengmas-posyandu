@@ -61,6 +61,20 @@ object ApiConfig {
 
     @Provides
     @Singleton
+    fun providesHttpClient(
+        chuckerInterceptor: ChuckerInterceptor,
+        @ApplicationContext ctx: Context
+    ): OkHttpClient {
+        return OkHttpClient.Builder()
+            .callTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(chuckerInterceptor)
+            .build()
+    }
+
+    @Provides
+    @Singleton
     fun providesGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }

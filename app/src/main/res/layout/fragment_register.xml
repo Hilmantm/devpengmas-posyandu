@@ -135,7 +135,7 @@
                 android:id="@+id/desa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/password"
+                android:text="@string/desa"
                 android:layout_marginTop="28dp"
                 app:layout_constraintTop_toBottomOf="@id/password_field"
                 app:layout_constraintStart_toStartOf="@id/password_field"/>
@@ -160,7 +160,7 @@
                 android:id="@+id/posyandu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/password"
+                android:text="@string/posyandu"
                 android:layout_marginTop="28dp"
                 app:layout_constraintTop_toBottomOf="@id/desa_field"
                 app:layout_constraintStart_toStartOf="@id/desa_field"/>

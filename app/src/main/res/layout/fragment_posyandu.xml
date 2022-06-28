@@ -1,75 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.PosyanduFragment">
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/home_red"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/posyandu_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/posyandu"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/posyandu_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Terdekat"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/posyandu_title"
-        app:layout_constraintStart_toStartOf="@id/posyandu_title"
-        app:layout_constraintEnd_toEndOf="@id/posyandu_title"/>
-
-    <LinearLayout
-        android:id="@+id/posyandu_closest_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bg_round_white"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="@dimen/root"
-        android:layout_marginEnd="@dimen/root"
-        android:padding="@dimen/root"
-        app:layout_constraintTop_toBottomOf="@id/posyandu_subtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_red"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/posyandu_closest"
+            android:id="@+id/posyandu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Jl. Sukapura No.44, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40267"/>
+            android:text="@string/posyandu"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/posyandu_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terdekat"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/posyandu_title"
+            app:layout_constraintStart_toStartOf="@id/posyandu_title"
+            app:layout_constraintEnd_toEndOf="@id/posyandu_title"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/posyandu_rv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        tools:itemCount="3"
-        tools:listitem="@layout/item_posyandu"
-        app:layout_constraintTop_toBottomOf="@id/posyandu_closest_card"
-        app:layout_constraintStart_toStartOf="@+id/posyandu_closest_card"
-        app:layout_constraintEnd_toEndOf="@id/posyandu_closest_card"/>
+        <LinearLayout
+            android:id="@+id/posyandu_closest_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_round_white"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="@dimen/root"
+            android:layout_marginEnd="@dimen/root"
+            android:padding="@dimen/root"
+            app:layout_constraintTop_toBottomOf="@id/posyandu_subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/posyandu_closest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Jl. Sukapura No.44, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40267"/>
+
+            <fragment
+                android:id="@+id/posyandu_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/posyandu_rv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_posyandu"
+            app:layout_constraintTop_toBottomOf="@id/posyandu_closest_card"
+            app:layout_constraintStart_toStartOf="@+id/posyandu_closest_card"
+            app:layout_constraintEnd_toEndOf="@id/posyandu_closest_card"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

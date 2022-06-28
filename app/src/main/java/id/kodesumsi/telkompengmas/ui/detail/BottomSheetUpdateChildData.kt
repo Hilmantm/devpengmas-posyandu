@@ -24,7 +24,7 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.btnAddChild.setOnClickListener {
+        binding.btnUpdateChild.setOnClickListener {
             Toast.makeText(requireContext(), "Submit", Toast.LENGTH_SHORT).show()
         }
     }

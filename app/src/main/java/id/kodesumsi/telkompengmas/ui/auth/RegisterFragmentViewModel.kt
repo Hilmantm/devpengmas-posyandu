@@ -14,5 +14,7 @@ class RegisterFragmentViewModel @Inject constructor(
 
     fun register(userRole: Int, registerRequest: RegisterRequest) = LiveDataReactiveStreams.fromPublisher(userUseCase.register(userRole, registerRequest))
 
+    fun getListDesa() = LiveDataReactiveStreams.fromPublisher(userUseCase.getListDesa())
 
+    fun getListPosyandu(desaId: Int) = LiveDataReactiveStreams.fromPublisher(userUseCase.getListPosyandu(desaId))
 }

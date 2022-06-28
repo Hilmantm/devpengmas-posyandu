@@ -35,6 +35,7 @@
     <string name="data_anak">Data Anak</string>
     <string name="lewati">Lewati</string>
     <string name="selanjutnya">Selanjutnya</string>
+    <string name="MAPS_KEY">AIzaSyAL8l3PjyC1Fjq7uKUitzOBcRtuqJRTfbo</string>
 
     <!--  onboarding  -->
     <string name="onboarding_1_desc">Lihat Perkembangan Buah Hati Anda Secara Digital</string>
@@ -48,5 +49,6 @@
     <string name="chat_doc">Chat Doc</string>
     <string name="atasi_segera">Atasi segera</string>
     <string name="update_data_anak">Update Data Anak</string>
+    <string name="desa">Desa</string>
 
 </resources>
