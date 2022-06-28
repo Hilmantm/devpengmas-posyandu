@@ -34,7 +34,8 @@ class OnboardingActivity : BaseActivity<ActivityOnboardingBinding>() {
         }
 
         binding.skipBtn.setOnClickListener {
-            viewModel.onboardingCurrentItem.postValue(2)
+            binding.onboardingViewpager.currentItem = 2
+            viewModel.onboardingCurrentItem.postValue(binding.onboardingViewpager.currentItem)
         }
 
         binding.nextBtn.setOnClickListener {

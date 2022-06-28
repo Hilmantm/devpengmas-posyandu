@@ -25,8 +25,9 @@
         android:layout_marginEnd="@dimen/root"
         android:layout_marginBottom="@dimen/root"
         android:src="@drawable/ic_baseline_add_24"
-        android:tint="#CE0808"
+        app:tint="@color/primary"
         android:backgroundTint="@color/white"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toTopOf="@id/bnv"
         app:layout_constraintEnd_toEndOf="parent"/>
 
