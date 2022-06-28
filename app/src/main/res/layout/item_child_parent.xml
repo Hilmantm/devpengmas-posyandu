@@ -20,7 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"
-            android:src="@drawable/child_image_example"/>
+            android:src="@drawable/boy_illustration"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33000000"/>
 
     </androidx.cardview.widget.CardView>
 

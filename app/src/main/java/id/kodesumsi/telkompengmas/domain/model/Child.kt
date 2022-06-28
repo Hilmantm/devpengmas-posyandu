@@ -26,6 +26,8 @@ data class Child(
 
     val headCircumference: Float? = null,
 
-    val gender: Int? = null
+    val gender: Int? = null,
+
+    val image: String? = null
 
 )

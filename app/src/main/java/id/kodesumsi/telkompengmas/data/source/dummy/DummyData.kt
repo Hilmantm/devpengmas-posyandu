@@ -1,12 +1,10 @@
 package id.kodesumsi.telkompengmas.data.source.dummy
 
-import id.kodesumsi.telkompengmas.domain.model.Article
-import id.kodesumsi.telkompengmas.domain.model.Child
-import id.kodesumsi.telkompengmas.domain.model.Doctor
-import id.kodesumsi.telkompengmas.domain.model.User
+import id.kodesumsi.telkompengmas.domain.model.*
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.MAN
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.WOMAN
 
 object DummyData {
 
@@ -40,6 +38,14 @@ object DummyData {
                 )
             }
         }
+    }
+
+    fun getPosyandus(): List<Posyandu> {
+        val result: MutableList<Posyandu> = mutableListOf()
+
+
+
+        return result
     }
 
     fun getArticles(): List<Article> {
@@ -84,7 +90,7 @@ object DummyData {
         val dokter1 = Doctor(id = 1, name = "Dr.Hilman Taris M", phone = "https://api.whatsapp.com/send?phone=6281214738859")
         result.add(dokter1)
 
-        val dokter2 = Doctor(id = 2, name = "Dr.Lasman Simbolong", phone = "https://api.whatsapp.com/send?phone=6282137735310")
+        val dokter2 = Doctor(id = 2, name = "Dr.Lasman Simbolon", phone = "https://api.whatsapp.com/send?phone=6282137735310")
         result.add(dokter2)
 
         return result
@@ -107,13 +113,13 @@ object DummyData {
 
         val child2 = Child(
             id = 2,
-            name = "Iwan Sujatmiko",
-            surname = "Iwan",
+            name = "Siti Nurbaya",
+            surname = "Siti",
             birthDate = "08-04-02",
             height = 80.0f,
             weight = 10.0f,
             headCircumference = 100.0f,
-            gender = MAN
+            gender = WOMAN
         )
         result.add(child2)
 
