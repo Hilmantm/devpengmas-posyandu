@@ -50,10 +50,11 @@
     <string name="kader_posyandu">Kader Posyandu</string>
     <string name="orang_tua_anak">Orang Tua Anak</string>
     <string name="rekap">Rekap</string>
-    <string name="jawab">Jawab</string>
     <string name="chat_doc">Chat Doc</string>
     <string name="atasi_segera">Atasi segera</string>
     <string name="update_data_anak">Update Data Anak</string>
     <string name="desa">Desa</string>
+    <string name="baby_doc">Baby Doc</string>
+    <string name="tanya_baby_doc">Tanya Baby Doc</string>
 
 </resources>

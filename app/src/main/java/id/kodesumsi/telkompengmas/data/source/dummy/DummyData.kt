@@ -1,6 +1,7 @@
 package id.kodesumsi.telkompengmas.data.source.dummy
 
 import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.domain.model.Doctor
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.MAN
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
@@ -38,6 +39,18 @@ object DummyData {
                 )
             }
         }
+    }
+
+    fun getDoctors(): List<Doctor> {
+        val result: MutableList<Doctor> = mutableListOf()
+
+        val dokter1 = Doctor(id = 1, name = "Dr.Hilman Taris M", phone = "https://api.whatsapp.com/send?phone=6281214738859")
+        result.add(dokter1)
+
+        val dokter2 = Doctor(id = 2, name = "Dr.Lasman Simbolong", phone = "https://api.whatsapp.com/send?phone=6282137735310")
+        result.add(dokter2)
+
+        return result
     }
 
     fun getChilds(): List<Child> {
