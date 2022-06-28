@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Maybe
 
 class LocalDataSourceImpl(private val userDao: UserDao): LocalDataSource {
-    override fun saveUser(authResponse: AuthResponse): Completable {
-        return userDao.saveUser(authResponse.toUserEntity())
+    override fun saveUser(userRole: Int, authResponse: AuthResponse): Completable {
+        return userDao.saveUser(authResponse.toUserEntity(userRole))
     }
 }

@@ -11,9 +11,9 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 
 object RepositoryUtility {
 
-    fun saveAuthResponseToLocal(localDataSource: LocalDataSource, response: AuthResponse, result: PublishSubject<Resource<User>>) {
+    fun saveAuthResponseToLocal(localDataSource: LocalDataSource, userRole: Int, response: AuthResponse, result: PublishSubject<Resource<User>>) {
         // save to local database
-        localDataSource.saveUser(response)
+        localDataSource.saveUser(userRole, response)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

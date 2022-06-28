@@ -8,6 +8,6 @@ import io.reactivex.rxjava3.core.Maybe
 
 interface LocalDataSource {
 
-    fun saveUser(authResponse: AuthResponse): Completable
+    fun saveUser(userRole: Int, authResponse: AuthResponse): Completable
 
 }

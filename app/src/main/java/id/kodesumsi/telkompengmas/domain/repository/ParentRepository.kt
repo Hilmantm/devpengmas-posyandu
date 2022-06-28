@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.core.Flowable
 
 interface ParentRepository {
 
-    fun orangtuaLogin(username: String, password: String): Flowable<Resource<User>>
+    fun orangtuaLogin(userRole: Int, username: String, password: String): Flowable<Resource<User>>
 
     fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<Resource<User>>
 

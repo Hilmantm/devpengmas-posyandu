@@ -16,6 +16,8 @@ data class UserEntity(
 
     val idPosyandu: Int,
 
-    val token: String
+    val token: String,
+
+    val userRole: Int
 
 )

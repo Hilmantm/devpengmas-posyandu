@@ -25,7 +25,11 @@ class PosyanduRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource
 ): PosyanduRepository {
-    override fun posyanduLogin(username: String, password: String): Flowable<Resource<User>> {
+    override fun posyanduLogin(
+        userRole: Int,
+        username: String,
+        password: String
+    ): Flowable<Resource<User>> {
         val result = PublishSubject.create<Resource<User>>()
 
         result.onNext(Resource.Loading(null))
@@ -36,7 +40,7 @@ class PosyanduRepositoryImpl @Inject constructor(
             .subscribe { response ->
                 when (response) {
                     is ApiResponse.Success -> {
-                        saveAuthResponseToLocal(localDataSource, response.data, result)
+                        saveAuthResponseToLocal(localDataSource, userRole, response.data, result)
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))

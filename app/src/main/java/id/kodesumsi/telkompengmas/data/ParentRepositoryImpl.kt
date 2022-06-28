@@ -28,7 +28,11 @@ class ParentRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ): ParentRepository {
 
-    override fun orangtuaLogin(username: String, password: String): Flowable<Resource<User>> {
+    override fun orangtuaLogin(
+        userRole: Int,
+        username: String,
+        password: String
+    ): Flowable<Resource<User>> {
         val result = PublishSubject.create<Resource<User>>()
 
         result.onNext(Resource.Loading(null))
@@ -39,7 +43,7 @@ class ParentRepositoryImpl @Inject constructor(
             .subscribe { response ->
                 when (response) {
                     is ApiResponse.Success -> {
-                        saveAuthResponseToLocal(localDataSource, response.data, result)
+                        saveAuthResponseToLocal(localDataSource, userRole, response.data, result)
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))

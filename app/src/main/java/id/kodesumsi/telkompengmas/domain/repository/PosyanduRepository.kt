@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.core.Flowable
 
 interface PosyanduRepository {
 
-    fun posyanduLogin(username: String, password: String): Flowable<Resource<User>>
+    fun posyanduLogin(userRole: Int, username: String, password: String): Flowable<Resource<User>>
 
     fun posyanduRegister(registerRequest: RegisterRequest): Flowable<Resource<User>>
 

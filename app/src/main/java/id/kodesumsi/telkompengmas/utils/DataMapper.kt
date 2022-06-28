@@ -18,13 +18,14 @@ fun AuthResponse.toUser(): User {
     return User(name = this.user.nama, email = this.user.email, idDesa = this.user.idDesa, iDPosyandu = this.user.idPosyandu)
 }
 
-fun AuthResponse.toUserEntity(): UserEntity {
+fun AuthResponse.toUserEntity(userRole: Int): UserEntity {
     return UserEntity(
         name = this.user.nama,
         email = this.user.email,
         idDesa = this.user.idDesa,
         idPosyandu = this.user.idPosyandu,
-        token = this.token.value
+        token = this.token.value,
+        userRole = userRole
     )
 }
 
