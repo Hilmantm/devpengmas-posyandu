@@ -1,11 +1,13 @@
 package id.kodesumsi.telkompengmas.ui.onboarding
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseActivity
 import id.kodesumsi.telkompengmas.databinding.ActivityOnboardingBinding
 import id.kodesumsi.telkompengmas.ui.auth.AuthActivity
@@ -49,16 +51,15 @@ class OnboardingActivity : BaseActivity<ActivityOnboardingBinding>() {
         binding.nextBtn.text = "Mulai"
         binding.nextBtn.setOnClickListener {
             // check session or check current user is login?
-            val isLogin = false
-            if (isLogin) {
-                val toMain = Intent(this, MainActivity::class.java)
-                startActivity(toMain)
-                finish()
-            } else {
-                val toLogin = Intent(this, AuthActivity::class.java)
-                startActivity(toLogin)
-                finish()
+            val preference = getSharedPreferences(getString(R.string.PREFERENCE_FILE_KEY), Context.MODE_PRIVATE)
+            with(preference.edit()) {
+                putBoolean(getString(R.string.FIRST_TIME), false)
+                apply()
             }
+
+            val toLogin = Intent(this, AuthActivity::class.java)
+            startActivity(toLogin)
+            finish()
         }
     }
 
