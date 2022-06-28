@@ -61,7 +61,9 @@
                 android:id="@+id/posyandu_closest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Jl. Sukapura No.44, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40267"/>
+                android:text="Jl. Sukapura No.44, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40267"
+                android:textSize="16sp"
+                android:textColor="#15A4A4"/>
 
             <fragment
                 android:id="@+id/posyandu_map"
@@ -81,7 +83,8 @@
             tools:listitem="@layout/item_posyandu"
             app:layout_constraintTop_toBottomOf="@id/posyandu_closest_card"
             app:layout_constraintStart_toStartOf="@+id/posyandu_closest_card"
-            app:layout_constraintEnd_toEndOf="@id/posyandu_closest_card"/>
+            app:layout_constraintEnd_toEndOf="@id/posyandu_closest_card"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

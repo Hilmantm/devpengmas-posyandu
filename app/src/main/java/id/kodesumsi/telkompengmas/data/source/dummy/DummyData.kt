@@ -43,7 +43,49 @@ object DummyData {
     fun getPosyandus(): List<Posyandu> {
         val result: MutableList<Posyandu> = mutableListOf()
 
+        val posyandu1 = Posyandu(
+            id = 1,
+            thumbUrl = "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1h75Uc54Clt_nLRMLiRRwg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=220.32874&pitch=0&thumbfov=100",
+            lat = "-6.9627092",
+            lng = "107.6483161",
+            name = "Posyandu Jakapurwa",
+            status = true,
+            address = "2JPX+W88, Jl. Jaka Utama, Kujangsari, Kec. Bandung Kidul, Kota Bandung, Jawa Barat 40287",
+        )
+        result.add(posyandu1)
 
+        val posyandu2 = Posyandu(
+            id = 2,
+            thumbUrl = null,
+            lat = "-6.952872",
+            lng = "107.6789227",
+            name = "Posyandu Dan Posbindu Purnawati",
+            status = true,
+            address = "Jl. keadilan I No.6, Derwati, Kec. Rancasari, Kota Bandung, Jawa Barat 40292",
+        )
+        result.add(posyandu2)
+
+        val posyandu3 = Posyandu(
+            id = 3,
+            thumbUrl = "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=B5Zlg4ucNMEmA_GSyq0RSQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=60.76402&pitch=0&thumbfov=100",
+            lat = "-6.9494587",
+            lng = "107.6807477",
+            name = "Posyandu Mawar IX",
+            status = true,
+            address = "Jl. keadilan I No.6, Derwati, Kec. Rancasari, Kota Bandung, Jawa Barat 40292",
+        )
+        result.add(posyandu3)
+
+        val posyandu4 = Posyandu(
+            id = 4,
+            thumbUrl = null,
+            lat = "-6.9316567",
+            lng = "107.6356286",
+            name = "Posyandu Melati",
+            status = true,
+            address = "Lkr. Sel., Kec. Lengkong, Kota Bandung, Jawa Barat",
+        )
+        result.add(posyandu4)
 
         return result
     }
