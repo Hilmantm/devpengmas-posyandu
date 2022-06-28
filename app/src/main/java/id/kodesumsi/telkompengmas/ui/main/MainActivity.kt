@@ -13,6 +13,7 @@ import id.kodesumsi.telkompengmas.base.BaseActivity
 import id.kodesumsi.telkompengmas.databinding.ActivityMainBinding
 import id.kodesumsi.telkompengmas.ui.auth.ChooseRoleFragment
 import id.kodesumsi.telkompengmas.ui.forms.TambahDataAnakActivity
+import id.kodesumsi.telkompengmas.ui.forms.TambahDataAnakPosyanduActivity
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
@@ -30,16 +31,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         binding.bnv.menu.clear()
         if (role == ChooseRoleFragment.POSYANDU_ROLE) {
             binding.bnv.inflateMenu(R.menu.bnv_main_menu_posyandu)
+            binding.fab.setOnClickListener {
+                val toAddChild = Intent(this, TambahDataAnakPosyanduActivity::class.java)
+                startActivity(toAddChild)
+            }
         } else if (role == ChooseRoleFragment.PARENT_ROLE) {
             binding.bnv.inflateMenu(R.menu.bnv_main_menu_parents)
+            binding.fab.setOnClickListener {
+                val toAddChild = Intent(this, TambahDataAnakActivity::class.java)
+                startActivity(toAddChild)
+            }
         }
         val navController = findNavController(R.id.main_nav)
         binding.bnv.setupWithNavController(navController)
 
-        binding.fab.setOnClickListener {
-            val toAddChild = Intent(this, TambahDataAnakActivity::class.java)
-            startActivity(toAddChild)
-        }
+
     }
 
 }

@@ -35,12 +35,12 @@
     <string name="data_anak">Data Anak</string>
     <string name="lewati">Lewati</string>
     <string name="selanjutnya">Selanjutnya</string>
-    
+
     <!-- App config -->
     <string name="MAPS_KEY">AIzaSyAL8l3PjyC1Fjq7uKUitzOBcRtuqJRTfbo</string>
     <string name="PREFERENCE_FILE_KEY">id.kodesumsi.telkompengmas.PREFERENCE_FILE_KEY</string>
     <string name="FIRST_TIME">first_time</string>
-    
+
 
     <!--  onboarding  -->
     <string name="onboarding_1_desc">Lihat Perkembangan Buah Hati Anda Secara Digital</string>
@@ -56,5 +56,7 @@
     <string name="desa">Desa</string>
     <string name="baby_doc">Baby Doc</string>
     <string name="tanya_baby_doc">Tanya Baby Doc</string>
+    <string name="nama_orang_tua">Nama Orang Tua</string>
+    <string name="alamat">Alamat</string>
 
 </resources>
