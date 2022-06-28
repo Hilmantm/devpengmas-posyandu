@@ -2,18 +2,20 @@ package id.kodesumsi.telkompengmas.domain.model
 
 data class Article(
 
-    val id: Int,
+    val id: Int? = null,
 
-    val thumbUrl: String,
+    val thumbUrl: String? = null,
 
-    val title: String,
+    val title: String? = null,
 
-    val author: String,
+    val author: String? = null,
 
-    val createdAt: String,
+    val createdAt: String? = null,
 
-    val data: String,
+    val data: String? = null,
 
-    val tag: List<String> = listOf()
+    val tag: List<String> = listOf(),
+
+    val url: String? = null
 
 )

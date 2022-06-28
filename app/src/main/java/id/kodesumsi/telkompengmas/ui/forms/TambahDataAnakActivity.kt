@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseActivity

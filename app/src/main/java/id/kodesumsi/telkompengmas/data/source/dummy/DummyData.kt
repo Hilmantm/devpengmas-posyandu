@@ -1,5 +1,6 @@
 package id.kodesumsi.telkompengmas.data.source.dummy
 
+import id.kodesumsi.telkompengmas.domain.model.Article
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.Doctor
 import id.kodesumsi.telkompengmas.domain.model.User
@@ -39,6 +40,42 @@ object DummyData {
                 )
             }
         }
+    }
+
+    fun getArticles(): List<Article> {
+        val result: MutableList<Article> = mutableListOf()
+
+        val article1 = Article(
+            id = 1,
+            thumbUrl = "https://pendidikan.id/news/wp-content/uploads/2019/08/01-practice-ways-get-kids-off-phones-without-bribery-37707798-gpointstudio-760x506-300x200.jpg",
+            title = "Persiapkan Pendidikan Anak Usia Dini dengan Gadget, Ajak Anak Bermain Sambil Belajar",
+            author = "Pendidikan.id",
+            tag = listOf("Pendidikan", "Anak", "Gadget"),
+            url = "https://pendidikan.id/news/persiapkan-pendidikan-anak-usia-dini-dengan-gadget-ajak-anak-bermain-sambil-belajar/"
+        )
+        result.add(article1)
+
+        val article2 = Article(
+            id = 2,
+            thumbUrl = "https://pendidikan.id/news/wp-content/uploads/2017/10/trailer-cacat-mata-300x300.png",
+            title = "Komik Edukasi Kesehatan: Tips Menjaga Mata Sehat, Jauh dari Risiko Cacat Mata",
+            author = "Pendidikan.id",
+            tag = listOf("Kesehatan", "Edukasi", "Mata"),
+            url = "https://pendidikan.id/news/komik-edukasi-kesehatan-tips-menjaga-mata-sehat-jauh-dari-risiko-cacat-mata/"
+        )
+        result.add(article2)
+
+        val article3 = Article(
+            id = 3,
+            thumbUrl = "https://pendidikan.id/news/wp-content/uploads/2017/08/trailer-mois-300x300.png",
+            title = "Petualangan Hebat si Mois, Komik Literasi Menarik Sebagai Bahan Cerita untuk Anak Balita",
+            author = "Pendidikan.id",
+            tag = listOf("Literasi", "Cerita", "Balita"),
+            url = "https://pendidikan.id/news/petualangan-hebat-si-mois-komik-literasi-menarik-sebagai-bahan-cerita-untuk-si-kecil/"
+        )
+        result.add(article3)
+
+        return result
     }
 
     fun getDoctors(): List<Doctor> {

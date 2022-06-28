@@ -42,7 +42,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/artikel_rv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="@dimen/root"
         android:layout_marginEnd="@dimen/root"
@@ -50,6 +50,7 @@
         tools:listitem="@layout/item_artikel"
         app:layout_constraintTop_toBottomOf="@id/artikel_subtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

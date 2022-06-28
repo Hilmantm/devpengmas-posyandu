@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseFragment
 import id.kodesumsi.telkompengmas.databinding.FragmentOnboardingBinding
@@ -20,15 +20,15 @@ class OnboardingFragment(private val position: Int) : BaseFragment<FragmentOnboa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         when(position) {
             0 -> {
-                Picasso.get().load(R.drawable.onboarding_1).into(binding.onboardingIllustration)
+                Glide.with(requireContext()).load(R.drawable.onboarding_1).into(binding.onboardingIllustration)
                 binding.onboardingDesc.text = getString(R.string.onboarding_1_desc)
             }
             1 -> {
-                Picasso.get().load(R.drawable.onboarding_2).into(binding.onboardingIllustration)
+                Glide.with(requireContext()).load(R.drawable.onboarding_2).into(binding.onboardingIllustration)
                 binding.onboardingDesc.text = getString(R.string.onboarding_2_desc)
             }
             2 -> {
-                Picasso.get().load(R.drawable.onboarding_3).into(binding.onboardingIllustration)
+                Glide.with(requireContext()).load(R.drawable.onboarding_3).into(binding.onboardingIllustration)
                 binding.onboardingDesc.text = getString(R.string.onboarding_3_desc)
             }
         }
