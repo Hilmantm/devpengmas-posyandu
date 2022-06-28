@@ -36,11 +36,11 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <ImageView
-                android:id="@+id/btn_notification"
+                android:id="@+id/btn_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_notifications_none_24"
-                android:visibility="invisible"
+                android:src="@drawable/ic_baseline_logout_24"
+                android:visibility="visible"
                 android:layout_marginEnd="@dimen/root"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/hallo_text"
@@ -64,7 +64,7 @@
                 layout="@layout/layout_home_statistics"
                 app:layout_constraintTop_toBottomOf="@id/name_home"
                 app:layout_constraintStart_toStartOf="@id/hallo_text"
-                app:layout_constraintEnd_toEndOf="@id/btn_notification"/>
+                app:layout_constraintEnd_toEndOf="@id/btn_logout"/>
 
             <TextView
                 android:id="@+id/reminder_title"

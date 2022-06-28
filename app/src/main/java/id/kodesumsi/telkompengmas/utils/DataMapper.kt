@@ -31,11 +31,25 @@ fun AuthResponse.toUserEntity(userRole: Int): UserEntity {
 
 fun UserEntity.toUser(): User {
     return User(
+        id = this.id,
         name = this.name,
         email = this.email,
         idDesa = this.idDesa,
         iDPosyandu = this.idPosyandu,
-        token = this.token
+        token = this.token,
+        role = this.userRole
+    )
+}
+
+fun User.toUserEntity(): UserEntity {
+    return UserEntity(
+        id = this.id,
+        name = this.name,
+        email = this.email,
+        idDesa = this.idDesa ?: 0,
+        idPosyandu = this.iDPosyandu ?: 0,
+        userRole = this.role ?: 2,
+        token = this.token ?: ""
     )
 }
 

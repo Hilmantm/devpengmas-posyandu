@@ -3,7 +3,7 @@ package id.kodesumsi.telkompengmas.data.source.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "users")
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,

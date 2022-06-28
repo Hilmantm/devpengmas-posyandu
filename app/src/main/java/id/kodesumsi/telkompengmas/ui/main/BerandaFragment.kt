@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.base.BaseAdapter
 import id.kodesumsi.telkompengmas.base.BaseFragment
 import id.kodesumsi.telkompengmas.data.source.dummy.DummyData
@@ -15,6 +17,8 @@ import id.kodesumsi.telkompengmas.databinding.FragmentBerandaBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChildParentBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChildPosyanduBinding
 import id.kodesumsi.telkompengmas.domain.model.Child
+import id.kodesumsi.telkompengmas.ui.auth.AuthActivity
+import id.kodesumsi.telkompengmas.ui.auth.ChooseRoleFragment
 import id.kodesumsi.telkompengmas.ui.detail.ChildDetailActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
@@ -24,14 +28,35 @@ import java.time.Period
 import java.time.temporal.ChronoUnit
 import javax.xml.datatype.DatatypeConstants.MONTHS
 
-
+@AndroidEntryPoint
 class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
+
+    private val viewModel: BerandaFragmentViewModel by viewModels()
 
     override fun setupViewBinding(): (LayoutInflater, ViewGroup?, Boolean) -> FragmentBerandaBinding {
         return FragmentBerandaBinding::inflate
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getUser()
+        viewModel.currentUser.observe(viewLifecycleOwner) { currentUser ->
+            if (currentUser != null) {
+                binding.nameHome.text = currentUser.name
+
+                binding.btnLogout.setOnClickListener {
+                    viewModel.logout(currentUser)
+                }
+            }
+        }
+
+        viewModel.logoutResult.observe(viewLifecycleOwner) { logoutSuccess ->
+            if (logoutSuccess) {
+                val toChooseRole = Intent(requireContext(), AuthActivity::class.java)
+                startActivity(toChooseRole)
+                requireActivity().finish()
+            }
+        }
+
         val userRole = ROLE_PARENT
         if (userRole == ROLE_PARENT) {
             val childAdapterParent: BaseAdapter<ItemChildParentBinding, Child> = BaseAdapter(ItemChildParentBinding::inflate) { childItem, itemBinding ->

@@ -2,6 +2,8 @@ package id.kodesumsi.telkompengmas.domain.model
 
 data class User(
 
+    val id: Int? = null,
+
     val email: String,
 
     val pass: String? = null,

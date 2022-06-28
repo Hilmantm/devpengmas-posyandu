@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.Menu
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseActivity
 import id.kodesumsi.telkompengmas.databinding.ActivityMainBinding
 import id.kodesumsi.telkompengmas.ui.auth.ChooseRoleFragment
 import id.kodesumsi.telkompengmas.ui.forms.TambahDataAnakActivity
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private var bnvMenu: Menu? = null
