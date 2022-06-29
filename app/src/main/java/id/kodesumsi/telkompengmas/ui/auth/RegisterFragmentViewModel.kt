@@ -1,6 +1,7 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
 import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
@@ -11,6 +12,9 @@ import javax.inject.Inject
 class RegisterFragmentViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ): ViewModel() {
+
+    val idDesa: MutableLiveData<Int> = MutableLiveData()
+    val idPosyandu: MutableLiveData<Int> = MutableLiveData()
 
     fun register(userRole: Int, registerRequest: RegisterRequest) = LiveDataReactiveStreams.fromPublisher(userUseCase.register(userRole, registerRequest))
 

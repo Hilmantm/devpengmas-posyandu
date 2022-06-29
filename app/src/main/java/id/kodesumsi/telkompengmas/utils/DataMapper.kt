@@ -94,6 +94,7 @@ fun DesaResponse.toDesa(): Desa {
 
 fun PosyanduResponse.toPosyandu(): Posyandu {
     return Posyandu(
+        name = this.nama,
         id = this.id,
         desaId = this.id_desa,
         lat = this.latitude,

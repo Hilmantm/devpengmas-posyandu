@@ -28,7 +28,7 @@ interface NetworkService {
     @FormUrlEncoded
     @POST("/api/auth/orang-tua/register")
     fun postOrangtuaRegister(
-        @Field("name") name: String,
+        @Field("nama") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
         @Field("id_desa") idDesa: Int,
@@ -80,7 +80,7 @@ interface NetworkService {
     @FormUrlEncoded
     @POST("/api/auth/posyandu/register")
     fun postPosyanduRegister(
-        @Field("name") name: String,
+        @Field("nama") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
         @Field("id_desa") idDesa: Int,

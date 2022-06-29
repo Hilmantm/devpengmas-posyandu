@@ -1,5 +1,6 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +14,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseFragment
 import id.kodesumsi.telkompengmas.data.source.Resource
+import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.databinding.FragmentRegisterBinding
+import id.kodesumsi.telkompengmas.domain.model.Desa
+import id.kodesumsi.telkompengmas.domain.model.Posyandu
+import id.kodesumsi.telkompengmas.domain.model.PosyanduSpinner
+import id.kodesumsi.telkompengmas.ui.main.MainActivity
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
@@ -25,54 +32,126 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // set desa spinner data
-        /* viewModel.getListDesa().observe(viewLifecycleOwner) { resourceListDesa ->
-            when (resourceListDesa) {
+        viewModel.getListDesa().observe(viewLifecycleOwner) {
+            when (it) {
                 is Resource.Success -> {
-                    val adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arrayListOf(resourceListDesa.data))
+                    val desaList: ArrayList<Desa> = getListOfDesa(it.data ?: listOf())
+                    val adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, desaList)
                     binding.desaField.adapter = adapter
+                    binding.desaField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                            val desa: Desa = p0?.getItemAtPosition(p2) as Desa
+                            viewModel.idDesa.postValue(desa.id)
+                        }
+
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                        }
+                    }
                 }
                 is Resource.Error -> {
-                    Toast.makeText(requireContext(), "error: ${resourceListDesa.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Error ${it.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is Resource.Loading -> {
+
                 }
             }
-        }*/
-        val listDesa = arrayListOf("Pasawahan", "Andir", "Bojongsoang")
-        val adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listDesa)
-        binding.desaField.adapter = adapter
-        binding.desaField.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Toast.makeText(
-                    requireContext(),
-                    "Pilihan desa adalah ${p0?.getItemAtPosition(p2)}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
 
+        viewModel.idDesa.observe(viewLifecycleOwner) { desaId ->
+            viewModel.getListPosyandu(desaId).observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Success -> {
+                        val posyanduList: ArrayList<PosyanduSpinner> = getListOfPosyandu(it.data ?: listOf())
+                        val adapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, posyanduList)
+                        binding.posyanduField.adapter = adapter
+                        binding.posyanduField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                                val posyandu: PosyanduSpinner = p0?.getItemAtPosition(p2) as PosyanduSpinner
+                                viewModel.idPosyandu.postValue(posyandu.id)
+                            }
+
+                            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                            }
+                        }
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error ${it.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is Resource.Loading -> {
+
+                    }
+                }
             }
         }
 
-        val listPosyandu = arrayListOf("Posyandu 1", "Posyandu 2", "Posyandu 3", "Posyandu 4")
-        val posyanduAdapter = ArrayAdapter(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listPosyandu)
-        binding.posyanduField.adapter = posyanduAdapter
-        binding.posyanduField.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Toast.makeText(
-                    requireContext(),
-                    "Pilihan posyandu adalah ${p0?.getItemAtPosition(p2)}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        binding.btnRegister.setOnClickListener {
+            val idPosyandu = viewModel.idPosyandu.value
+            val idDesa = viewModel.idDesa.value
+            val namaLengkap = binding.fullnameField.text.toString()
+            val email = binding.emailField.text.toString()
+            val password = binding.passwordField.text.toString()
+            val userRole = arguments?.getInt(ChooseRoleFragment.ROLE) ?: ROLE_PARENT
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+            if (idPosyandu != null && idDesa != null && namaLengkap.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                val registerRequest = RegisterRequest(
+                    name = namaLengkap,
+                    email = email,
+                    password = password,
+                    idDesa = idDesa,
+                    idPosyandu = idPosyandu
+                )
+                viewModel.register(userRole = userRole, registerRequest).observe(viewLifecycleOwner) {
+                    when (it) {
+                        is Resource.Success -> {
+                            Toast.makeText(requireContext(), "Register Success", Toast.LENGTH_SHORT).show()
+                            activity?.onBackPressed()
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error ${it.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is Resource.Loading -> {
 
+                        }
+                    }
+                }
             }
         }
 
+    }
+
+    private fun getListOfDesa(listDesa: List<Desa>): ArrayList<Desa> {
+        val result: ArrayList<Desa> = arrayListOf()
+
+        for (desa in listDesa) {
+            result.add(desa)
+        }
+
+        return result
+    }
+
+    private fun getListOfPosyandu(listPosyandu: List<Posyandu>): ArrayList<PosyanduSpinner> {
+        val result: ArrayList<PosyanduSpinner> = arrayListOf()
+
+        for (posyandu in listPosyandu) {
+            result.add(PosyanduSpinner(id = posyandu.id, name = posyandu.name ?: ""))
+        }
+
+        return result
     }
 
 }

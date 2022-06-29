@@ -1,8 +1,8 @@
 package id.kodesumsi.telkompengmas.domain.model
 
-data class Desa(
+data class PosyanduSpinner(
 
-    val id: Int,
+    val id: Int? = null,
 
     val name: String
 

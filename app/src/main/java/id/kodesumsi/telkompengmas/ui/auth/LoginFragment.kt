@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +19,7 @@ import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.TokenResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.UserResponse
 import id.kodesumsi.telkompengmas.databinding.FragmentLoginBinding
+import id.kodesumsi.telkompengmas.ui.auth.ChooseRoleFragment.Companion.ROLE
 import id.kodesumsi.telkompengmas.ui.main.MainActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 
@@ -31,10 +33,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val endpoint = arguments?.getInt(ChooseRoleFragment.ROLE)
+        val endpoint = arguments?.getInt(ROLE)
         Log.d("LoginFragment", "onViewCreated: $endpoint")
         binding.loginToRegister.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_loginFragment_to_registerFragment)
+            val data = bundleOf(ROLE to endpoint)
+            view?.findNavController()?.navigate(R.id.action_loginFragment_to_registerFragment, data)
         }
 
         binding.btnLogin.setOnClickListener {
