@@ -33,7 +33,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         val endpoint = arguments?.getInt(ChooseRoleFragment.ROLE)
         Log.d("LoginFragment", "onViewCreated: $endpoint")
         binding.loginToRegister.setOnClickListener {
-            view?.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            view?.findNavController()?.navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
         viewModel.loginResult.observe(viewLifecycleOwner) { success ->
