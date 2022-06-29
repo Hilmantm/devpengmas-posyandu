@@ -13,7 +13,7 @@ data class ChildStatisticsResponse(
     @field:SerializedName("berat")
     val berat: Int,
 
-    @field:SerializedName("ligkar_kepala")
+    @field:SerializedName("lingkar_kepala")
     val lingkar_kepala: Int,
 
     @field:SerializedName("date")

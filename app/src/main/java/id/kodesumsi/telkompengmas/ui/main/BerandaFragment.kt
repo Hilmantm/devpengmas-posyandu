@@ -1,6 +1,5 @@
 package id.kodesumsi.telkompengmas.ui.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
@@ -23,17 +21,11 @@ import id.kodesumsi.telkompengmas.databinding.ItemChildParentBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChildPosyanduBinding
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.ui.auth.AuthActivity
-import id.kodesumsi.telkompengmas.ui.auth.ChooseRoleFragment
 import id.kodesumsi.telkompengmas.ui.detail.ChildDetailActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.MAN
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.WOMAN
-import id.kodesumsi.telkompengmas.utils.Utility
-import java.time.LocalDate
-import java.time.Period
-import java.time.temporal.ChronoUnit
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 @AndroidEntryPoint
 class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
@@ -73,6 +65,15 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                                 MAN -> Glide.with(requireContext()).load(R.drawable.boy_illustration).into(itemBinding.itemChildParentImage)
                                                 WOMAN -> Glide.with(requireContext()).load(R.drawable.girl_illustration).into(itemBinding.itemChildParentImage)
                                             }
+                                        }
+                                        itemBinding.root.setOnClickListener {
+                                            val toDetail = Intent(requireContext(), ChildDetailActivity::class.java)
+                                            toDetail.putExtra(KEY_NAME, childItem.name)
+                                            toDetail.putExtra(KEY_BIRTH_DATE, childItem.birthDate)
+                                            toDetail.putExtra(KEY_GENDER, childItem.gender)
+                                            toDetail.putExtra(KEY_ID, childItem.id)
+                                            toDetail.putExtra(KEY_IMAGE, childItem.image)
+                                            startActivity(toDetail)
                                         }
                                     }
                                     childAdapterParent.setData(listChild.data)
@@ -169,6 +170,14 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
             binding.dataAnakRv.layoutManager = LinearLayoutManager(requireContext())
             binding.dataAnakRv.adapter = childAdapterPosyandu
         }
+    }
+
+    companion object {
+        const val KEY_NAME = "key_name"
+        const val KEY_GENDER = "key_gender"
+        const val KEY_BIRTH_DATE = "key_age"
+        const val KEY_IMAGE = "key_image"
+        const val KEY_ID = "key_id"
     }
 
 }
