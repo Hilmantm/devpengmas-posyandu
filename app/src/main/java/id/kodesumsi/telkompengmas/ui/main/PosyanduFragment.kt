@@ -96,6 +96,8 @@ class PosyanduFragment : BaseFragment<FragmentPosyanduBinding>(), OnMapReadyCall
             val lat = it.lat!!.toDouble()
             val lng = it.lng!!.toDouble()
             val posyandu = LatLng(lat, lng)
+            binding.posyanduClosest.text = it.address.toString()
+            binding.posyanduSubtitle.text = it.name.toString()
             p0.addMarker(
                 MarkerOptions().position(posyandu).title(it.name)
             )
