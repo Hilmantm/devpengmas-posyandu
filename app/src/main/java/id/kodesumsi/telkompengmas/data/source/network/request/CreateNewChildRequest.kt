@@ -18,4 +18,6 @@ data class CreateNewChildRequest(
 
     val alamat: String? = null,
 
+    val gender: String
+
 )

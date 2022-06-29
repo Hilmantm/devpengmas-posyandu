@@ -137,7 +137,8 @@ class RemoteDataSourceImpl @Inject constructor(
             weight = createNewChildRequest.berat,
             headCircumference = createNewChildRequest.lingkar_kepala,
             parentName = createNewChildRequest.nama_orang_tua.toString(),
-            address = createNewChildRequest.alamat.toString()
+            address = createNewChildRequest.alamat.toString(),
+            gender = createNewChildRequest.gender
         )
 
         client.subscribeOn(Schedulers.io())
@@ -257,7 +258,8 @@ class RemoteDataSourceImpl @Inject constructor(
             birthDate = createNewChildRequest.tanggal_lahir,
             height = createNewChildRequest.tinggi,
             weight = createNewChildRequest.berat,
-            headCircumference = createNewChildRequest.lingkar_kepala
+            headCircumference = createNewChildRequest.lingkar_kepala,
+            gender = createNewChildRequest.gender
         )
 
         client.subscribeOn(Schedulers.io())

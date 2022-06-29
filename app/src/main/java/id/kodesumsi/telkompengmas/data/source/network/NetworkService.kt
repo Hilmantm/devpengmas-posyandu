@@ -49,7 +49,8 @@ interface NetworkService {
         @Field("tanggal_lahir") birthDate: String,
         @Field("tinggi") height: String,
         @Field("berat") weight: String,
-        @Field("lingkar_kepala") headCircumference: String
+        @Field("lingkar_kepala") headCircumference: String,
+        @Field("gender") gender: String
     ): Flowable<BaseResponse<Child>>
 
     @GET("/api/orang-tua/statistik-anak/{childId}")
@@ -103,7 +104,8 @@ interface NetworkService {
         @Field("berat") weight: String,
         @Field("lingkar_kepala") headCircumference: String,
         @Field("nama_orang_tua") parentName: String,
-        @Field("alamat") address: String
+        @Field("alamat") address: String,
+        @Field("gender") gender: String
     ): Flowable<BaseResponse<Child>>
 
     @GET("/api/posyandu/statistik-anak/{childId}")
