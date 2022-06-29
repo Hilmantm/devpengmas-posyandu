@@ -21,14 +21,14 @@ class UserInteractor @Inject constructor(
 ): UserUseCase {
 
     override fun login(
-        username: String,
+        email: String,
         password: String,
         userRole: Int
     ): Flowable<Resource<User>> {
         return when(userRole) {
-            ROLE_POSYANDU -> posyanduRepository.posyanduLogin(userRole, username, password)
-            ROLE_PARENT -> parentRepository.orangtuaLogin(userRole, username, password)
-            else -> parentRepository.orangtuaLogin(userRole, username, password)
+            ROLE_POSYANDU -> posyanduRepository.posyanduLogin(userRole, email, password)
+            ROLE_PARENT -> parentRepository.orangtuaLogin(userRole, email, password)
+            else -> parentRepository.orangtuaLogin(userRole, email, password)
         }
     }
 

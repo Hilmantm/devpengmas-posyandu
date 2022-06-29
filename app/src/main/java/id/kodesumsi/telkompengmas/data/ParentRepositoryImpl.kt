@@ -1,6 +1,5 @@
 package id.kodesumsi.telkompengmas.data
 
-import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
@@ -8,7 +7,6 @@ import id.kodesumsi.telkompengmas.data.source.network.RemoteDataSource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
-import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.domain.model.Child
 import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
 import id.kodesumsi.telkompengmas.domain.model.User
@@ -30,13 +28,13 @@ class ParentRepositoryImpl @Inject constructor(
 
     override fun orangtuaLogin(
         userRole: Int,
-        username: String,
+        email: String,
         password: String
     ): Flowable<Resource<User>> {
         val result = PublishSubject.create<Resource<User>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.orangtuaLogin(username, password)
+        remoteDataSource.orangtuaLogin(email, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -47,6 +45,9 @@ class ParentRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }
@@ -71,6 +72,9 @@ class ParentRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }
@@ -99,6 +103,9 @@ class ParentRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
+                    }
                 }
             }
 
@@ -125,6 +132,9 @@ class ParentRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }
@@ -153,6 +163,9 @@ class ParentRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
+                    }
                 }
             }
 
@@ -176,6 +189,9 @@ class ParentRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }

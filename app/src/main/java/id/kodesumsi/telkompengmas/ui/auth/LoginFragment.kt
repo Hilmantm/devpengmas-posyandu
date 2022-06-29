@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseFragment
+import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.network.response.AuthResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.TokenResponse
 import id.kodesumsi.telkompengmas.data.source.network.response.UserResponse
@@ -36,27 +37,34 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             view?.findNavController()?.navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        viewModel.loginResult.observe(viewLifecycleOwner) { success ->
-            if (success) {
-                Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_SHORT).show()
-            }
-        }
-
         binding.btnLogin.setOnClickListener {
-            // get current role
-            val authResponseDummy = AuthResponse(
-                user = UserResponse(nama = "Hilman Taris M", "hilmanmuttaqin345@gmail.com", 2, 1),
-                token = TokenResponse(type = "Bearer", value = "blblbalblbatoken")
-            )
-            viewModel.login(endpoint ?: ROLE_PARENT, authResponseDummy)
+            if (binding.loginEmail.text.isNotEmpty() && binding.loginPassword.text.isNotEmpty()) {
+                viewModel.login(
+                    email = binding.loginEmail.text.toString(),
+                    password = binding.loginPassword.text.toString(),
+                    userRole = endpoint ?: ROLE_PARENT
+                ).observe(viewLifecycleOwner) {
+                    when (it) {
+                        is Resource.Success -> {
+                            // intent to main activity
+                            val toMain = Intent(requireContext(), MainActivity::class.java)
+                            toMain.putExtra(ChooseRoleFragment.ROLE, endpoint)
+                            startActivity(toMain)
+                            activity?.finish()
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error login ${it.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        is Resource.Loading -> {
 
-            // save user data with token
-
-            // intent to main activity
-            val toMain = Intent(requireContext(), MainActivity::class.java)
-            toMain.putExtra(ChooseRoleFragment.ROLE, endpoint)
-            startActivity(toMain)
-            activity?.finish()
+                        }
+                    }
+                }
+            }
         }
     }
 

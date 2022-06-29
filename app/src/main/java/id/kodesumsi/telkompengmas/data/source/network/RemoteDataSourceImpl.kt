@@ -18,9 +18,9 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor(
     private val networkService: NetworkService
 ): RemoteDataSource {
-    override fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>> {
+    override fun posyanduLogin(email: String, password: String): Flowable<ApiResponse<AuthResponse>> {
         val result = PublishSubject.create<ApiResponse<AuthResponse>>()
-        val client = networkService.postPosyanduLogin(username, password)
+        val client = networkService.postPosyanduLogin(email, password)
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -66,9 +66,9 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>> {
+    override fun orangtuaLogin(email: String, password: String): Flowable<ApiResponse<AuthResponse>> {
         val result = PublishSubject.create<ApiResponse<AuthResponse>>()
-        val client = networkService.postOrangtuaLogin(username, password)
+        val client = networkService.postOrangtuaLogin(email, password)
         client.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)

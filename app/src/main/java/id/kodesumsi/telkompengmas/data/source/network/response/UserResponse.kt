@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
 
-    @field:SerializedName("nama")
-    val nama: String,
+    @field:SerializedName("name")
+    val name: String = "Nama Default",
 
     @field:SerializedName("email")
     val email: String,

@@ -15,7 +15,7 @@ interface RemoteDataSource {
     fun getPosyanduList(desaId: Int): Flowable<ApiResponse<ListOfResponse<PosyanduResponse>>>
 
     // =========== ORANG TUA ===========
-    fun orangtuaLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>>
+    fun orangtuaLogin(email: String, password: String): Flowable<ApiResponse<AuthResponse>>
 
     fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 
@@ -28,7 +28,7 @@ interface RemoteDataSource {
     fun postOrangtuaStatistics(token: String, updateChildDataRequest: UpdateChildDataRequest): Flowable<ApiResponse<Child>>
 
     // =========== POSYANDU ===========
-    fun posyanduLogin(username: String, password: String): Flowable<ApiResponse<AuthResponse>>
+    fun posyanduLogin(email: String, password: String): Flowable<ApiResponse<AuthResponse>>
 
     fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 

@@ -1,5 +1,6 @@
 package id.kodesumsi.telkompengmas.utils
 
+import android.util.Log
 import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
@@ -9,18 +10,18 @@ import id.kodesumsi.telkompengmas.domain.model.*
 
 fun RegisterRequest.toAuthResponse(): AuthResponse {
     return AuthResponse(
-        user = UserResponse(nama = this.name, email = this.email, idDesa = this.idDesa, idPosyandu = this.idPosyandu),
+        user = UserResponse(name = this.name, email = this.email, idDesa = this.idDesa, idPosyandu = this.idPosyandu),
         token = TokenResponse(type = "", value = "")
     )
 }
 
 fun AuthResponse.toUser(): User {
-    return User(name = this.user.nama, email = this.user.email, idDesa = this.user.idDesa, iDPosyandu = this.user.idPosyandu)
+    return User(name = this.user.name, email = this.user.email, idDesa = this.user.idDesa, iDPosyandu = this.user.idPosyandu)
 }
 
 fun AuthResponse.toUserEntity(userRole: Int): UserEntity {
     return UserEntity(
-        name = this.user.nama,
+        name = this.user.name,
         email = this.user.email,
         idDesa = this.user.idDesa,
         idPosyandu = this.user.idPosyandu,

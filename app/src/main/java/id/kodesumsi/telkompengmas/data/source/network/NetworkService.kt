@@ -18,12 +18,14 @@ interface NetworkService {
 
 
     // =========== ORANG TUA ===========
+    @FormUrlEncoded
     @POST("/api/auth/orang-tua/login")
     fun postOrangtuaLogin(
-        @Field("username") username: String,
+        @Field("email") email: String,
         @Field("password") password: String
     ): Flowable<BaseResponse<AuthResponse>>
 
+    @FormUrlEncoded
     @POST("/api/auth/orang-tua/register")
     fun postOrangtuaRegister(
         @Field("name") name: String,
@@ -38,6 +40,7 @@ interface NetworkService {
         @Header("Authorization") token: String
     ): Flowable<BaseResponse<ListOfResponse<Child>>>
 
+    @FormUrlEncoded
     @POST("/api/orang-tua/data-anak")
     fun postOrangtuaNewChildData(
         @Header("Authorization") token: String,
@@ -55,6 +58,7 @@ interface NetworkService {
         @Path("childId") childId: Int
     ): Flowable<BaseResponse<List<ChildStatisticsResponse>>>
 
+    @FormUrlEncoded
     @POST("/api/orang-tua/statistik-anak")
     fun postOrangtuaStatistics(
         @Header("Authorization") token: String,
@@ -66,13 +70,15 @@ interface NetworkService {
 
 
     // =========== POSYANDU ===========
-    @POST("auth/posyandu/login")
+    @FormUrlEncoded
+    @POST("/api/auth/posyandu/login")
     fun postPosyanduLogin(
-        @Field("username") username: String,
+        @Field("email") email: String,
         @Field("password") password: String
     ): Flowable<BaseResponse<AuthResponse>>
 
-    @POST("auth/posyandu/register")
+    @FormUrlEncoded
+    @POST("/api/auth/posyandu/register")
     fun postPosyanduRegister(
         @Field("name") name: String,
         @Field("email") email: String,
@@ -86,6 +92,7 @@ interface NetworkService {
         @Header("Authorization") token: String
     ): Flowable<BaseResponse<ListOfResponse<Child>>>
 
+    @FormUrlEncoded
     @POST("/api/posyandu/data-anak")
     fun postPosyanduNewChildData(
         @Header("Authorization") token: String,
@@ -105,6 +112,7 @@ interface NetworkService {
         @Path("childId") childId: Int
     ): Flowable<BaseResponse<List<ChildStatisticsResponse>>>
 
+    @FormUrlEncoded
     @POST("/api/posyandu/statistik-anak")
     fun postPosyanduStatistics(
         @Header("Authorization") token: String,

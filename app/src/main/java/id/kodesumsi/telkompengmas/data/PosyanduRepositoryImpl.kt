@@ -27,13 +27,13 @@ class PosyanduRepositoryImpl @Inject constructor(
 ): PosyanduRepository {
     override fun posyanduLogin(
         userRole: Int,
-        username: String,
+        email: String,
         password: String
     ): Flowable<Resource<User>> {
         val result = PublishSubject.create<Resource<User>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.posyanduLogin(username, password)
+        remoteDataSource.posyanduLogin(email, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -44,6 +44,9 @@ class PosyanduRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }
@@ -69,6 +72,9 @@ class PosyanduRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
+                    }
                 }
             }
 
@@ -92,6 +98,9 @@ class PosyanduRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }
@@ -120,6 +129,9 @@ class PosyanduRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
+                    }
                 }
             }
 
@@ -147,6 +159,9 @@ class PosyanduRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
+                    }
                 }
             }
 
@@ -173,6 +188,9 @@ class PosyanduRepositoryImpl @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
+                    }
+                    else -> {
+                        result.onNext(Resource.Error("Resource Error / Empty"))
                     }
                 }
             }
