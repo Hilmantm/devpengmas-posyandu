@@ -3,25 +3,23 @@ package id.kodesumsi.telkompengmas.ui.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseAdapter
 import id.kodesumsi.telkompengmas.base.BaseFragment
+import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.databinding.FragmentPosyanduBinding
 import id.kodesumsi.telkompengmas.databinding.ItemPosyanduBinding
 import id.kodesumsi.telkompengmas.domain.model.Posyandu
@@ -37,6 +35,12 @@ class PosyanduFragment : BaseFragment<FragmentPosyanduBinding>(), OnMapReadyCall
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter: BaseAdapter<ItemPosyanduBinding, Posyandu> = BaseAdapter(ItemPosyanduBinding::inflate) { posyandu, binding ->
+            viewModel.posyanduId.observe(viewLifecycleOwner) {
+                if (posyandu.id == it) {
+                    viewModel.posyandu.postValue(posyandu)
+                }
+            }
+
             if (posyandu.thumbUrl != null) {
                 Glide.with(requireContext()).load(posyandu.thumbUrl).into(binding.itemPosyanduImage)
             } else {
@@ -57,11 +61,26 @@ class PosyanduFragment : BaseFragment<FragmentPosyanduBinding>(), OnMapReadyCall
         binding.posyanduRv.layoutManager = LinearLayoutManager(requireContext())
         binding.posyanduRv.adapter = adapter
 
-        viewModel.getPosyandus()
-        viewModel.posyandus.observe(viewLifecycleOwner) { posyandus ->
-            if (posyandus.isNotEmpty()) {
-                adapter.setData(posyandus)
-                adapter.notifyDataSetChanged()
+        viewModel.getUser()
+        viewModel.currentUser.observe(viewLifecycleOwner) { currentUser ->
+            if (currentUser != null) {
+                viewModel.posyanduId.postValue(currentUser.iDPosyandu)
+                viewModel.getPosyandus(currentUser.idDesa!!).observe(viewLifecycleOwner) { posyandus ->
+                    when (posyandus) {
+                        is Resource.Success -> {
+                            if (posyandus.data?.size != 0) {
+                                adapter.setData(posyandus.data)
+                                adapter.notifyDataSetChanged()
+                            }
+                        }
+                        is Resource.Error -> {
+
+                        }
+                        is Resource.Loading -> {
+
+                        }
+                    }
+                }
             }
         }
     }
@@ -73,13 +92,15 @@ class PosyanduFragment : BaseFragment<FragmentPosyanduBinding>(), OnMapReadyCall
     }
 
     override fun onMapReady(p0: GoogleMap) {
-        val lat = -6.971673
-        val lng = 107.670082
-        val posyandu = LatLng(lat, lng)
-        p0.addMarker(
-            MarkerOptions().position(posyandu).title("Posyandu Mawar 06")
-        )
-        p0.moveCamera(CameraUpdateFactory.newLatLng(posyandu));
+        viewModel.posyandu.observe(viewLifecycleOwner) {
+            val lat = it.lat!!.toDouble()
+            val lng = it.lng!!.toDouble()
+            val posyandu = LatLng(lat, lng)
+            p0.addMarker(
+                MarkerOptions().position(posyandu).title(it.name)
+            )
+            p0.moveCamera(CameraUpdateFactory.newLatLng(posyandu))
+        }
     }
 
 }

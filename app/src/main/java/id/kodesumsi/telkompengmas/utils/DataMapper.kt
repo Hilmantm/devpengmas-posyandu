@@ -16,6 +16,7 @@ fun RegisterRequest.toAuthResponse(): AuthResponse {
 }
 
 fun AuthResponse.toUser(): User {
+    Log.d("Data Mapper", "toUser: $this")
     return User(name = this.user.name, email = this.user.email, idDesa = this.user.idDesa, iDPosyandu = this.user.idPosyandu)
 }
 
