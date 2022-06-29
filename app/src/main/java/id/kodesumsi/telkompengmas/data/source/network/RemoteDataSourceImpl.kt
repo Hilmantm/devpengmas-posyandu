@@ -105,8 +105,8 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun getPosyanduChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
-        val result = PublishSubject.create<ApiResponse<ListOfResponse<Child>>>()
+    override fun getPosyanduChildList(token: String): Flowable<ApiResponse<ListOfResponse<ChildResponse>>> {
+        val result = PublishSubject.create<ApiResponse<ListOfResponse<ChildResponse>>>()
         val client = networkService.getPosyanduChildList("Bearer $token")
 
         client.subscribeOn(Schedulers.io())
@@ -227,8 +227,8 @@ class RemoteDataSourceImpl @Inject constructor(
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    override fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>> {
-        val result = PublishSubject.create<ApiResponse<ListOfResponse<Child>>>()
+    override fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<ChildResponse>>> {
+        val result = PublishSubject.create<ApiResponse<ListOfResponse<ChildResponse>>>()
         val client = networkService.getOrangtuaChildList("Bearer $token")
 
         client.subscribeOn(Schedulers.io())

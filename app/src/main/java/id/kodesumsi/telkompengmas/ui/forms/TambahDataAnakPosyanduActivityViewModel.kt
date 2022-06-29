@@ -13,6 +13,6 @@ class TambahDataAnakPosyanduActivityViewModel @Inject constructor(
     private val localDataSource: LocalDataSource
 ): ViewModel() {
 
-    val genderChoose: MutableLiveData<Int> = MutableLiveData()
+    val genderChoose: MutableLiveData<String> = MutableLiveData()
 
 }

@@ -11,8 +11,8 @@ class Constant {
         const val ROLE_POSYANDU = 1
         const val ROLE_PARENT = 2
 
-        const val MAN = 1
-        const val WOMAN = 2
+        const val MAN = "LAKI_LAKI"
+        const val WOMAN = "PEREMPUAN"
     }
 
 }

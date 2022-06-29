@@ -5,7 +5,9 @@ import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequ
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.domain.model.*
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 interface UserUseCase {
 
@@ -25,5 +27,9 @@ interface UserUseCase {
     fun getListDesa(): Flowable<Resource<List<Desa>>>
 
     fun getListPosyandu(desaId: Int): Flowable<Resource<List<Posyandu>>>
+
+    fun getUser(): Single<Resource<User>>
+
+    fun logout(user: User): Completable
 
 }

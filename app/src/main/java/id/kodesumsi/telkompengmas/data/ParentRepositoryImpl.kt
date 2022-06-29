@@ -12,6 +12,7 @@ import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.ParentRepository
 import id.kodesumsi.telkompengmas.utils.RepositoryUtility.saveAuthResponseToLocal
+import id.kodesumsi.telkompengmas.utils.toChild
 import id.kodesumsi.telkompengmas.utils.toChildStatistics
 import id.kodesumsi.telkompengmas.utils.toUser
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -184,7 +185,7 @@ class ParentRepositoryImpl @Inject constructor(
                 when (response) {
                     is ApiResponse.Success -> {
                         result.onNext(
-                            Resource.Success( data = response.data.data )
+                            Resource.Success( data = response.data.data.map { it.toChild() } )
                         )
                     }
                     is ApiResponse.Error -> {

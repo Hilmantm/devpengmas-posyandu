@@ -1,6 +1,7 @@
 package id.kodesumsi.telkompengmas.ui.main
 
 import android.util.Log
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,8 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BerandaFragmentViewModel @Inject constructor(
-    private val userUseCase: UserUseCase,
-    private val localDataSource: LocalDataSource
+    private val userUseCase: UserUseCase
 ): ViewModel() {
 
     val logoutResult: MutableLiveData<Boolean> = MutableLiveData()
@@ -25,11 +25,11 @@ class BerandaFragmentViewModel @Inject constructor(
     val currentUser: MutableLiveData<User> = MutableLiveData()
 
     fun getUser() {
-        localDataSource.getUser()
+        userUseCase.getUser()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                currentUser.postValue(it.toUser())
+                currentUser.postValue(it.data)
             }, {
                 Log.d("UserRepository", "error : ${it.message.toString()}")
                 currentUser.postValue(null)
@@ -37,8 +37,7 @@ class BerandaFragmentViewModel @Inject constructor(
     }
 
     fun logout(user: User) {
-        Log.d("BerandaViewModel", "user: ${user.toUserEntity()}")
-        localDataSource.removeUser(user.toUserEntity())
+        userUseCase.logout(user)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -48,5 +47,7 @@ class BerandaFragmentViewModel @Inject constructor(
                 logoutResult.postValue(false)
             })
     }
+
+    fun getChildList(token: String, userRole: Int) = LiveDataReactiveStreams.fromPublisher(userUseCase.getChildList(token = token, userRole = userRole))
 
 }

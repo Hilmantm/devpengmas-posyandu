@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseAdapter
 import id.kodesumsi.telkompengmas.base.BaseFragment
+import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.data.source.dummy.DummyData
 import id.kodesumsi.telkompengmas.databinding.FragmentBerandaBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChildParentBinding
@@ -49,10 +50,68 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
             if (currentUser != null) {
                 binding.nameHome.text = currentUser.name
 
-                setAdapterBasedOnRole(currentUser.role ?: ROLE_PARENT)
+                // setAdapterBasedOnRole(currentUser.role ?: ROLE_PARENT)
 
                 binding.btnLogout.setOnClickListener {
                     viewModel.logout(currentUser)
+                }
+
+                viewModel.getChildList(token = currentUser.token ?: "", userRole = currentUser.role ?: ROLE_PARENT).observe(viewLifecycleOwner) { listChild ->
+                    when (listChild) {
+                        is Resource.Success -> {
+                            when (currentUser.role) {
+                                ROLE_PARENT -> {
+                                    val childAdapterParent: BaseAdapter<ItemChildParentBinding, Child> = BaseAdapter(ItemChildParentBinding::inflate) { childItem, itemBinding ->
+                                        itemBinding.itemChildParentRoot.setOnClickListener {
+                                            val toDetail = Intent(requireContext(), ChildDetailActivity::class.java)
+                                            startActivity(toDetail)
+                                        }
+                                        itemBinding.itemChildParentName.text = childItem.name
+
+                                        if (childItem.image == null) {
+                                            when (childItem.gender) {
+                                                MAN -> Glide.with(requireContext()).load(R.drawable.boy_illustration).into(itemBinding.itemChildParentImage)
+                                                WOMAN -> Glide.with(requireContext()).load(R.drawable.girl_illustration).into(itemBinding.itemChildParentImage)
+                                            }
+                                        }
+                                    }
+                                    childAdapterParent.setData(listChild.data)
+                                    binding.dataAnakRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                                    binding.dataAnakRv.adapter = childAdapterParent
+                                }
+                                ROLE_POSYANDU -> {
+                                    val childAdapterPosyandu: BaseAdapter<ItemChildPosyanduBinding, Child> = BaseAdapter(ItemChildPosyanduBinding::inflate) { childItem, itemBinding ->
+                                        itemBinding.itemChildPosyanduRoot.setOnClickListener {
+                                            val toDetail = Intent(requireContext(), ChildDetailActivity::class.java)
+                                            startActivity(toDetail)
+                                        }
+                                        itemBinding.itemChildPosyanduName.text = childItem.name
+
+                                        if (childItem.image == null) {
+                                            when (childItem.gender) {
+                                                MAN -> Glide.with(requireContext()).load(R.drawable.boy_illustration).into(itemBinding.itemChildPosyanduImage)
+                                                WOMAN -> Glide.with(requireContext()).load(R.drawable.girl_illustration).into(itemBinding.itemChildPosyanduImage)
+                                            }
+                                        }
+                                    }
+                                    childAdapterPosyandu.setData(listChild.data)
+                                    binding.dataAnakRv.layoutManager = LinearLayoutManager(requireContext())
+                                    binding.dataAnakRv.adapter = childAdapterPosyandu
+                                }
+                            }
+                        }
+                        is Resource.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error ${listChild.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Log.e("BerandaFragment", "onViewCreated: ${listChild.message}", )
+                        }
+                        is Resource.Loading -> {
+
+                        }
+                    }
                 }
             }
         }

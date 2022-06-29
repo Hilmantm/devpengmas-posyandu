@@ -19,7 +19,7 @@ interface RemoteDataSource {
 
     fun orangtuaRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 
-    fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>>
+    fun getOrangtuaChildList(token: String): Flowable<ApiResponse<ListOfResponse<ChildResponse>>>
 
     fun postOrangtuaNewChildData(token: String, createNewChildRequest: CreateNewChildRequest): Flowable<ApiResponse<Child>>
 
@@ -32,7 +32,7 @@ interface RemoteDataSource {
 
     fun posyanduRegister(registerRequest: RegisterRequest): Flowable<ApiResponse<AuthResponse>>
 
-    fun getPosyanduChildList(token: String): Flowable<ApiResponse<ListOfResponse<Child>>>
+    fun getPosyanduChildList(token: String): Flowable<ApiResponse<ListOfResponse<ChildResponse>>>
 
     fun postPosyanduNewChildData(token: String, createNewChildRequest: CreateNewChildRequest): Flowable<ApiResponse<Child>>
 

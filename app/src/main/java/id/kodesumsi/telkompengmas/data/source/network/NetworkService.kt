@@ -38,7 +38,7 @@ interface NetworkService {
     @GET("/api/orang-tua/data-anak")
     fun getOrangtuaChildList(
         @Header("Authorization") token: String
-    ): Flowable<BaseResponse<ListOfResponse<Child>>>
+    ): Flowable<BaseResponse<ListOfResponse<ChildResponse>>>
 
     @FormUrlEncoded
     @POST("/api/orang-tua/data-anak")
@@ -90,7 +90,7 @@ interface NetworkService {
     @GET("/api/posyandu/data-anak")
     fun getPosyanduChildList(
         @Header("Authorization") token: String
-    ): Flowable<BaseResponse<ListOfResponse<Child>>>
+    ): Flowable<BaseResponse<ListOfResponse<ChildResponse>>>
 
     @FormUrlEncoded
     @POST("/api/posyandu/data-anak")

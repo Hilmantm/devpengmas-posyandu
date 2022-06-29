@@ -11,7 +11,9 @@ import id.kodesumsi.telkompengmas.domain.repository.PublicRepository
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class UserInteractor @Inject constructor(
@@ -93,6 +95,14 @@ class UserInteractor @Inject constructor(
 
     override fun getListPosyandu(desaId: Int): Flowable<Resource<List<Posyandu>>> {
         return publicRepository.getPosyanduList(desaId)
+    }
+
+    override fun getUser(): Single<Resource<User>> {
+        return publicRepository.getUser()
+    }
+
+    override fun logout(user: User): Completable {
+        return publicRepository.logout(user)
     }
 
 }

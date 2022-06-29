@@ -8,13 +8,12 @@ import id.kodesumsi.telkompengmas.domain.model.Desa
 import id.kodesumsi.telkompengmas.domain.model.Posyandu
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.PublicRepository
-import id.kodesumsi.telkompengmas.utils.RepositoryUtility
-import id.kodesumsi.telkompengmas.utils.toDesa
-import id.kodesumsi.telkompengmas.utils.toPosyandu
-import id.kodesumsi.telkompengmas.utils.toUser
+import id.kodesumsi.telkompengmas.utils.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
@@ -41,6 +40,7 @@ class PublicRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {}
                 }
             }
 
@@ -65,9 +65,18 @@ class PublicRepositoryImpl @Inject constructor(
                     is ApiResponse.Error -> {
                         result.onNext(Resource.Error(response.errorMessage))
                     }
+                    else -> {}
                 }
             }
 
         return result.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    override fun getUser(): Single<Resource<User>> {
+        return localDataSource.getUser().map { Resource.Success(data = it.toUser()) }
+    }
+
+    override fun logout(user: User): Completable {
+        return localDataSource.removeUser(user.toUserEntity())
     }
 }

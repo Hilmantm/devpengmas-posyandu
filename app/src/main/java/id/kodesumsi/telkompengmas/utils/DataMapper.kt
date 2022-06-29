@@ -102,3 +102,19 @@ fun PosyanduResponse.toPosyandu(): Posyandu {
         address = this.alamat
     )
 }
+
+fun ChildResponse.toChild(): Child {
+    return Child(
+        id = this.id,
+        name = this.nama,
+        surname = this.panggilan,
+        birthDate = this.tanggal_lahir,
+        address = this.alamat,
+        idDesa = this.id_desa?.toInt(),
+        idPosyandu = this.id_posyandu?.toInt(),
+        idParent = this.id_orang_tua?.toInt(),
+        parentName = this.nama_orang_tua,
+        gender = this.gender,
+        image = this.image
+    )
+}
