@@ -54,10 +54,6 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                             when (currentUser.role) {
                                 ROLE_PARENT -> {
                                     val childAdapterParent: BaseAdapter<ItemChildParentBinding, Child> = BaseAdapter(ItemChildParentBinding::inflate) { childItem, itemBinding ->
-                                        itemBinding.itemChildParentRoot.setOnClickListener {
-                                            val toDetail = Intent(requireContext(), ChildDetailActivity::class.java)
-                                            startActivity(toDetail)
-                                        }
                                         itemBinding.itemChildParentName.text = childItem.name
 
                                         if (childItem.image == null) {
@@ -82,10 +78,6 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                 }
                                 ROLE_POSYANDU -> {
                                     val childAdapterPosyandu: BaseAdapter<ItemChildPosyanduBinding, Child> = BaseAdapter(ItemChildPosyanduBinding::inflate) { childItem, itemBinding ->
-                                        itemBinding.itemChildPosyanduRoot.setOnClickListener {
-                                            val toDetail = Intent(requireContext(), ChildDetailActivity::class.java)
-                                            startActivity(toDetail)
-                                        }
                                         itemBinding.itemChildPosyanduName.text = childItem.name
 
                                         if (childItem.image == null) {
@@ -93,6 +85,15 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                                 MAN -> Glide.with(requireContext()).load(R.drawable.boy_illustration).into(itemBinding.itemChildPosyanduImage)
                                                 WOMAN -> Glide.with(requireContext()).load(R.drawable.girl_illustration).into(itemBinding.itemChildPosyanduImage)
                                             }
+                                        }
+                                        itemBinding.root.setOnClickListener {
+                                            val toDetail = Intent(requireContext(), ChildDetailActivity::class.java)
+                                            toDetail.putExtra(KEY_NAME, childItem.name)
+                                            toDetail.putExtra(KEY_BIRTH_DATE, childItem.birthDate)
+                                            toDetail.putExtra(KEY_GENDER, childItem.gender)
+                                            toDetail.putExtra(KEY_ID, childItem.id)
+                                            toDetail.putExtra(KEY_IMAGE, childItem.image)
+                                            startActivity(toDetail)
                                         }
                                     }
                                     childAdapterPosyandu.setData(listChild.data)

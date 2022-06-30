@@ -81,7 +81,7 @@
             android:id="@+id/head_circumference_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_form_add_child"
             android:hint="Masukkan lingkar kepala"
