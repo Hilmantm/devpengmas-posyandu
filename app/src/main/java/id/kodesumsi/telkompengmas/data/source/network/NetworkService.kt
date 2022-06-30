@@ -65,7 +65,7 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Field("id_anak") childId: Int,
         @Field("berat") weight: Int,
-        @Field("height") height: Int,
+        @Field("tinggi") height: Int,
         @Field("lingkar_kepala") headCircumference: Int
     ): Flowable<BaseResponse<Child>>
 
@@ -120,7 +120,7 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Field("id_anak") childId: Int,
         @Field("berat") weight: Int,
-        @Field("height") height: Int,
+        @Field("tinggi") height: Int,
         @Field("lingkar_kepala") headCircumference: Int
     ): Flowable<BaseResponse<Child>>
 

@@ -61,6 +61,13 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
         viewModel.getUser()
         viewModel.currentUser.observe(this) { currentUser ->
             if (currentUser != null) {
+                binding.childDetailUpdate.setOnClickListener {
+                    val updateBottomSheet = BottomSheetUpdateChildData()
+                    updateBottomSheet.setChildId(id)
+                    updateBottomSheet.setToken(currentUser.token!!)
+                    updateBottomSheet.show(supportFragmentManager, "Update Bottom Sheet")
+                }
+
                 viewModel.getChildStatistics(token = currentUser.token!!, userRole = currentUser.role!!, childId = id).observe(this) {
                     when (it) {
                         is Resource.Loading -> {
@@ -137,12 +144,6 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                     updateDataSet(entries, "Lingkar Kepala")
                 }
             }
-        }
-
-
-        binding.childDetailUpdate.setOnClickListener {
-            val updateBottomSheet = BottomSheetUpdateChildData()
-            updateBottomSheet.show(supportFragmentManager, "Update Bottom Sheet")
         }
 
     }
