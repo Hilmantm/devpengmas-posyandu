@@ -12,6 +12,10 @@ data class ChildStatistics(
 
     val date: String,
 
-    val childId: Int
+    val childId: Int,
+
+    val zScore: Float,
+
+    val statistics: Statistics
 
 )

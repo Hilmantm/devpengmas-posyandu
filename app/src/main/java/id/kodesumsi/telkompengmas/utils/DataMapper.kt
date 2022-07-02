@@ -82,7 +82,17 @@ fun ChildStatisticsResponse.toChildStatistics(): ChildStatistics {
         height = this.tinggi,
         weight = this.berat,
         headCircumference = this.lingkar_kepala,
-        date = this.date
+        date = this.date,
+        zScore = this.z_score,
+        statistics = this.statistik.toStatisticsModel()
+    )
+}
+
+fun StatistikResponse.toStatisticsModel(): Statistics {
+    return Statistics(
+        weight = this.berat,
+        height = this.tinggi,
+        headCircumference = this.lingkar_kepala
     )
 }
 

@@ -13,6 +13,26 @@ class Constant {
 
         const val MAN = "LAKI_LAKI"
         const val WOMAN = "PEREMPUAN"
+
+        const val WEIGHT = "berat"
+        const val HEIGHT = "tinggi"
+        const val HEAD_CIRCUMFERENCE = "lingkar_kepala"
+
+        // statistics status: berat
+        const val OBESITAS = "obesitas"
+        const val GEMUK = "gemuk"
+        const val NORMAL = "normal"
+        const val KURUS = "kurus"
+        const val SANGAT_KURUS = "sangat kurus"
+
+        // statistics status: tinggi
+        const val TINGGI = "tinggi"
+        const val PENDEK = "pendek"
+        const val SANGAT_PENDEK = "sangat pendek"
+
+        // statistics status: lingkar kepala
+        const val MAKROSEFALI = "makrosefali"
+        const val MIKROSEFALI = "mikrosefali"
     }
 
 }

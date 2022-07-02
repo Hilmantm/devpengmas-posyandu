@@ -59,4 +59,24 @@
     <string name="nama_orang_tua">Nama Orang Tua</string>
     <string name="alamat">Alamat</string>
 
+
+    <string name="berat_obesitas_action">Segera rujuk ke Rumah Sakit</string>
+    <string name="berat_gemuk_action">Konseling gizi sesuai penyebab</string>
+    <string name="berat_normal_action">Berikan pujian kepada ibu dan anak</string>
+    <string name="berat_kurus_action">Konseling gizi sesuai penyebab</string>
+    <string name="berat_sangat_kurus_action">Segera rujuk ke PKM dengan TFC atau ke Rumah Sakit</string>
+    
+    <string name="tinggi_tinggi_action">Jadwalkan kunjungan berikutnya</string>
+    <string name="tinggi_normal_action">Jadwalkan kunjungan berikutnya</string>
+    <string name="tinggi_pendek_action">Asupan gizi ditingkatkan dan jadwalkan kunjungan berikutnya</string>
+    <string name="tinggi_sangat_pendek_action">Segera rujuk ke fasilitas layanan kesehatan</string>
+    
+    <string name="lingkar_kepala_makrosefali_action">Rujuk ke rumah sakit</string>
+    <string name="lingkar_kepala_normal_action">Beri pujian kepada ibu dan anak</string>
+    <string name="lingkar_kepala_mikrosefali_action">Rujuk ke rumah sakit</string>
+    <string name="tindakan_berat_badan">Tindakan Berat Badan</string>
+    <string name="tindakan_tinggi_badan">Tindakan Tinggi Badan</string>
+    <string name="tindakan_lingkar_kepala">Tindakan Lingkar Kepala</string>
+    <string name="kesimpulan">Kesimpulan</string>
+
 </resources>

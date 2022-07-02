@@ -74,13 +74,87 @@
             app:layout_constraintTop_toBottomOf="@id/child_detail_age"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/child_detail_chart_card"
+            android:id="@+id/child_detail_action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layout_constraintTop_toBottomOf="@id/child_detail_glance"
             app:layout_constraintStart_toStartOf="@id/child_detail_glance"
             app:layout_constraintEnd_toEndOf="@id/child_detail_glance">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tindakan_berat_badan"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/weight_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Testing"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tindakan_tinggi_badan"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
+
+                <TextView
+                    android:id="@+id/height_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Testing"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tindakan_lingkar_kepala"
+                    android:layout_marginTop="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/head_circumference_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Testing"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kesimpulan"
+                    android:layout_marginTop="15dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/stunting_conclusion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Testing"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/child_detail_chart_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/child_detail_action"
+            app:layout_constraintStart_toStartOf="@id/child_detail_action"
+            app:layout_constraintEnd_toEndOf="@id/child_detail_action">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

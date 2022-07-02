@@ -52,6 +52,7 @@ class TambahDataAnakActivity : BaseActivity<ActivityTambahDataAnakBinding>() {
                     val weight = binding.weightBodyField.text.toString()
                     val height = binding.heightBodyField.text.toString()
                     val headCircumference = binding.headCircumferenceField.text.toString()
+                    val zScore = binding.zScoreField.text.toString().toFloat()
                     val gender = viewModel.genderChoose.value
 
                     if (name.isNotEmpty() && nickname.isNotEmpty() && birthDate.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty()) {
@@ -62,7 +63,8 @@ class TambahDataAnakActivity : BaseActivity<ActivityTambahDataAnakBinding>() {
                             berat = weight,
                             tinggi = height,
                             lingkar_kepala = headCircumference,
-                            gender = gender!!
+                            gender = gender!!,
+                            z_score = zScore
                         )
                         viewModel.postNewChild(token = token!!, userRole = currentUser.role!!, createNewChildRequest = createNewChildRequest).observe(this@TambahDataAnakActivity) {
                             when (it) {

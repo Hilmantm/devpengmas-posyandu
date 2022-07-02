@@ -1,12 +1,10 @@
 package id.kodesumsi.telkompengmas.ui.detail
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -21,10 +19,15 @@ import id.kodesumsi.telkompengmas.base.BaseActivity
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.databinding.ActivityChildDetailBinding
 import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
+import id.kodesumsi.telkompengmas.domain.model.Statistics
 import id.kodesumsi.telkompengmas.ui.main.BerandaFragment
 import id.kodesumsi.telkompengmas.utils.Constant
-import id.kodesumsi.telkompengmas.utils.Utility
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEAD_CIRCUMFERENCE
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEIGHT
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.WEIGHT
 import id.kodesumsi.telkompengmas.utils.Utility.countMonthDiff
+import id.kodesumsi.telkompengmas.utils.Utility.getActionFromStatus
+import id.kodesumsi.telkompengmas.utils.Utility.getColorFromStatus
 
 @AndroidEntryPoint
 class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
@@ -38,9 +41,9 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
 
     override fun setupViewInstance(savedInstanceState: Bundle?) {
         // visible if this data is ready
-        binding.childDetailGlance.childDetailGlanceHeightCard.visibility = View.GONE
-        binding.childDetailGlance.childDetailGlanceWeightCard.visibility = View.GONE
-        binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.visibility = View.GONE
+//        binding.childDetailGlance.childDetailGlanceHeightCard.visibility = View.GONE
+//        binding.childDetailGlance.childDetailGlanceWeightCard.visibility = View.GONE
+//        binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.visibility = View.GONE
 
         val name = intent.getStringExtra(BerandaFragment.KEY_NAME)
         val gender = intent.getStringExtra(BerandaFragment.KEY_GENDER)
@@ -79,13 +82,40 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                         is Resource.Success -> {
                             Log.d("GetChildStatistics", "data = ${it.data}")
                             val lastData = it.data?.last()
+
+                            // set last data
                             binding.childDetailGlance.childDetailGlanceHeight.text = lastData?.height.toString()
                             binding.childDetailGlance.childDetailGlanceWeight.text = lastData?.weight.toString()
                             binding.childDetailGlance.childDetailGlanceHeadCircumference.text = lastData?.headCircumference.toString()
 
-                            viewModel.weightEntries.postValue(setWeightEntries(it.data ?: listOf(), birthDate!!))
-                            viewModel.heightEntries.postValue(setHeightEntries(it.data ?: listOf(), birthDate!!))
-                            viewModel.headCircumferenceEntries.postValue(setHeadCircumferences(it.data ?: listOf(), birthDate!!))
+                            // data statistics
+                            val weightStatistics = lastData?.statistics?.weight
+                            val heightStatistics = lastData?.statistics?.height
+                            val headCircumferenceStatistics = lastData?.statistics?.headCircumference
+
+                            if (weightStatistics != null && heightStatistics != null && headCircumferenceStatistics != null) {
+                                // set status from last data
+                                binding.childDetailGlance.childDetailGlanceWeightStatus.text = weightStatistics
+                                binding.childDetailGlance.childDetailGlanceHeightStatus.text = heightStatistics
+                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceStatus.text = headCircumferenceStatistics
+
+                                // set action based on the data
+                                binding.weightAction.text = getActionFromStatus(this, WEIGHT, weightStatistics)
+                                binding.heightAction.text = getActionFromStatus(this, HEIGHT, heightStatistics)
+                                binding.headCircumferenceAction.text = getActionFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)
+
+                                // set color status based on the data
+                                binding.childDetailGlance.childDetailGlanceWeightCard.setCardBackgroundColor(getColorFromStatus(this, WEIGHT, weightStatistics))
+                                binding.childDetailGlance.childDetailGlanceHeightCard.setCardBackgroundColor(getColorFromStatus(this, HEIGHT, heightStatistics))
+                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.setCardBackgroundColor(getColorFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics))
+                            }
+
+                            if (it.data?.size != 0 && it.data != null) {
+                                // post data entries for data graph mapping
+                                viewModel.weightEntries.postValue(setWeightEntries(it.data, birthDate!!))
+                                viewModel.heightEntries.postValue(setHeightEntries(it.data, birthDate))
+                                viewModel.headCircumferenceEntries.postValue(setHeadCircumferences(it.data, birthDate))
+                            }
                         }
                     }
                 }

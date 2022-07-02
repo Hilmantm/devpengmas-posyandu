@@ -66,9 +66,12 @@ object ApiConfig {
         @ApplicationContext ctx: Context
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .callTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
+//            .callTimeout(15, TimeUnit.SECONDS)
+//            .connectTimeout(5, TimeUnit.SECONDS)
+//            .readTimeout(10, TimeUnit.SECONDS)
+            .callTimeout(25, TimeUnit.SECONDS)
+            .connectTimeout(25, TimeUnit.SECONDS)
+            .readTimeout(25, TimeUnit.SECONDS)
             .addInterceptor(chuckerInterceptor)
             .build()
     }

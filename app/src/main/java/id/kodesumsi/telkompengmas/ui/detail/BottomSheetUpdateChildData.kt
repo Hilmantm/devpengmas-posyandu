@@ -37,13 +37,15 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
             val weight = binding.weightBodyField.text.toString()
             val height = binding.heightBodyField.text.toString()
             val headCircumference = binding.headCircumferenceField.text.toString()
+            val zScore = binding.zScoreField.text.toString().toFloat()
 
             if (weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
                 val updateChildDataRequest = UpdateChildDataRequest(
                     childId = this.childId!!,
                     weight = weight.toInt(),
                     height = height.toInt(),
-                    headCircumference = headCircumference.toInt()
+                    headCircumference = headCircumference.toInt(),
+                    zScore = zScore
                 )
                 viewModel.updateChildData(token!!, childId!!, updateChildDataRequest).observe(viewLifecycleOwner) {
                     when (it) {

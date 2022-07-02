@@ -55,6 +55,7 @@ class TambahDataAnakPosyanduActivity : BaseActivity<ActivityTambahDataAnakPosyan
                     val gender = viewModel.genderChoose.value
                     val parentName = binding.parentField.text.toString()
                     val address = binding.addressField.text.toString()
+                    val zScore = binding.zScoreField.text.toString().toFloat()
 
                     if (address.isNotEmpty() && parentName.isNotEmpty() && name.isNotEmpty() && nickname.isNotEmpty() && birthDate.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty()) {
                         val createNewChildRequest = CreateNewChildRequest(
@@ -66,7 +67,8 @@ class TambahDataAnakPosyanduActivity : BaseActivity<ActivityTambahDataAnakPosyan
                             lingkar_kepala = headCircumference,
                             gender = gender!!,
                             nama_orang_tua = parentName,
-                            alamat = address
+                            alamat = address,
+                            z_score = zScore
                         )
                         viewModel.postNewChild(token = token!!, userRole = currentUser.role!!, createNewChildRequest = createNewChildRequest).observe(this@TambahDataAnakPosyanduActivity) {
                             when (it) {

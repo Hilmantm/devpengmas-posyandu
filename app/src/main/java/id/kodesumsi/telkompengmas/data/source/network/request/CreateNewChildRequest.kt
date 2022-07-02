@@ -18,6 +18,8 @@ data class CreateNewChildRequest(
 
     val alamat: String? = null,
 
-    val gender: String
+    val gender: String,
+
+    val z_score: Float
 
 )

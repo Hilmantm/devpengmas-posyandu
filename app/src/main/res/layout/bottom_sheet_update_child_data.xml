@@ -91,6 +91,30 @@
             app:layout_constraintStart_toStartOf="@id/head_circumference_title"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <TextView
+            android:id="@+id/z_score_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z-Score"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/head_circumference_field"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/z_score_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_form_add_child"
+            android:hint="Masukkan z-score anak"
+            android:padding="10dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/z_score_title"
+            app:layout_constraintStart_toStartOf="@id/z_score_title"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <Button
             android:id="@+id/btn_update_child"
             android:layout_width="0dp"
@@ -102,7 +126,7 @@
             android:layout_marginBottom="40dp"
             android:translationZ="999dp"
             android:backgroundTint="@color/primary"
-            app:layout_constraintTop_toBottomOf="@id/head_circumference_field"
+            app:layout_constraintTop_toBottomOf="@id/z_score_field"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

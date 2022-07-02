@@ -50,7 +50,8 @@ interface NetworkService {
         @Field("tinggi") height: String,
         @Field("berat") weight: String,
         @Field("lingkar_kepala") headCircumference: String,
-        @Field("gender") gender: String
+        @Field("gender") gender: String,
+        @Field("z_score") zScore: Float
     ): Flowable<BaseResponse<Child>>
 
     @GET("/api/orang-tua/statistik-anak/{childId}")
@@ -66,7 +67,8 @@ interface NetworkService {
         @Field("id_anak") childId: Int,
         @Field("berat") weight: Int,
         @Field("tinggi") height: Int,
-        @Field("lingkar_kepala") headCircumference: Int
+        @Field("lingkar_kepala") headCircumference: Int,
+        @Field("z_score") zScore: Float
     ): Flowable<BaseResponse<Child>>
 
 
@@ -105,7 +107,8 @@ interface NetworkService {
         @Field("lingkar_kepala") headCircumference: String,
         @Field("nama_orang_tua") parentName: String,
         @Field("alamat") address: String,
-        @Field("gender") gender: String
+        @Field("gender") gender: String,
+        @Field("z_score") zScore: Float
     ): Flowable<BaseResponse<Child>>
 
     @GET("/api/posyandu/statistik-anak/{childId}")
@@ -121,7 +124,8 @@ interface NetworkService {
         @Field("id_anak") childId: Int,
         @Field("berat") weight: Int,
         @Field("tinggi") height: Int,
-        @Field("lingkar_kepala") headCircumference: Int
+        @Field("lingkar_kepala") headCircumference: Int,
+        @Field("z_score") zScore: Float
     ): Flowable<BaseResponse<Child>>
 
 }

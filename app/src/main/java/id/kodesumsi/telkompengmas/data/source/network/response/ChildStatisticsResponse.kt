@@ -20,6 +20,12 @@ data class ChildStatisticsResponse(
     val date: String,
 
     @field:SerializedName("id_anak")
-    val id_anak: Int
+    val id_anak: Int,
+
+    @field:SerializedName("z_score")
+    val z_score: Float,
+
+    @field:SerializedName("statistik")
+    val statistik: StatistikResponse
 
 )
