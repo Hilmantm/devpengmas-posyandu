@@ -12,8 +12,11 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/telkom_university_logo"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.TelkomPengmas">
+        android:theme="@style/Theme.TelkomPengmas"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.detail.DetailArticleActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.forms.TambahDataAnakPosyanduActivity"
             android:exported="false" />

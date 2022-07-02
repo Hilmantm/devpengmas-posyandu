@@ -46,6 +46,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    // Simple Image Viewer
+    implementation 'com.github.stfalcon-studio:StfalconImageViewer:v1.0.1'
+
     // Android Chart library
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 

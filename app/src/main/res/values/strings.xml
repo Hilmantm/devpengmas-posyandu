@@ -65,12 +65,12 @@
     <string name="berat_normal_action">Berikan pujian kepada ibu dan anak</string>
     <string name="berat_kurus_action">Konseling gizi sesuai penyebab</string>
     <string name="berat_sangat_kurus_action">Segera rujuk ke PKM dengan TFC atau ke Rumah Sakit</string>
-    
+
     <string name="tinggi_tinggi_action">Jadwalkan kunjungan berikutnya</string>
     <string name="tinggi_normal_action">Jadwalkan kunjungan berikutnya</string>
     <string name="tinggi_pendek_action">Asupan gizi ditingkatkan dan jadwalkan kunjungan berikutnya</string>
     <string name="tinggi_sangat_pendek_action">Segera rujuk ke fasilitas layanan kesehatan</string>
-    
+
     <string name="lingkar_kepala_makrosefali_action">Rujuk ke rumah sakit</string>
     <string name="lingkar_kepala_normal_action">Beri pujian kepada ibu dan anak</string>
     <string name="lingkar_kepala_mikrosefali_action">Rujuk ke rumah sakit</string>
@@ -79,4 +79,63 @@
     <string name="tindakan_lingkar_kepala">Tindakan Lingkar Kepala</string>
     <string name="kesimpulan">Kesimpulan</string>
 
+    <!--Article -->
+    <string name="stunting">Stunting</string>
+    <string name="stunting_desc">Stunting adalah suatu kondisi dimana anak mengalami gangguan pertumbuhan, sehingga tinggi badan anak tidak sesuai dengan usianya, sebagai akibat dari masalah gizi kronis yaitu kekurangan asupan gizi dalam waktu yang lama. Berdasarkan Peraturan Menteri Kesehatan Republik Indonesia Nomor 2 Tahun 2020 tentang standar antropometri penilaian status gizi anak, stunting atau pendek merupakan status gizi yang didasarkan pada indeks tinggi badan menurut umur (TB/U) dengan zscore kurang dari -2 SD (standar deviasi). Stunting bukan hanya masalah gangguan pertumbuhan fisik saja, namun juga mengakibatkan anak menjadi mudah sakit, selain itu juga terjadi gangguan perkembangan otak dan kecerdasan, sehingga stunting merupakan ancaman besar terhadap kualitas sumber daya manusia di Indonesia.</string>
+    <string name="penyebab_stunting">Penyebab Terjadinya Stunting</string>
+    <string name="syndrome_stunting">Syndrome Stunting</string>
+    <string name="langkah_pencegahan_stunting">Langkah Pencegahan Stunting</string>
+    <string name="langkah_pencegahan_stunting_desc">
+        1. Memenuhi kebutuhan gizi sejak hamil Tindakan yang relatif ampuh dilakukan untuk mencegah stunting pada anak adalah selalu memenuhi gizi sejak masa kehamilan. Lembaga kesehatan Millenium Challenge Account Indonesia menyarankan agar ibu yang sedang mengandung selalu mengonsumsi makanan sehat dan bergizi maupun suplemen atas anjuran dokter. Selain itu, perempuan yang sedang menjalani proses kehamilan juga sebaiknya rutin memeriksakan kesehatannya ke dokter atau bidan.
+        \n2. Beri ASI Eksklusif sampai bayi berusia 6 bulan
+        Veronika Scherbaum, ahli nutrisi dari Universitas Hohenheim, Jerman, menyatakan ASI ternyata berpotensi mengurangi peluang stunting pada anak berkat kandungan gizi mikro dan makro. Oleh karena itu, ibu disarankan untuk tetap memberikan ASI Eksklusif selama enam bulan kepada sang buah hati. Protein whey dan kolostrum yang terdapat pada susu ibu pun dinilai mampu meningkatkan sistem kekebalan tubuh bayi.
+        \n3. Dampingi ASI Eksklusif dengan MPASI sehat
+         Ketika bayi menginjak usia 6 bulan ke atas, maka ibu sudah bisa memberikan makanan pendamping atau MPASI. Dalam hal ini pastikan makanan-makanan yang dipilih bisa memenuhi gizi mikro dan makro yang sebelumnya selalu berasal dari ASI untuk mencegah stunting. WHO pun merekomendasikan fortifikasi atau penambahan nutrisi ke dalam makanan. Namun sebaiknya seorang ibu berhati-hati saat akan menentukan produk tambahan tersebut.
+        \n4. Terus memantau tumbuh kembang anak
+        Orang tua perlu terus memantau tumbuh kembang anak mereka, terutama dari tinggi dan berat badan anak. Bawa si Kecil secara berkala ke Posyandu maupun klinik khusus anak. Dengan begitu, akan lebih mudah bagi ibu untuk mengetahui gejala awal gangguan dan penanganannya.
+        \n5. Selalu jaga kebersihan lingkungan
+        Seperti yang diketahui, anak-anak sangat rentan akan serangan penyakit, terutama kalau lingkungan sekitar mereka kotor. Faktor ini pula yang secara tak langsung meningkatkan peluang stunting. Studi yang dilakukan di Harvard Chan School menyebutkan diare adalah faktor ketiga yang menyebabkan gangguan kesehatan tersebut. Sementara salah satu pemicu diare datang dari paparan kotoran yang masuk ke dalam tubuh manusia.
+    </string>
+    <string name="adaptasi_intervelensi_anemia">Adaptasi Integrasi Intervelensi Anemia dan Stunting pada Masa Pandemi COVID-19</string>
+    <string name="dampak_kekurangan_gizi">Dampak Kekurangan Gizi pada Balita</string>
+    <string name="dampak_kekurangan_gizi_desc">Status gizi anak dipengaruhi faktor asupan gizi ibu, faktor infeksi dan faktor lingkungan lainnya, serta faktor genetik.
+        Dampak kekurangan gizi adalah:\n
+        \n1. Gangguan perkembangan otak yang berakibat gangguan kapasitas kognitif/gangguan belajar pada jangka panjang
+        \n2.Gangguan fisik yang mempengaruhi pertumbuhan otot dan tulang, serta komposisi berat dan tinggi badan. Gangguan ini berakibat pada gangguan imunitas dan kapasitas kerja pada jangka panjang
+        \n3. Gangguan metabolisme karbohidrat, lemak, protein, hormon, reseptor dan gen, yang berakibat gangguan penyakit degeneratif dan kardiovaskuler pada jangka panjang
+        \n\nSemua gangguan ini kedepannya akan menyebabkan beban bagi pemerintah dalam sektor kesehatan (meningkatnya biaya kesehatan untuk menanggulangi berbagai penyakit) dan ekonomi (beban tenaga kerja yang tidak produktif).
+    </string>
+    <string name="faktor_kontribusi_stunting">Faktor apa saja yang berkontribusi terhadap kondisi stunting pada anak? (sumber : WHO) (1/2 hal)</string>
+    <string name="faktor_kontribusi_stunting_desc">1. Kesehatan dan gizi ibu yang buruk, praktik pemberian makan bayi dan anak yang tidak memadai, dan infeksi.
+        \n2. Secara khusus, faktor nutrisi ibu dan status kesehatan sebelum, selama dan setelah kehamilan, yang mempengaruhi tumbuh kembang anak sejak dini, yang dimulai sejak  bayi di dalam kandungan.
+        \n3. Kontributor ibu lainnya untuk stunting meliputi perawakan pendek, jarak kelahiran pendek, dan kehamilan remaja, yang mengganggu nutrisi ketersediaan untuk janin (karena tuntutan bersaing pertumbuhan ibu yang sedang berlangsung).
+    </string>
+    <string name="faktor_kontribusi_stunting_2">Faktor apa saja yang berkontribusi terhadap kondisi stunting pada anak? (sumber : WHO) (2/2 hal)</string>
+    <string name="faktor_kontribusi_stunting_2_desc">1. Praktek pemberian makan bayi dan anak kecil juga berkontribusi terhadap stunting seperti saat menyusui (khususnya, non-eksklusif menyusui) dan pemberian makanan pendamping ASI yang terbatas dalam kuantitas, kualitas dan variasinya.
+        \n2. Penyakit menular yang parah menyebabkan pengucilan (wasting), yang mungkin memiliki konsekuensi jangka panjang
+        \n3. Infeksi subklinis, akibat pengaruh lingkungan yang terkontaminasi dan kebersihan yang buruk
+        \n4. Akibat dari kemiskinan rumah tangga, pengabaian pengasuhan, praktik pemberian makan yang tidak responsif, anak yang tidak memadai stimulasi dan kerawanan pangan
+    </string>
+    <string name="definisi_pertumbuhan_perkembangan">Definisi Pertumbuhan dan Perkembangan (sumber : Kemenkes 2016)</string>
+    <string name="definisi_pertumbuhan_perkembangan_desc">- Pertumbuhan adalah bertambahnya ukuran dan jumlah sel serta jaringan interselular, berarti bertambahnya ukran fisik dan struktir tubuh sebagian atau keseluruhan, sehingga dapat diukur dengan satuan panjang dan berat.
+        \n- Perkembangan adalah bertambahnya struktur dan fungsi tubuh yang lebih kompleks dalam kemampuan gerak kasar, gerak halus, bicara dan bahasa serta sosialisasi dan kemandirian.
+        \n\nPertumbuhan terjadi secara simultan dengan perkembangan. Berbeda dengan pertumbuhan, perkembangan merupakan hasil interaksi kematangan susunan saraf pusat dengan organ yang dipengaruhinya, misalnya perkembangan sistem neuromuskuler, kemampuan bicara, emosi dan sosialisasi. </string>
+    <string name="faktor_mempengaruhi_tumbuh_kembang">Faktor-faktor yang mempengaruhi tumbuh kembang (sumber : Kemenkes 2016)</string>
+    <string name="faktor_mempengaruhi_tumbuh_kembang_desc">1. Faktor dalam (internal) yang berpengaruh pada tumbuh kembang anak:
+        Ras/etnik atau bangsa, Keluarga, Umur, Jenis kelamin, Genetik
+        \n2. Faktor luar (external) yang berpengaruh pada tumbuh kembang anak:
+        Faktor prenatal, faktor persalinan, faktor pasca persalinan,
+    </string>
+    <string name="gangguan_tumbuh_kembang">Beberapa gangguan tumbuh-kembang yang sering ditemukan (sumber : Kemenkes 2016)</string>
+    <string name="gangguan_tumbuh_kembang_desc">1). Gangguan bicara dan bahasa.
+        \n2). Cerebral palsy
+        \n3). Sindrom Down.
+        \n4). Gangguan Autisme
+        \n5). Perawakan Pendek.
+        \n6). Retardasi Mental.
+    </string>
+    
+    
+    
+    
 </resources>

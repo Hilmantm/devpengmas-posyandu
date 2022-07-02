@@ -93,6 +93,16 @@ object DummyData {
     fun getArticles(): List<Article> {
         val result: MutableList<Article> = mutableListOf()
 
+        val article0 = Article(
+            id = 0,
+            thumbUrl = null,
+            title = "Mengenal lebih dekat dengan stunting",
+            author = "Telkom Pengmas",
+            tag = listOf("Stunting", "Pendidikan", "Anak"),
+            url = null
+        )
+        result.add(article0)
+
         val article1 = Article(
             id = 1,
             thumbUrl = "https://pendidikan.id/news/wp-content/uploads/2019/08/01-practice-ways-get-kids-off-phones-without-bribery-37707798-gpointstudio-760x506-300x200.jpg",

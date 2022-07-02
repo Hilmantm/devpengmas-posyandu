@@ -22,6 +22,7 @@ import id.kodesumsi.telkompengmas.base.BaseFragment
 import id.kodesumsi.telkompengmas.databinding.FragmentArtikelBinding
 import id.kodesumsi.telkompengmas.databinding.ItemArtikelBinding
 import id.kodesumsi.telkompengmas.domain.model.Article
+import id.kodesumsi.telkompengmas.ui.detail.DetailArticleActivity
 
 @AndroidEntryPoint
 class ArtikelFragment : BaseFragment<FragmentArtikelBinding>() {
@@ -34,14 +35,28 @@ class ArtikelFragment : BaseFragment<FragmentArtikelBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter: BaseAdapter<ItemArtikelBinding, Article> = BaseAdapter(ItemArtikelBinding::inflate) { article, binding ->
-            Glide.with(requireContext()).load(article.thumbUrl).into(binding.itemArticleThumb)
             binding.itemArticleTitle.text = article.title
             binding.itemArticleTag.text = article.tag.first()
-            binding.root.setOnClickListener {
-                val toWebsite = Intent(Intent.ACTION_VIEW)
-                toWebsite.data = Uri.parse(article.url)
-                startActivity(toWebsite)
+
+            if (article.thumbUrl != null) {
+                Glide.with(requireContext()).load(article.thumbUrl).into(binding.itemArticleThumb)
+            } else {
+                Glide.with(requireContext()).load(R.drawable.stunting_thumb).into(binding.itemArticleThumb)
             }
+
+            if (article.url != null) {
+                binding.root.setOnClickListener {
+                    val toWebsite = Intent(Intent.ACTION_VIEW)
+                    toWebsite.data = Uri.parse(article.url)
+                    startActivity(toWebsite)
+                }
+            } else {
+                binding.root.setOnClickListener {
+                    val toDetailArticle = Intent(requireContext(), DetailArticleActivity::class.java)
+                    startActivity(toDetailArticle)
+                }
+            }
+
         }
         binding.artikelRv.layoutManager = LinearLayoutManager(requireContext())
         binding.artikelRv.adapter = adapter
