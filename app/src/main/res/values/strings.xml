@@ -157,6 +157,20 @@
         \n5). Perawakan Pendek.
         \n6). Retardasi Mental.
     </string>
+    <string name="menilai_status_gizi_anak">MENILAI STATUS GIZI ANAK DENGAN METODE ANTROPOMETRI</string>
+    <string name="menilai_status_gizi_anak_desc">Istilah antropometri berasal dari Bahasa Latin ‘Anthropos’ (manusia) dan ‘metry’ (ukuran). Metode antropometri artinya metode yang menggunakan ukuran tubuh dan bagian tubuh manusia untuk menilai sesuatu, salah satunya adalah untuk menilai status gizi. Konsep dasar yang harus dipahami dalam menggunakan antropometri untuk mengukur status gizi adalah konsep dasar pertumbuhan. Pertumbuhan (growth) adalah perubahan sel tubuh, berupa pertambahan ukuran maupun jumlah sel. Perubahan ini akan terlihat dari bertambahnya ukuran fisik seseorang, yaitu berat badan, tinggi badan atau tampilan fisik lainnya.
+        \nMetode antropometri merupakan metode yang aman, mudah dan murah dilakukan. Pengukuran tubuh atau bagian tubuh yang rutin dilakukan untuk menilai status gizi anak adalah:
+        \n1.Berat Badan
+        \nBerat badan menggambarkan jumlah protein, lemak, air, dan mineral yang terdapat di dalam tubuh seseorang. Perubahan berat badan mudah terlihat dalam waktu singkat dan menggambarkan status gizi saat ini. Berat badan diukur dengan memakai alat timbang yang mudah digunakan, harga relatif murah, dan akurat. Alat timbang yang biasa dipakai adalah dacin untuk menimbang berat badan balita, bathroom scale (timbangan kamar mandi), dan timbangan injak digital.
+        \n2. Tinggi Badan atau Panjang Badan
+        \nTinggi badan atau panjang badan menggambarkan pertumbuhan linier, berupa ukuran pertumbuhan massa tulang yang terjadi akibat dari asupan gizi. Pertambahan tinggi badan atau panjang badan yang lambat merupakan masalah gizi kronis. Istilah tinggi badan digunakan untuk anak yang diukur dengan cara berdiri, sedangkan panjang badan digunakan untuk anak yang belum bisa berdiri (diukur dengan cara berbaring). Anak berumur 0–2 tahun diukur dengan ukuran panjang badan (infantometer), sedangkan anak berumur lebih dari 2 tahun dengan menggunakan microtoise (baca: mikrotoa) atau stature meter.
+        \n3. Lingkar kepala
+        \nLingkar kepala dapat memprediksi pertumbuhan otak dan perkembangan syaraf anak. Pengukuran dilakukan dengan pita pengukur, kemudian dicocokkan terhadap standar pertumbuhan lingkar kepala.
+    </string>
+    <string name="link_mengukur_perkembangan_anak">https://www.youtube.com/watch?v=id68KWUPRHM</string>
+    <string name="link_mengukur_lingkar_kepala">https://www.youtube.com/watch?v=oFPBtTAT7K0</string>
+    
+    
     <string name="tambahkan_data_dokter">Tambahkan Data Dokter</string>
     <string name="simpan_nomor_dokter">Simpan Nomor Dokter</string>
 

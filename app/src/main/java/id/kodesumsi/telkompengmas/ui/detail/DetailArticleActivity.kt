@@ -1,7 +1,9 @@
 package id.kodesumsi.telkompengmas.ui.detail
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.media.Image
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,6 +39,14 @@ class DetailArticleActivity : BaseActivity<ActivityDetailArticleBinding>() {
             StfalconImageViewer.Builder<Drawable>(this, listOf(getDrawable(R.drawable.dampak_kurang_gizi))) { view, image ->
                 Glide.with(this@DetailArticleActivity).load(image).into(view)
             }.show()
+        }
+        binding.menilaiPertumbuhanBalita.setOnClickListener {
+            val toYoutube = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_mengukur_perkembangan_anak)))
+            startActivity(toYoutube)
+        }
+        binding.pengukuranLingkarKepala.setOnClickListener {
+            val toYoutube = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.link_mengukur_lingkar_kepala)))
+            startActivity(toYoutube)
         }
     }
 }

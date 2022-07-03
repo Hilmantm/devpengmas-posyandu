@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="25dp"
     tools:context=".ui.detail.DetailArticleActivity">
 
 
@@ -11,7 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="@dimen/root">
+        android:layout_marginStart="@dimen/root"
+        android:layout_marginTop="@dimen/root"
+        android:layout_marginEnd="@dimen/root"
+        android:layout_marginBottom="25dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,8 +188,43 @@
             android:text="@string/gangguan_tumbuh_kembang_desc"
             android:lineSpacingExtra="5dp"
             android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"/>
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menilai_status_gizi_anak"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/primary"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menilai_status_gizi_anak_desc"
+            android:lineSpacingExtra="5dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/menilai_pertumbuhan_balita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Tonton Cara Menilai Pertumbuhan Balita"
+            android:textAllCaps="false"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/pengukuran_lingkar_kepala"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Tonton Cara Mengukur Lingkar Kepala"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginBottom="40dp"/>
 
     </LinearLayout>
 
