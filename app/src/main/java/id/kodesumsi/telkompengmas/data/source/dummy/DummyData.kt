@@ -139,10 +139,10 @@ object DummyData {
     fun getDoctors(): List<Doctor> {
         val result: MutableList<Doctor> = mutableListOf()
 
-        val dokter1 = Doctor(id = 1, name = "Dr.Hilman Taris M", phone = "https://api.whatsapp.com/send?phone=6281214738859")
+        val dokter1 = Doctor(id = 1, name = "Dr.Fenty", phone = "https://api.whatsapp.com/send?phone=6281322494948")
         result.add(dokter1)
 
-        val dokter2 = Doctor(id = 2, name = "Dr.Lasman Simbolon", phone = "https://api.whatsapp.com/send?phone=6282137735310")
+        val dokter2 = Doctor(id = 2, name = "Dr.Elly", phone = "https://api.whatsapp.com/send?phone=6285380212001")
         result.add(dokter2)
 
         return result
