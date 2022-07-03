@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.View
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
@@ -45,6 +47,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         val navController = findNavController(R.id.main_nav)
         binding.bnv.setupWithNavController(navController)
 
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            when ((destination as FragmentNavigator.Destination).className) {
+                // show fab in recipe fragment
+                BerandaFragment::class.qualifiedName -> {
+                    binding.fab.visibility = View.VISIBLE
+                }
+                // hide on other fragments
+                else -> {
+                    binding.fab.visibility = View.GONE
+                }
+            }
+        }
 
     }
 
