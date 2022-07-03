@@ -1,6 +1,7 @@
 package id.kodesumsi.telkompengmas.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,20 +37,25 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (this.userRole == ROLE_PARENT) {
+            binding.zScoreHeightTitle.visibility = View.GONE
+            binding.zScoreHeightField.visibility = View.GONE
+            binding.zScoreWeightTitle.visibility = View.GONE
+            binding.zScoreWeightField.visibility = View.GONE
+            binding.zScoreHeadCircumferenceTitle.visibility = View.GONE
+            binding.zScoreHeadCircumferenceField.visibility = View.GONE
+        }
+
         binding.btnUpdateChild.setOnClickListener {
             val weight = binding.weightBodyField.text.toString()
             val height = binding.heightBodyField.text.toString()
             val headCircumference = binding.headCircumferenceField.text.toString()
 
-            when(userRole) {
+            Log.d("BottomSheetUpdateChildData", "userRole = ${this.userRole}")
+
+            when(this.userRole) {
                 ROLE_PARENT -> {
-                    binding.zScoreHeightTitle.visibility = View.GONE
-                    binding.zScoreHeightField.visibility = View.GONE
-                    binding.zScoreWeightTitle.visibility = View.GONE
-                    binding.zScoreWeightField.visibility = View.GONE
-                    binding.zScoreHeadCircumferenceTitle.visibility = View.GONE
-                    binding.zScoreHeadCircumferenceField.visibility = View.GONE
-                    if (userRole == ROLE_PARENT && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
+                    if (this.userRole == ROLE_PARENT && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
                         val updateChildDataRequest = UpdateChildDataRequest(
                             childId = this.childId!!,
                             weight = weight.toInt(),
@@ -63,7 +69,7 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
                     val zScoreHeight = binding.zScoreHeightField.text.toString()
                     val zScoreWeight = binding.zScoreWeightField.text.toString()
                     val zScoreHeadCircumference = binding.zScoreHeadCircumferenceField.text.toString()
-                    if (userRole == ROLE_POSYANDU && zScoreHeight.isNotEmpty() && zScoreWeight.isNotEmpty() && zScoreHeadCircumference.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
+                    if (this.userRole == ROLE_POSYANDU && zScoreHeight.isNotEmpty() && zScoreWeight.isNotEmpty() && zScoreHeadCircumference.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
                         val updateChildDataRequest = UpdateChildDataRequest(
                             childId = this.childId!!,
                             weight = weight.toInt(),
@@ -82,7 +88,7 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
     }
 
     private fun updateDataChild(updateChildDataRequest: UpdateChildDataRequest) {
-        viewModel.updateChildData(token!!, childId!!, updateChildDataRequest).observe(viewLifecycleOwner) {
+        viewModel.updateChildData(token!!, this.userRole!!, updateChildDataRequest).observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
                     Toast.makeText(

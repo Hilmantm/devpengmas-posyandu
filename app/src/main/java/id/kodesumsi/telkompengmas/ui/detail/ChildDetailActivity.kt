@@ -73,6 +73,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                     val updateBottomSheet = BottomSheetUpdateChildData()
                     updateBottomSheet.setChildId(id)
                     updateBottomSheet.setToken(currentUser.token!!)
+                    updateBottomSheet.setUserRole(currentUser.role!!)
                     updateBottomSheet.show(supportFragmentManager, "Update Bottom Sheet")
                 }
 
@@ -116,6 +117,10 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
 
                                 // set is stunting?
                                 val isStuntingConclusion = isStunting(this, WEIGHT, weightStatistics) || isStunting(this, HEIGHT, heightStatistics) || isStunting(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)
+                                Log.d("ChildDetailActivity", "weight stunting: ${isStunting(this, WEIGHT, weightStatistics)}")
+                                Log.d("ChildDetailActivity", "height stunting: ${isStunting(this, HEIGHT, heightStatistics)}")
+                                Log.d("ChildDetailActivity", "head circumference stunting: ${isStunting(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)}")
+                                Log.d("ChildDetailActivity", "isStunting: $isStuntingConclusion")
                                 binding.stuntingConclusion.text = if (isStuntingConclusion) getString(R.string.stunting_conclusion_yes) else getString(R.string.stunting_conclusion_no)
                             } else {
                                 binding.childDetailAction.visibility = View.GONE
@@ -141,7 +146,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
 
         viewModel.weightEntries.observe(this) { entries ->
             if (entries.isNotEmpty()) {
-                lineDataSet = LineDataSet(entries, "Bulan 1")
+                lineDataSet = LineDataSet(entries, "Bulan")
                 val dataSets = arrayListOf<ILineDataSet>()
                 dataSets.add(lineDataSet)
                 val lineData = LineData(dataSets)
@@ -253,7 +258,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
             currentData.removeDataSet(0)
         }
 
-        val newLineDataSet = LineDataSet(entries, "Bulan 1")
+        val newLineDataSet = LineDataSet(entries, "Bulan")
 
         currentData.addDataSet(newLineDataSet)
         currentData.notifyDataChanged()

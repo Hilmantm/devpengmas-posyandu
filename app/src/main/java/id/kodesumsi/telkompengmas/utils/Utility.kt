@@ -39,7 +39,7 @@ object Utility {
     fun isStunting(context: Context, attribute: String, value: String): Boolean {
         return when (attribute) {
             WEIGHT -> {
-                when (value) {
+                when (value.lowercase()) {
                     OBESITAS -> true
                     GEMUK -> false
                     NORMAL -> false
@@ -49,7 +49,7 @@ object Utility {
                 }
             }
             HEIGHT -> {
-                when (value) {
+                when (value.lowercase()) {
                     TINGGI -> false
                     NORMAL -> false
                     PENDEK -> false
@@ -58,7 +58,7 @@ object Utility {
                 }
             }
             HEAD_CIRCUMFERENCE -> {
-                when (value) {
+                when (value.lowercase()) {
                     MAKROSEFALI -> true
                     NORMAL -> false
                     MIKROSEFALI -> true
@@ -72,7 +72,7 @@ object Utility {
     fun getColorFromStatus(context: Context, attribute: String, value: String): Int {
         return when (attribute) {
             WEIGHT -> {
-                when (value) {
+                when (value.lowercase()) {
                     OBESITAS -> context.getColor(R.color.danger)
                     GEMUK -> context.getColor(R.color.danger)
                     NORMAL -> context.getColor(R.color.normal)
@@ -82,7 +82,7 @@ object Utility {
                 }
             }
             HEIGHT -> {
-                when (value) {
+                when (value.lowercase()) {
                     TINGGI -> context.getColor(R.color.warning)
                     NORMAL -> context.getColor(R.color.normal)
                     PENDEK -> context.getColor(R.color.warning)
@@ -91,7 +91,7 @@ object Utility {
                 }
             }
             HEAD_CIRCUMFERENCE -> {
-                when (value) {
+                when (value.lowercase()) {
                     MAKROSEFALI -> context.getColor(R.color.danger)
                     NORMAL -> context.getColor(R.color.normal)
                     MIKROSEFALI -> context.getColor(R.color.danger)
@@ -105,7 +105,7 @@ object Utility {
     fun getActionFromStatus(context: Context, attribute: String, value: String): String {
         return when (attribute) {
             WEIGHT -> {
-                when (value) {
+                when (value.lowercase()) {
                     OBESITAS -> context.getString(R.string.berat_obesitas_action)
                     GEMUK -> context.getString(R.string.berat_gemuk_action)
                     NORMAL -> context.getString(R.string.berat_normal_action)
@@ -115,7 +115,7 @@ object Utility {
                 }
             }
             HEIGHT -> {
-                when (value) {
+                when (value.lowercase()) {
                     TINGGI -> context.getString(R.string.tinggi_tinggi_action)
                     NORMAL -> context.getString(R.string.tinggi_normal_action)
                     PENDEK -> context.getString(R.string.tinggi_pendek_action)
@@ -124,7 +124,7 @@ object Utility {
                 }
             }
             HEAD_CIRCUMFERENCE -> {
-                when (value) {
+                when (value.lowercase()) {
                     MAKROSEFALI -> context.getString(R.string.lingkar_kepala_makrosefali_action)
                     NORMAL -> context.getString(R.string.lingkar_kepala_normal_action)
                     MIKROSEFALI -> context.getString(R.string.lingkar_kepala_mikrosefali_action)

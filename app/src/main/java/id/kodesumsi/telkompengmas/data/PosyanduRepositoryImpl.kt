@@ -146,7 +146,7 @@ class PosyanduRepositoryImpl @Inject constructor(
         val result = PublishSubject.create<Resource<List<ChildStatistics>>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.getOrangtuaStatistics(token, childId)
+        remoteDataSource.getPosyanduStatistics(token, childId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)
@@ -176,7 +176,7 @@ class PosyanduRepositoryImpl @Inject constructor(
         val result = PublishSubject.create<Resource<Child>>()
 
         result.onNext(Resource.Loading(null))
-        remoteDataSource.postOrangtuaStatistics(token, updateChildDataRequest)
+        remoteDataSource.postPosyanduStatistics(token, updateChildDataRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .take(1)

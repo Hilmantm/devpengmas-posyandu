@@ -314,6 +314,7 @@ class RemoteDataSourceImpl @Inject constructor(
             childId = updateChildDataRequest.childId,
             height = updateChildDataRequest.height,
             weight = updateChildDataRequest.weight,
+            headCircumference = updateChildDataRequest.headCircumference
         )
 
         client.subscribeOn(Schedulers.io())
