@@ -22,6 +22,13 @@ import java.time.temporal.ChronoUnit
 
 object Utility {
 
+    fun LocalDate.getAgeInMonth(): Int = ChronoUnit.MONTHS.between(this, LocalDate.now()).toInt()
+
+    fun String.toLocalDate(): LocalDate {
+        val birthDate = this.split("-")
+        return LocalDate.of(birthDate[0].toInt(), birthDate[1].toInt(), birthDate[2].toInt())
+    }
+
     fun countMonthDiff(birthDate: String, dataDate: String): Long {
         return ChronoUnit.MONTHS.between(
             LocalDate.parse(birthDate).withDayOfMonth(1),

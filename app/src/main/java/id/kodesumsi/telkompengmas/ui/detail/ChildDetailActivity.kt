@@ -27,7 +27,9 @@ import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEIGHT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.WEIGHT
 import id.kodesumsi.telkompengmas.utils.Utility.countMonthDiff
 import id.kodesumsi.telkompengmas.utils.Utility.getActionFromStatus
+import id.kodesumsi.telkompengmas.utils.Utility.getAgeInMonth
 import id.kodesumsi.telkompengmas.utils.Utility.getColorFromStatus
+import id.kodesumsi.telkompengmas.utils.Utility.toLocalDate
 
 @AndroidEntryPoint
 class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
@@ -53,7 +55,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
 
         // set child data
         binding.childDetailName.text = name
-        binding.childDetailAge.text = birthDate
+        binding.childDetailAge.text = "${birthDate?.toLocalDate()?.getAgeInMonth().toString()} bulan"
         if (image == null) {
             when (gender) {
                 Constant.MAN -> Glide.with(this).load(R.drawable.boy_illustration).into(binding.childDetailAvatar)

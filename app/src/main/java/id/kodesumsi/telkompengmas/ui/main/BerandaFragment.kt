@@ -26,6 +26,8 @@ import id.kodesumsi.telkompengmas.utils.Constant.Companion.MAN
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_POSYANDU
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.WOMAN
+import id.kodesumsi.telkompengmas.utils.Utility.getAgeInMonth
+import id.kodesumsi.telkompengmas.utils.Utility.toLocalDate
 
 @AndroidEntryPoint
 class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
@@ -55,6 +57,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                 ROLE_PARENT -> {
                                     val childAdapterParent: BaseAdapter<ItemChildParentBinding, Child> = BaseAdapter(ItemChildParentBinding::inflate) { childItem, itemBinding ->
                                         itemBinding.itemChildParentName.text = childItem.name
+                                        itemBinding.itemChildParentAge.text = "${childItem.birthDate?.toLocalDate()?.getAgeInMonth().toString()} bulan"
 
                                         if (childItem.image == null) {
                                             when (childItem.gender) {
@@ -79,6 +82,7 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                 ROLE_POSYANDU -> {
                                     val childAdapterPosyandu: BaseAdapter<ItemChildPosyanduBinding, Child> = BaseAdapter(ItemChildPosyanduBinding::inflate) { childItem, itemBinding ->
                                         itemBinding.itemChildPosyanduName.text = childItem.name
+                                        itemBinding.itemChildPosyanduAge.text = "${childItem.birthDate?.toLocalDate()?.getAgeInMonth().toString()} bulan"
 
                                         if (childItem.image == null) {
                                             when (childItem.gender) {
