@@ -1,6 +1,5 @@
 package id.kodesumsi.telkompengmas.ui.forms
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
@@ -52,10 +51,12 @@ class TambahDataAnakActivity : BaseActivity<ActivityTambahDataAnakBinding>() {
                     val weight = binding.weightBodyField.text.toString()
                     val height = binding.heightBodyField.text.toString()
                     val headCircumference = binding.headCircumferenceField.text.toString()
-                    val zScore = binding.zScoreField.text.toString().toFloat()
+                    val zScoreHeight = binding.zScoreHeightField.text.toString()
+                    val zScoreWeight = binding.zScoreWeightField.text.toString()
+                    val zScoreHeadCircumference = binding.zScoreHeadCircumferenceField.text.toString()
                     val gender = viewModel.genderChoose.value
 
-                    if (name.isNotEmpty() && nickname.isNotEmpty() && birthDate.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty()) {
+                    if (zScoreHeight.isNotEmpty() && zScoreWeight.isNotEmpty() && zScoreHeadCircumference.isNotEmpty() && name.isNotEmpty() && nickname.isNotEmpty() && birthDate.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty()) {
                         val createNewChildRequest = CreateNewChildRequest(
                             name = name,
                             panggilan = nickname,
@@ -64,7 +65,9 @@ class TambahDataAnakActivity : BaseActivity<ActivityTambahDataAnakBinding>() {
                             tinggi = height,
                             lingkar_kepala = headCircumference,
                             gender = gender!!,
-                            z_score = zScore
+                            z_score_tinggi = zScoreHeight.toFloat(),
+                            z_score_berat = zScoreWeight.toFloat(),
+                            z_score_lingkar_kepala = zScoreHeadCircumference.toFloat()
                         )
                         viewModel.postNewChild(token = token!!, userRole = currentUser.role!!, createNewChildRequest = createNewChildRequest).observe(this@TambahDataAnakActivity) {
                             when (it) {

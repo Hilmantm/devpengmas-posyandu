@@ -37,15 +37,19 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
             val weight = binding.weightBodyField.text.toString()
             val height = binding.heightBodyField.text.toString()
             val headCircumference = binding.headCircumferenceField.text.toString()
-            val zScore = binding.zScoreField.text.toString().toFloat()
+            val zScoreHeight = binding.zScoreHeightField.text.toString()
+            val zScoreWeight = binding.zScoreWeightField.text.toString()
+            val zScoreHeadCircumference = binding.zScoreHeadCircumferenceField.text.toString()
 
-            if (weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
+            if (zScoreHeight.isNotEmpty() && zScoreWeight.isNotEmpty() && zScoreHeadCircumference.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
                 val updateChildDataRequest = UpdateChildDataRequest(
                     childId = this.childId!!,
                     weight = weight.toInt(),
                     height = height.toInt(),
                     headCircumference = headCircumference.toInt(),
-                    zScore = zScore
+                    heightZScore = zScoreHeight.toFloat(),
+                    weightZScore = zScoreWeight.toFloat(),
+                    headCircumferenceZScore = zScoreHeadCircumference.toFloat()
                 )
                 viewModel.updateChildData(token!!, childId!!, updateChildDataRequest).observe(viewLifecycleOwner) {
                     when (it) {

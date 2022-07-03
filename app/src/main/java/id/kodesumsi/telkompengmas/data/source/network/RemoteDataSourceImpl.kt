@@ -139,7 +139,9 @@ class RemoteDataSourceImpl @Inject constructor(
             parentName = createNewChildRequest.nama_orang_tua.toString(),
             address = createNewChildRequest.alamat.toString(),
             gender = createNewChildRequest.gender,
-            zScore = createNewChildRequest.z_score
+            zScoreHeight = createNewChildRequest.z_score_tinggi,
+            zScoreWeight = createNewChildRequest.z_score_berat,
+            zScoreHeadCircumference = createNewChildRequest.z_score_lingkar_kepala
         )
 
         client.subscribeOn(Schedulers.io())
@@ -189,7 +191,9 @@ class RemoteDataSourceImpl @Inject constructor(
             height = updateChildDataRequest.height,
             weight = updateChildDataRequest.weight,
             headCircumference = updateChildDataRequest.headCircumference,
-            zScore = updateChildDataRequest.zScore
+            zScoreHeight = updateChildDataRequest.heightZScore,
+            zScoreWeight = updateChildDataRequest.weightZScore,
+            zScoreHeadCircumference = updateChildDataRequest.headCircumferenceZScore
         )
 
         client.subscribeOn(Schedulers.io())
@@ -262,7 +266,9 @@ class RemoteDataSourceImpl @Inject constructor(
             weight = createNewChildRequest.berat,
             headCircumference = createNewChildRequest.lingkar_kepala,
             gender = createNewChildRequest.gender,
-            zScore = createNewChildRequest.z_score
+            zScoreHeight = createNewChildRequest.z_score_tinggi,
+            zScoreWeight = createNewChildRequest.z_score_berat,
+            zScoreHeadCircumference = createNewChildRequest.z_score_lingkar_kepala
         )
 
         client.subscribeOn(Schedulers.io())
@@ -312,7 +318,9 @@ class RemoteDataSourceImpl @Inject constructor(
             height = updateChildDataRequest.height,
             weight = updateChildDataRequest.weight,
             headCircumference = updateChildDataRequest.headCircumference,
-            zScore = updateChildDataRequest.zScore
+            zScoreHeight = updateChildDataRequest.heightZScore,
+            zScoreWeight = updateChildDataRequest.weightZScore,
+            zScoreHeadCircumference = updateChildDataRequest.headCircumferenceZScore
         )
 
         client.subscribeOn(Schedulers.io())
