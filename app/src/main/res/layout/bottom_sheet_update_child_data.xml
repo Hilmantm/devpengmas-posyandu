@@ -101,14 +101,26 @@
             app:layout_constraintTop_toBottomOf="@id/head_circumference_field"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+<!--        <EditText-->
+<!--            android:id="@+id/z_score_height_field"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="numberDecimal|numberSigned"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="@drawable/bg_form_add_child"-->
+<!--            android:hint="Masukkan z-score tinggi anak"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/z_score_height_title"-->
+<!--            app:layout_constraintStart_toStartOf="@id/z_score_height_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+        <Spinner
             android:id="@+id/z_score_height_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal|numberSigned"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_form_add_child"
-            android:hint="Masukkan z-score tinggi anak"
             android:padding="10dp"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/z_score_height_title"
@@ -125,14 +137,26 @@
             app:layout_constraintTop_toBottomOf="@id/z_score_height_field"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+<!--        <EditText-->
+<!--            android:id="@+id/z_score_weight_field"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="numberDecimal|numberSigned"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="@drawable/bg_form_add_child"-->
+<!--            android:hint="Masukkan z-score berat anak"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/z_score_weight_title"-->
+<!--            app:layout_constraintStart_toStartOf="@id/z_score_weight_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+        <Spinner
             android:id="@+id/z_score_weight_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal|numberSigned"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_form_add_child"
-            android:hint="Masukkan z-score berat anak"
             android:padding="10dp"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/z_score_weight_title"
@@ -149,14 +173,26 @@
             app:layout_constraintTop_toBottomOf="@id/z_score_weight_field"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+<!--        <EditText-->
+<!--            android:id="@+id/z_score_head_circumference_field"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="numberDecimal|numberSigned"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:background="@drawable/bg_form_add_child"-->
+<!--            android:hint="Masukkan z-score lingkar kepala anak"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/z_score_head_circumference_title"-->
+<!--            app:layout_constraintStart_toStartOf="@id/z_score_head_circumference_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+        <Spinner
             android:id="@+id/z_score_head_circumference_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal|numberSigned"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_form_add_child"
-            android:hint="Masukkan z-score lingkar kepala anak"
             android:padding="10dp"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/z_score_head_circumference_title"

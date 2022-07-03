@@ -22,6 +22,15 @@ import java.time.temporal.ChronoUnit
 
 object Utility {
 
+    fun getSpinnerValue(attribute: String): ArrayList<Float> {
+        return when (attribute) {
+            HEIGHT -> arrayListOf(-4f, -1f, 1f, 3f)
+            WEIGHT -> arrayListOf(-4f, -1f, 0f, 1.5f, 3f)
+            HEAD_CIRCUMFERENCE -> arrayListOf(-3f, 1f, 3f)
+            else -> arrayListOf()
+        }
+    }
+
     fun LocalDate.getAgeInMonth(): Int = ChronoUnit.MONTHS.between(this, LocalDate.now()).toInt()
 
     fun String.toLocalDate(): LocalDate {
@@ -41,7 +50,7 @@ object Utility {
             WEIGHT -> {
                 when (value.lowercase()) {
                     OBESITAS -> true
-                    GEMUK -> false
+                    GEMUK -> true
                     NORMAL -> false
                     KURUS -> false
                     SANGAT_KURUS -> true
