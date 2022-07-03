@@ -59,6 +59,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_settings_24"
             app:tint="@color/white"
+            android:visibility="invisible"
             android:layout_marginEnd="@dimen/root"
             app:layout_constraintTop_toTopOf="@id/child_detail_avatar"
             app:layout_constraintEnd_toEndOf="parent"/>
