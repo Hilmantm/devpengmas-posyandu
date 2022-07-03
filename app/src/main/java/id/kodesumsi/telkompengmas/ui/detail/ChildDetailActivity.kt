@@ -31,6 +31,7 @@ import id.kodesumsi.telkompengmas.utils.Utility.countMonthDiff
 import id.kodesumsi.telkompengmas.utils.Utility.getActionFromStatus
 import id.kodesumsi.telkompengmas.utils.Utility.getAgeInMonth
 import id.kodesumsi.telkompengmas.utils.Utility.getColorFromStatus
+import id.kodesumsi.telkompengmas.utils.Utility.isStunting
 import id.kodesumsi.telkompengmas.utils.Utility.toLocalDate
 
 @AndroidEntryPoint
@@ -112,6 +113,10 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 binding.childDetailGlance.childDetailGlanceWeightCard.background.setTint(getColorFromStatus(this, WEIGHT, weightStatistics))
                                 binding.childDetailGlance.childDetailGlanceHeightCard.background.setTint(getColorFromStatus(this, HEIGHT, heightStatistics))
                                 binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.background.setTint(getColorFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics))
+
+                                // set is stunting?
+                                val isStuntingConclusion = isStunting(this, WEIGHT, weightStatistics) || isStunting(this, HEIGHT, heightStatistics) || isStunting(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)
+                                binding.stuntingConclusion.text = if (isStuntingConclusion) getString(R.string.stunting_conclusion_yes) else getString(R.string.stunting_conclusion_no)
                             } else {
                                 binding.childDetailAction.visibility = View.GONE
                                 binding.childDetailGlance.childDetailGlanceWeightStatus.visibility = View.GONE

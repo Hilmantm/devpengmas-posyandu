@@ -78,6 +78,8 @@
     <string name="tindakan_tinggi_badan">Tindakan Tinggi Badan</string>
     <string name="tindakan_lingkar_kepala">Tindakan Lingkar Kepala</string>
     <string name="kesimpulan">Kesimpulan</string>
+    <string name="stunting_conclusion_yes">Anak ini berstatus stunting, lihat status apa yang berwarna merah dan konsultasikan dengan dokter</string>
+    <string name="stunting_conclusion_no">Anak ini tidak stunting</string>
 
     <!--Article -->
     <string name="stunting">Stunting</string>
