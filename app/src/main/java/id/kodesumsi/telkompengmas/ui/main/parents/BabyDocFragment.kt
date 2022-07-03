@@ -3,19 +3,18 @@ package id.kodesumsi.telkompengmas.ui.main.parents
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.base.BaseAdapter
 import id.kodesumsi.telkompengmas.base.BaseFragment
 import id.kodesumsi.telkompengmas.databinding.FragmentBabyDocBinding
 import id.kodesumsi.telkompengmas.databinding.ItemChatDocBinding
 import id.kodesumsi.telkompengmas.domain.model.Doctor
+import id.kodesumsi.telkompengmas.ui.main.BottomSheetAddDoctor
 
 @AndroidEntryPoint
 class BabyDocFragment : BaseFragment<FragmentBabyDocBinding>() {
@@ -32,12 +31,17 @@ class BabyDocFragment : BaseFragment<FragmentBabyDocBinding>() {
             binding.chatDocName.text = item.name
             binding.chatDocBtn.setOnClickListener {
                 val toWhatsapp = Intent(Intent.ACTION_VIEW)
-                toWhatsapp.data = Uri.parse(item.phone)
+                toWhatsapp.data = Uri.parse("https://api.whatsapp.com/send?phone=${item.phone}")
                 startActivity(toWhatsapp)
             }
         }
         binding.chatDocRv.layoutManager = LinearLayoutManager(requireContext())
         binding.chatDocRv.adapter = adapter
+
+        binding.addDoctor.setOnClickListener {
+            val addDoctor = BottomSheetAddDoctor()
+            addDoctor.show(childFragmentManager, "Add Doctor Bottom Sheet")
+        }
 
         viewModel.getDoctors()
         viewModel.doctors.observe(viewLifecycleOwner) { doctors ->

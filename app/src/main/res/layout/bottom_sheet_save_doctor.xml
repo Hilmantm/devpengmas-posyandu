@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/root">
+
+        <TextView
+            android:id="@+id/bottom_sheet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tambahkan_data_dokter"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Dokter"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/bottom_sheet_title"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/doctor_name_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_form_add_child"
+            android:hint="Masukkan Nama Dokter"
+            android:padding="10dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/doctor_name"
+            app:layout_constraintStart_toStartOf="@id/doctor_name"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/doctor_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor Dokter"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/doctor_name_field"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/doctor_phone_field"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_form_add_child"
+            android:hint="Gunakan 62 sebagai awalan"
+            android:padding="10dp"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/doctor_phone"
+            app:layout_constraintStart_toStartOf="@id/doctor_phone"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/save_doctor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/simpan_nomor_dokter"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:translationZ="999dp"
+            android:backgroundTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/doctor_phone_field" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

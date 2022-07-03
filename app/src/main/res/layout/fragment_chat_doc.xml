@@ -42,13 +42,28 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_doc_rv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_height="0dp"
         android:layout_marginStart="@dimen/root"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="@dimen/root"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_chat_doc"
+        app:layout_constraintBottom_toTopOf="@+id/add_doctor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/chat_doc_subtitle"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_chat_doc" />
+
+    <Button
+        android:id="@+id/add_doctor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tambahkan Nomor Dokter"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="30dp"
+        android:layout_margin="@dimen/root"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

@@ -1,12 +1,28 @@
 package id.kodesumsi.telkompengmas.utils
 
 import android.util.Log
+import id.kodesumsi.telkompengmas.data.source.local.entity.DoctorEntity
 import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.data.source.network.request.UpdateChildDataRequest
 import id.kodesumsi.telkompengmas.data.source.network.response.*
 import id.kodesumsi.telkompengmas.domain.model.*
+
+fun Doctor.toDocktorEntity(): DoctorEntity {
+    return DoctorEntity(
+        name = this.name,
+        phone = this.phone
+    )
+}
+
+fun DoctorEntity.toDoctor(): Doctor {
+    return Doctor(
+        id = this.id,
+        name = this.name,
+        phone = this.phone
+    )
+}
 
 fun RegisterRequest.toAuthResponse(): AuthResponse {
     return AuthResponse(

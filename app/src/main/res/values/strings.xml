@@ -136,8 +136,8 @@
         \n5). Perawakan Pendek.
         \n6). Retardasi Mental.
     </string>
-    
-    
-    
-    
+    <string name="tambahkan_data_dokter">Tambahkan Data Dokter</string>
+    <string name="simpan_nomor_dokter">Simpan Nomor Dokter</string>
+
+
 </resources>

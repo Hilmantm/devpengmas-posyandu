@@ -105,4 +105,12 @@ class UserInteractor @Inject constructor(
         return publicRepository.logout(user)
     }
 
+    override fun saveDoctor(doctor: Doctor): Completable {
+        return publicRepository.saveDoctor(doctor)
+    }
+
+    override fun getDoctors(): Flowable<Resource<List<Doctor>>> {
+        return publicRepository.getDoctors()
+    }
+
 }

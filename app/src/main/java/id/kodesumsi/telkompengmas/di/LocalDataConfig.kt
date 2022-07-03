@@ -34,7 +34,7 @@ object LocalDataConfig {
     fun provideLocalDataSource(
         database: PengmasDatabase
     ): LocalDataSource {
-        return LocalDataSourceImpl(database.userDao())
+        return LocalDataSourceImpl(database.userDao(), database.doctorDao())
     }
 
 }

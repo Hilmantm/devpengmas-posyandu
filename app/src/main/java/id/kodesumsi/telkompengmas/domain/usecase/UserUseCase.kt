@@ -32,4 +32,8 @@ interface UserUseCase {
 
     fun logout(user: User): Completable
 
+    fun saveDoctor(doctor: Doctor): Completable
+
+    fun getDoctors(): Flowable<Resource<List<Doctor>>>
+
 }

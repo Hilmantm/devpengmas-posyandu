@@ -2,7 +2,7 @@ package id.kodesumsi.telkompengmas.domain.model
 
 data class Doctor(
 
-    val id: Int,
+    val id: Int? = null,
 
     val name: String,
 

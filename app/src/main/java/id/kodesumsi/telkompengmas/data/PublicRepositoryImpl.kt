@@ -5,6 +5,7 @@ import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
 import id.kodesumsi.telkompengmas.data.source.network.RemoteDataSource
 import id.kodesumsi.telkompengmas.domain.model.Desa
+import id.kodesumsi.telkompengmas.domain.model.Doctor
 import id.kodesumsi.telkompengmas.domain.model.Posyandu
 import id.kodesumsi.telkompengmas.domain.model.User
 import id.kodesumsi.telkompengmas.domain.repository.PublicRepository
@@ -78,5 +79,15 @@ class PublicRepositoryImpl @Inject constructor(
 
     override fun logout(user: User): Completable {
         return localDataSource.removeUser(user.toUserEntity())
+    }
+
+    override fun saveDoctor(doctor: Doctor): Completable {
+        return localDataSource.saveDoctor(doctor = doctor.toDocktorEntity())
+    }
+
+    override fun getDoctors(): Flowable<Resource<List<Doctor>>> {
+        return localDataSource.getDoctors().map { doctors ->
+            Resource.Success(data = doctors.map { it.toDoctor() })
+        }
     }
 }
