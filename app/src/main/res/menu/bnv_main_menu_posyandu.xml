@@ -7,12 +7,12 @@
         android:icon="@drawable/ic_baseline_home_24"
         app:showAsAction="always"
         android:title="@string/beranda"/>
-    <item
-        android:id="@+id/rekapFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_trending_up_24"
-        app:showAsAction="always"
-        android:title="@string/rekap"/>
+<!--    <item-->
+<!--        android:id="@+id/rekapFragment"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_baseline_trending_up_24"-->
+<!--        app:showAsAction="always"-->
+<!--        android:title="@string/rekap"/>-->
     <item
         android:id="@+id/posyanduFragment"
         android:enabled="true"
