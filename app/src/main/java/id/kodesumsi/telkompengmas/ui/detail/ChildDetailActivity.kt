@@ -3,6 +3,7 @@ package id.kodesumsi.telkompengmas.ui.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.activity.viewModels
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
@@ -24,6 +25,7 @@ import id.kodesumsi.telkompengmas.ui.main.BerandaFragment
 import id.kodesumsi.telkompengmas.utils.Constant
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEAD_CIRCUMFERENCE
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEIGHT
+import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.WEIGHT
 import id.kodesumsi.telkompengmas.utils.Utility.countMonthDiff
 import id.kodesumsi.telkompengmas.utils.Utility.getActionFromStatus
@@ -110,6 +112,11 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 binding.childDetailGlance.childDetailGlanceWeightCard.setCardBackgroundColor(getColorFromStatus(this, WEIGHT, weightStatistics))
                                 binding.childDetailGlance.childDetailGlanceHeightCard.setCardBackgroundColor(getColorFromStatus(this, HEIGHT, heightStatistics))
                                 binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.setCardBackgroundColor(getColorFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics))
+                            } else {
+                                binding.childDetailAction.visibility = View.GONE
+                                binding.childDetailGlance.childDetailGlanceWeightStatus.visibility = View.GONE
+                                binding.childDetailGlance.childDetailGlanceHeightStatus.visibility = View.GONE
+                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceStatus.visibility = View.GONE
                             }
 
                             if (it.data?.size != 0 && it.data != null) {

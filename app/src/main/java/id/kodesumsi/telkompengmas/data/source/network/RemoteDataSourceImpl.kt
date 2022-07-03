@@ -139,9 +139,9 @@ class RemoteDataSourceImpl @Inject constructor(
             parentName = createNewChildRequest.nama_orang_tua.toString(),
             address = createNewChildRequest.alamat.toString(),
             gender = createNewChildRequest.gender,
-            zScoreHeight = createNewChildRequest.z_score_tinggi,
-            zScoreWeight = createNewChildRequest.z_score_berat,
-            zScoreHeadCircumference = createNewChildRequest.z_score_lingkar_kepala
+            zScoreHeight = createNewChildRequest.z_score_tinggi ?: 0f,
+            zScoreWeight = createNewChildRequest.z_score_berat ?: 0f,
+            zScoreHeadCircumference = createNewChildRequest.z_score_lingkar_kepala ?: 0f
         )
 
         client.subscribeOn(Schedulers.io())
@@ -191,9 +191,9 @@ class RemoteDataSourceImpl @Inject constructor(
             height = updateChildDataRequest.height,
             weight = updateChildDataRequest.weight,
             headCircumference = updateChildDataRequest.headCircumference,
-            zScoreHeight = updateChildDataRequest.heightZScore,
-            zScoreWeight = updateChildDataRequest.weightZScore,
-            zScoreHeadCircumference = updateChildDataRequest.headCircumferenceZScore
+            zScoreHeight = updateChildDataRequest.heightZScore ?: 0f,
+            zScoreWeight = updateChildDataRequest.weightZScore ?: 0f,
+            zScoreHeadCircumference = updateChildDataRequest.headCircumferenceZScore ?: 0f
         )
 
         client.subscribeOn(Schedulers.io())
@@ -265,10 +265,7 @@ class RemoteDataSourceImpl @Inject constructor(
             height = createNewChildRequest.tinggi,
             weight = createNewChildRequest.berat,
             headCircumference = createNewChildRequest.lingkar_kepala,
-            gender = createNewChildRequest.gender,
-            zScoreHeight = createNewChildRequest.z_score_tinggi,
-            zScoreWeight = createNewChildRequest.z_score_berat,
-            zScoreHeadCircumference = createNewChildRequest.z_score_lingkar_kepala
+            gender = createNewChildRequest.gender
         )
 
         client.subscribeOn(Schedulers.io())
@@ -317,10 +314,6 @@ class RemoteDataSourceImpl @Inject constructor(
             childId = updateChildDataRequest.childId,
             height = updateChildDataRequest.height,
             weight = updateChildDataRequest.weight,
-            headCircumference = updateChildDataRequest.headCircumference,
-            zScoreHeight = updateChildDataRequest.heightZScore,
-            zScoreWeight = updateChildDataRequest.weightZScore,
-            zScoreHeadCircumference = updateChildDataRequest.headCircumferenceZScore
         )
 
         client.subscribeOn(Schedulers.io())

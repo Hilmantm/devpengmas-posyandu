@@ -10,10 +10,10 @@ data class UpdateChildDataRequest(
 
     val headCircumference: Int,
 
-    val heightZScore: Float,
+    val heightZScore: Float? = null,
 
-    val weightZScore: Float,
+    val weightZScore: Float? = null,
 
-    val headCircumferenceZScore: Float
+    val headCircumferenceZScore: Float? = null
 
 )

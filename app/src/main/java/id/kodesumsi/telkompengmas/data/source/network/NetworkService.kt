@@ -50,10 +50,7 @@ interface NetworkService {
         @Field("tinggi") height: String,
         @Field("berat") weight: String,
         @Field("lingkar_kepala") headCircumference: String,
-        @Field("gender") gender: String,
-        @Field("z_score_berat") zScoreWeight: Float,
-        @Field("z_score_tinggi") zScoreHeight: Float,
-        @Field("z_score_lingkar_kepala") zScoreHeadCircumference: Float
+        @Field("gender") gender: String
     ): Flowable<BaseResponse<Child>>
 
     @GET("/api/orang-tua/statistik-anak/{childId}")
@@ -68,11 +65,7 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Field("id_anak") childId: Int,
         @Field("berat") weight: Int,
-        @Field("tinggi") height: Int,
-        @Field("lingkar_kepala") headCircumference: Int,
-        @Field("z_score_berat") zScoreWeight: Float,
-        @Field("z_score_tinggi") zScoreHeight: Float,
-        @Field("z_score_lingkar_kepala") zScoreHeadCircumference: Float
+        @Field("tinggi") height: Int
     ): Flowable<BaseResponse<Child>>
 
 

@@ -20,10 +20,10 @@ data class CreateNewChildRequest(
 
     val gender: String,
 
-    val z_score_tinggi: Float,
+    val z_score_tinggi: Float? = null,
 
-    val z_score_berat: Float,
+    val z_score_berat: Float? = null,
 
-    val z_score_lingkar_kepala: Float
+    val z_score_lingkar_kepala: Float? = null
 
 )
