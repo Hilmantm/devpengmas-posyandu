@@ -109,9 +109,9 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 binding.headCircumferenceAction.text = getActionFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)
 
                                 // set color status based on the data
-                                binding.childDetailGlance.childDetailGlanceWeightCard.setCardBackgroundColor(getColorFromStatus(this, WEIGHT, weightStatistics))
-                                binding.childDetailGlance.childDetailGlanceHeightCard.setCardBackgroundColor(getColorFromStatus(this, HEIGHT, heightStatistics))
-                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.setCardBackgroundColor(getColorFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics))
+                                binding.childDetailGlance.childDetailGlanceWeightCard.background.setTint(getColorFromStatus(this, WEIGHT, weightStatistics))
+                                binding.childDetailGlance.childDetailGlanceHeightCard.background.setTint(getColorFromStatus(this, HEIGHT, heightStatistics))
+                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceCard.background.setTint(getColorFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics))
                             } else {
                                 binding.childDetailAction.visibility = View.GONE
                                 binding.childDetailGlance.childDetailGlanceWeightStatus.visibility = View.GONE
