@@ -54,7 +54,7 @@ class PosyanduFragment : BaseFragment<FragmentPosyanduBinding>(), OnMapReadyCall
             }
             binding.itemPosyanduDirection.setOnClickListener {
                 val toPosyandu = Intent(Intent.ACTION_VIEW)
-                toPosyandu.data = Uri.parse("https://www.google.com/maps/search/?api=1&query=${posyandu.lat},${posyandu.lng}")
+                toPosyandu.data = Uri.parse("https://www.google.com/maps/search/?api=1&query=${posyandu.lat ?: -6.971676},${posyandu.lng ?: 107.6695518}")
                 startActivity(toPosyandu)
             }
         }
@@ -93,9 +93,9 @@ class PosyanduFragment : BaseFragment<FragmentPosyanduBinding>(), OnMapReadyCall
 
     override fun onMapReady(p0: GoogleMap) {
         viewModel.posyandu.observe(viewLifecycleOwner) {
-            val lat = it.lat!!.toDouble()
-            val lng = it.lng!!.toDouble()
-            val posyandu = LatLng(lat, lng)
+            val lat = it.lat?.toDouble()
+            val lng = it.lng?.toDouble()
+            val posyandu = LatLng(lat ?: -6.971676, lng ?: 107.6695518)
             binding.posyanduClosest.text = it.address.toString()
             binding.posyanduSubtitle.text = it.name.toString()
             p0.addMarker(
