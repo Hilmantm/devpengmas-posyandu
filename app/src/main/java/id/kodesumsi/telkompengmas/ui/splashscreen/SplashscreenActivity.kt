@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.kodesumsi.telkompengmas.R
+import id.kodesumsi.telkompengmas.base.BaseActivity
+import id.kodesumsi.telkompengmas.databinding.ActivitySplashscreenBinding
 import id.kodesumsi.telkompengmas.ui.auth.AuthActivity
 import id.kodesumsi.telkompengmas.ui.auth.ChooseRoleFragment
 import id.kodesumsi.telkompengmas.ui.main.MainActivity
@@ -17,15 +20,15 @@ import id.kodesumsi.telkompengmas.ui.onboarding.OnboardingActivity
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.SPLASHSCREEN_DELAY
 
 @AndroidEntryPoint
-@SuppressLint("CustomSplashScreen")
-class SplashscreenActivity : AppCompatActivity() {
+class SplashscreenActivity : BaseActivity<ActivitySplashscreenBinding>() {
 
     private val viewModel: SplashscreenActivityViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splashscreen)
+    override fun setupViewBinding(): (LayoutInflater) -> ActivitySplashscreenBinding {
+        return ActivitySplashscreenBinding::inflate
+    }
 
+    override fun setupViewInstance(savedInstanceState: Bundle?) {
         Handler(mainLooper).postDelayed({
 
             // check users
@@ -54,6 +57,5 @@ class SplashscreenActivity : AppCompatActivity() {
                 }
             }
         }, SPLASHSCREEN_DELAY)
-
     }
 }
