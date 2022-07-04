@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -100,9 +101,20 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                     startActivity(toDetail)
                                 }
                             }
-                            childAdapterParent.setData(listChild.data)
+                            childAdapterParent.setData(listChild.data?.sortedBy { value -> value.name })
                             binding.dataAnakRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                             binding.dataAnakRv.adapter = childAdapterParent
+                            binding.dataAnakSearch.setOnEditorActionListener { textView, i, keyEvent ->
+                                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                                    if (binding.dataAnakSearch.text.isNotEmpty()) {
+                                        childAdapterParent.setData(listChild.data?.filter { value -> value.name!!.contains(binding.dataAnakSearch.text) })
+                                    } else {
+                                        childAdapterParent.setData(listChild.data?.sortedBy { value -> value.name })
+                                    }
+                                    true
+                                }
+                                false
+                            }
                         }
                         ROLE_POSYANDU -> {
                             val childAdapterPosyandu: BaseAdapter<ItemChildPosyanduBinding, Child> = BaseAdapter(ItemChildPosyanduBinding::inflate) { childItem, itemBinding ->
@@ -125,9 +137,20 @@ class BerandaFragment : BaseFragment<FragmentBerandaBinding>() {
                                     startActivity(toDetail)
                                 }
                             }
-                            childAdapterPosyandu.setData(listChild.data)
+                            childAdapterPosyandu.setData(listChild.data?.sortedBy { value -> value.name })
                             binding.dataAnakRv.layoutManager = LinearLayoutManager(requireContext())
                             binding.dataAnakRv.adapter = childAdapterPosyandu
+                            binding.dataAnakSearch.setOnEditorActionListener { textView, i, keyEvent ->
+                                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                                    if (binding.dataAnakSearch.text.isNotEmpty()) {
+                                        childAdapterPosyandu.setData(listChild.data?.filter { value -> value.name!!.contains(binding.dataAnakSearch.text) })
+                                    } else {
+                                        childAdapterPosyandu.setData(listChild.data?.sortedBy { value -> value.name })
+                                    }
+                                    true
+                                }
+                                false
+                            }
                         }
                     }
                 }
