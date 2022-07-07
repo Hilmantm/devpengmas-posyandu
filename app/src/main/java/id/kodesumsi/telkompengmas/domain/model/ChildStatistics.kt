@@ -4,11 +4,11 @@ data class ChildStatistics(
 
     val id: Int,
 
-    val height: Int,
+    val height: Float,
 
-    val weight: Int,
+    val weight: Float,
 
-    val headCircumference: Int,
+    val headCircumference: Float,
 
     val date: String,
 

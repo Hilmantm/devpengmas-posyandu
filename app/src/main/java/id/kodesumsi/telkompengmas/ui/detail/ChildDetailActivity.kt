@@ -134,6 +134,9 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 viewModel.weightEntries.postValue(setWeightEntries(it.data, birthDate!!))
                                 viewModel.heightEntries.postValue(setHeightEntries(it.data, birthDate))
                                 viewModel.headCircumferenceEntries.postValue(setHeadCircumferences(it.data, birthDate))
+                                Log.d("ChildDetailActivity", "setEntries weight ${setWeightEntries(it.data, birthDate!!)}")
+                                Log.d("ChildDetailActivity", "setEntries height ${setHeightEntries(it.data, birthDate)}")
+                                Log.d("ChildDetailActivity", "setEntries hc ${setHeadCircumferences(it.data, birthDate)}")
                             }
                         }
                     }
@@ -213,7 +216,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
             result.add(Entry(countMonthDiff(birthDate, data.date).toFloat(), data.height.toFloat()))
         }
 
-        return result
+        return result.sortedBy { value -> value.x }
     }
 
     fun setWeightEntries(statisticsList: List<ChildStatistics>, birthDate: String): List<Entry> {
@@ -231,7 +234,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
             result.add(Entry(countMonthDiff(birthDate, data.date).toFloat(), data.weight.toFloat()))
         }
 
-        return result
+        return result.sortedBy { value -> value.x }
     }
 
     fun setHeadCircumferences(statisticsList: List<ChildStatistics>, birthDate: String): List<Entry> {
@@ -249,7 +252,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
             result.add(Entry(countMonthDiff(birthDate, data.date).toFloat(), data.headCircumference.toFloat()))
         }
 
-        return result
+        return result.sortedBy { value -> value.x }
     }
 
     fun updateDataSet(entries: List<Entry>, type: String) {

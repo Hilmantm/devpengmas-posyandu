@@ -2,6 +2,8 @@ package id.kodesumsi.telkompengmas.utils
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import id.kodesumsi.telkompengmas.R
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.GEMUK
@@ -31,13 +33,16 @@ object Utility {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun LocalDate.getAgeInMonth(): Int = ChronoUnit.MONTHS.between(this, LocalDate.now()).toInt()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun String.toLocalDate(): LocalDate {
         val birthDate = this.split("-")
         return LocalDate.of(birthDate[0].toInt(), birthDate[1].toInt(), birthDate[2].toInt())
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun countMonthDiff(birthDate: String, dataDate: String): Long {
         return ChronoUnit.MONTHS.between(
             LocalDate.parse(birthDate).withDayOfMonth(1),

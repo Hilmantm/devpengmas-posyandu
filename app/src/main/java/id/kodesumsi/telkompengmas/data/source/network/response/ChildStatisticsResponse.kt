@@ -8,13 +8,13 @@ data class ChildStatisticsResponse(
     val id: Int,
 
     @field:SerializedName("tinggi")
-    val tinggi: Int,
+    val tinggi: Float,
 
     @field:SerializedName("berat")
-    val berat: Int,
+    val berat: Float,
 
     @field:SerializedName("lingkar_kepala")
-    val lingkar_kepala: Int,
+    val lingkar_kepala: Float,
 
     @field:SerializedName("date")
     val date: String,
