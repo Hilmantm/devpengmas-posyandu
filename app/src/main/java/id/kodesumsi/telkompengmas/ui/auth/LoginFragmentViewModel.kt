@@ -1,7 +1,7 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
@@ -13,7 +13,7 @@ class LoginFragmentViewModel @Inject constructor(
     private val localDataSource: LocalDataSource
 ): ViewModel() {
 
-     fun login(email: String, password: String, userRole: Int) = LiveDataReactiveStreams.fromPublisher(userUseCase.login(email, password, userRole))
+     fun login(email: String, password: String, userRole: Int) = userUseCase.login(email, password, userRole).toLiveData()
 
 //    val loginResult: MutableLiveData<Boolean> = MutableLiveData()
 //

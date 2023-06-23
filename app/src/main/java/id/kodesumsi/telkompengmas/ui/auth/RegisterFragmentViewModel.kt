@@ -1,8 +1,8 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.kodesumsi.telkompengmas.data.source.network.request.RegisterRequest
 import id.kodesumsi.telkompengmas.domain.usecase.UserUseCase
@@ -16,9 +16,9 @@ class RegisterFragmentViewModel @Inject constructor(
     val idDesa: MutableLiveData<Int> = MutableLiveData()
     val idPosyandu: MutableLiveData<Int> = MutableLiveData()
 
-    fun register(userRole: Int, registerRequest: RegisterRequest) = LiveDataReactiveStreams.fromPublisher(userUseCase.register(userRole, registerRequest))
+    fun register(userRole: Int, registerRequest: RegisterRequest) = userUseCase.register(userRole, registerRequest).toLiveData()
 
-    fun getListDesa() = LiveDataReactiveStreams.fromPublisher(userUseCase.getListDesa())
+    fun getListDesa() = userUseCase.getListDesa().toLiveData()
 
-    fun getListPosyandu(desaId: Int) = LiveDataReactiveStreams.fromPublisher(userUseCase.getListPosyandu(desaId))
+    fun getListPosyandu(desaId: Int) = userUseCase.getListPosyandu(desaId).toLiveData()
 }

@@ -48,23 +48,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     userRole = endpoint ?: ROLE_PARENT
                 ).observe(viewLifecycleOwner) {
                     when (it) {
-                        is Resource.Success -> {
+                        is Resource.Success<*> -> {
                             // intent to main activity
                             val toMain = Intent(requireContext(), MainActivity::class.java)
                             toMain.putExtra(ChooseRoleFragment.ROLE, endpoint)
                             startActivity(toMain)
                             activity?.finish()
                         }
-                        is Resource.Error -> {
+                        is Resource.Error<*> -> {
                             Toast.makeText(
                                 requireContext(),
                                 "Error login ${it.message}",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                        is Resource.Loading -> {
+                        is Resource.Loading<*> -> {
 
                         }
+                        else -> {}
                     }
                 }
             }

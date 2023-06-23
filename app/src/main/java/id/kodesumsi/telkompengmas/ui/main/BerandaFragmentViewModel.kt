@@ -1,9 +1,9 @@
 package id.kodesumsi.telkompengmas.ui.main
 
 import android.util.Log
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.local.entity.UserEntity
@@ -22,7 +22,7 @@ class BerandaFragmentViewModel @Inject constructor(
 
     val logoutResult: MutableLiveData<Boolean> = MutableLiveData()
 
-    val currentUser: MutableLiveData<User> = MutableLiveData()
+    val currentUser: MutableLiveData<User?> = MutableLiveData()
 
     fun getUser() {
         userUseCase.getUser()
@@ -48,6 +48,6 @@ class BerandaFragmentViewModel @Inject constructor(
             })
     }
 
-    fun getChildList(token: String, userRole: Int) = LiveDataReactiveStreams.fromPublisher(userUseCase.getChildList(token = token, userRole = userRole))
+    fun getChildList(token: String, userRole: Int) = userUseCase.getChildList(token = token, userRole = userRole).toLiveData()
 
 }

@@ -1,9 +1,9 @@
 package id.kodesumsi.telkompengmas.ui.forms
 
 import android.util.Log
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
 import id.kodesumsi.telkompengmas.data.source.network.request.CreateNewChildRequest
@@ -20,13 +20,13 @@ class TambahDataAnakPosyanduActivityViewModel @Inject constructor(
 
     val genderChoose: MutableLiveData<String> = MutableLiveData()
 
-    val currentUser: MutableLiveData<User> = MutableLiveData()
+    val currentUser: MutableLiveData<User?> = MutableLiveData()
 
     val zScoreHeight: MutableLiveData<Float> = MutableLiveData()
     val zScoreWeight: MutableLiveData<Float> = MutableLiveData()
     val zScoreHeadCircumference: MutableLiveData<Float> = MutableLiveData()
 
-    fun postNewChild(token: String, userRole: Int, createNewChildRequest: CreateNewChildRequest) = LiveDataReactiveStreams.fromPublisher(userUseCase.createNewChildData(token, userRole, createNewChildRequest))
+    fun postNewChild(token: String, userRole: Int, createNewChildRequest: CreateNewChildRequest) = userUseCase.createNewChildData(token, userRole, createNewChildRequest).toLiveData()
 
     fun getUser() {
         userUseCase.getUser()

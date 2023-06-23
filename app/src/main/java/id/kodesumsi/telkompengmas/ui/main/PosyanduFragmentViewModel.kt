@@ -1,9 +1,9 @@
 package id.kodesumsi.telkompengmas.ui.main
 
 import android.util.Log
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.kodesumsi.telkompengmas.data.source.dummy.DummyData
 import id.kodesumsi.telkompengmas.data.source.local.LocalDataSource
@@ -22,7 +22,7 @@ class PosyanduFragmentViewModel @Inject constructor(
     val posyandu: MutableLiveData<Posyandu> = MutableLiveData()
     val posyanduId: MutableLiveData<Int> = MutableLiveData()
 
-    fun getPosyandus(desaId: Int) = LiveDataReactiveStreams.fromPublisher(userUseCase.getListPosyandu(desaId))
+    fun getPosyandus(desaId: Int) = userUseCase.getListPosyandu(desaId).toLiveData()
 
     val currentUser: MutableLiveData<User> = MutableLiveData()
 
