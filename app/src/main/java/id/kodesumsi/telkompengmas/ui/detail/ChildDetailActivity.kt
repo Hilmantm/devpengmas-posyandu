@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
+import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.viewModels
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
@@ -86,6 +88,16 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                             Log.e("getchildstatistics", "Error ${it.message}", )
                         }
                         is Resource.Success -> {
+                            if (it.data?.size == 0) {
+                                Toast.makeText(
+                                    this,
+                                    "Data Statistik Anak kosong",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                onBackPressedDispatcher.onBackPressed()
+                                return@observe
+                            }
+
                             Log.d("GetChildStatistics", "data = ${it.data}")
                             val lastData = it.data?.last()
 

@@ -22,9 +22,9 @@ class TambahDataAnakPosyanduActivityViewModel @Inject constructor(
 
     val currentUser: MutableLiveData<User?> = MutableLiveData()
 
-    val zScoreHeight: MutableLiveData<Float> = MutableLiveData()
-    val zScoreWeight: MutableLiveData<Float> = MutableLiveData()
-    val zScoreHeadCircumference: MutableLiveData<Float> = MutableLiveData()
+//    val zScoreHeight: MutableLiveData<Float> = MutableLiveData()
+//    val zScoreWeight: MutableLiveData<Float> = MutableLiveData()
+//    val zScoreHeadCircumference: MutableLiveData<Float> = MutableLiveData()
 
     fun postNewChild(token: String, userRole: Int, createNewChildRequest: CreateNewChildRequest) = userUseCase.createNewChildData(token, userRole, createNewChildRequest).toLiveData()
 

@@ -50,54 +50,54 @@ class TambahDataAnakPosyanduActivity : BaseActivity<ActivityTambahDataAnakPosyan
         }
 
         // set adapter for zscore spinner
-        val zScoreValueHeight = getSpinnerValue(HEIGHT)
-        val zScoreValueWeight = getSpinnerValue(WEIGHT)
-        val zScoreValueHeadCircumference = getSpinnerValue(HEAD_CIRCUMFERENCE)
+//        val zScoreValueHeight = getSpinnerValue(HEIGHT)
+//        val zScoreValueWeight = getSpinnerValue(WEIGHT)
+//        val zScoreValueHeadCircumference = getSpinnerValue(HEAD_CIRCUMFERENCE)
 
-        ArrayAdapter.createFromResource(this, R.array.z_score_height_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.zScoreHeightField.adapter = arrayAdapter
-            binding.zScoreHeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    viewModel.zScoreHeight.postValue(zScoreValueHeight[p2])
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    viewModel.zScoreHeight.postValue(zScoreValueHeight[0])
-                }
-
-            }
-        }
-
-        ArrayAdapter.createFromResource(this, R.array.z_score_weight_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.zScoreWeightField.adapter = arrayAdapter
-            binding.zScoreWeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    viewModel.zScoreWeight.postValue(zScoreValueWeight[p2])
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    viewModel.zScoreWeight.postValue(zScoreValueWeight[0])
-                }
-
-            }
-        }
-
-        ArrayAdapter.createFromResource(this, R.array.z_score_head_circumference_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.zScoreHeadCircumferenceField.adapter = arrayAdapter
-            binding.zScoreHeadCircumferenceField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[p2])
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[0])
-                }
-
-            }
-        }
+//        ArrayAdapter.createFromResource(this, R.array.z_score_height_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
+//            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            binding.zScoreHeightField.adapter = arrayAdapter
+//            binding.zScoreHeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                    viewModel.zScoreHeight.postValue(zScoreValueHeight[p2])
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//                    viewModel.zScoreHeight.postValue(zScoreValueHeight[0])
+//                }
+//
+//            }
+//        }
+//
+//        ArrayAdapter.createFromResource(this, R.array.z_score_weight_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
+//            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            binding.zScoreWeightField.adapter = arrayAdapter
+//            binding.zScoreWeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                    viewModel.zScoreWeight.postValue(zScoreValueWeight[p2])
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//                    viewModel.zScoreWeight.postValue(zScoreValueWeight[0])
+//                }
+//
+//            }
+//        }
+//
+//        ArrayAdapter.createFromResource(this, R.array.z_score_head_circumference_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
+//            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            binding.zScoreHeadCircumferenceField.adapter = arrayAdapter
+//            binding.zScoreHeadCircumferenceField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                    viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[p2])
+//                }
+//
+//                override fun onNothingSelected(p0: AdapterView<*>?) {
+//                    viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[0])
+//                }
+//
+//            }
+//        }
 
         viewModel.getUser()
         viewModel.currentUser.observe(this) { currentUser ->
@@ -113,9 +113,9 @@ class TambahDataAnakPosyanduActivity : BaseActivity<ActivityTambahDataAnakPosyan
                     val gender = viewModel.genderChoose.value
                     val parentName = binding.parentField.text.toString()
                     val address = binding.addressField.text.toString()
-                    val zScoreHeight = viewModel.zScoreHeight.value
-                    val zScoreWeight = viewModel.zScoreWeight.value
-                    val zScoreHeadCircumference = viewModel.zScoreHeadCircumference.value
+//                    val zScoreHeight = viewModel.zScoreHeight.value
+//                    val zScoreWeight = viewModel.zScoreWeight.value
+//                    val zScoreHeadCircumference = viewModel.zScoreHeadCircumference.value
 
                     if (address.isNotEmpty() && parentName.isNotEmpty() && name.isNotEmpty() && nickname.isNotEmpty() && birthDate.isNotEmpty() && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty()) {
                         val createNewChildRequest = CreateNewChildRequest(
@@ -128,9 +128,9 @@ class TambahDataAnakPosyanduActivity : BaseActivity<ActivityTambahDataAnakPosyan
                             gender = gender!!,
                             nama_orang_tua = parentName,
                             alamat = address,
-                            z_score_tinggi = zScoreHeight,
-                            z_score_berat = zScoreWeight,
-                            z_score_lingkar_kepala = zScoreHeadCircumference
+//                            z_score_tinggi = zScoreHeight,
+//                            z_score_berat = zScoreWeight,
+//                            z_score_lingkar_kepala = zScoreHeadCircumference
                         )
                         viewModel.postNewChild(token = token!!, userRole = currentUser.role!!, createNewChildRequest = createNewChildRequest).observe(this@TambahDataAnakPosyanduActivity) {
                             when (it) {

@@ -41,64 +41,64 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (this.userRole == ROLE_PARENT) {
-            binding.zScoreHeightTitle.visibility = View.GONE
-            binding.zScoreHeightField.visibility = View.GONE
-            binding.zScoreWeightTitle.visibility = View.GONE
-            binding.zScoreWeightField.visibility = View.GONE
-            binding.zScoreHeadCircumferenceTitle.visibility = View.GONE
-            binding.zScoreHeadCircumferenceField.visibility = View.GONE
-        } else {
-            // set adapter for zscore spinner
-            val zScoreValueHeight = Utility.getSpinnerValue(Constant.HEIGHT)
-            val zScoreValueWeight = Utility.getSpinnerValue(Constant.WEIGHT)
-            val zScoreValueHeadCircumference = Utility.getSpinnerValue(Constant.HEAD_CIRCUMFERENCE)
-
-            ArrayAdapter.createFromResource(requireContext(), R.array.z_score_height_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.zScoreHeightField.adapter = arrayAdapter
-                binding.zScoreHeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        viewModel.zScoreHeight.postValue(zScoreValueHeight[p2])
-                    }
-
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                        viewModel.zScoreHeight.postValue(zScoreValueHeight[0])
-                    }
-
-                }
-            }
-
-            ArrayAdapter.createFromResource(requireContext(), R.array.z_score_weight_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.zScoreWeightField.adapter = arrayAdapter
-                binding.zScoreWeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        viewModel.zScoreWeight.postValue(zScoreValueWeight[p2])
-                    }
-
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                        viewModel.zScoreWeight.postValue(zScoreValueWeight[0])
-                    }
-
-                }
-            }
-
-            ArrayAdapter.createFromResource(requireContext(), R.array.z_score_head_circumference_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.zScoreHeadCircumferenceField.adapter = arrayAdapter
-                binding.zScoreHeadCircumferenceField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[p2])
-                    }
-
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                        viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[0])
-                    }
-
-                }
-            }
-        }
+//        if (this.userRole == ROLE_PARENT) {
+//            binding.zScoreHeightTitle.visibility = View.GONE
+//            binding.zScoreHeightField.visibility = View.GONE
+//            binding.zScoreWeightTitle.visibility = View.GONE
+//            binding.zScoreWeightField.visibility = View.GONE
+//            binding.zScoreHeadCircumferenceTitle.visibility = View.GONE
+//            binding.zScoreHeadCircumferenceField.visibility = View.GONE
+//        } else {
+//            // set adapter for zscore spinner
+//            val zScoreValueHeight = Utility.getSpinnerValue(Constant.HEIGHT)
+//            val zScoreValueWeight = Utility.getSpinnerValue(Constant.WEIGHT)
+//            val zScoreValueHeadCircumference = Utility.getSpinnerValue(Constant.HEAD_CIRCUMFERENCE)
+//
+//            ArrayAdapter.createFromResource(requireContext(), R.array.z_score_height_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
+//                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                binding.zScoreHeightField.adapter = arrayAdapter
+//                binding.zScoreHeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                        viewModel.zScoreHeight.postValue(zScoreValueHeight[p2])
+//                    }
+//
+//                    override fun onNothingSelected(p0: AdapterView<*>?) {
+//                        viewModel.zScoreHeight.postValue(zScoreValueHeight[0])
+//                    }
+//
+//                }
+//            }
+//
+//            ArrayAdapter.createFromResource(requireContext(), R.array.z_score_weight_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
+//                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                binding.zScoreWeightField.adapter = arrayAdapter
+//                binding.zScoreWeightField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                        viewModel.zScoreWeight.postValue(zScoreValueWeight[p2])
+//                    }
+//
+//                    override fun onNothingSelected(p0: AdapterView<*>?) {
+//                        viewModel.zScoreWeight.postValue(zScoreValueWeight[0])
+//                    }
+//
+//                }
+//            }
+//
+//            ArrayAdapter.createFromResource(requireContext(), R.array.z_score_head_circumference_select, android.R.layout.simple_spinner_item).also { arrayAdapter ->
+//                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                binding.zScoreHeadCircumferenceField.adapter = arrayAdapter
+//                binding.zScoreHeadCircumferenceField.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                        viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[p2])
+//                    }
+//
+//                    override fun onNothingSelected(p0: AdapterView<*>?) {
+//                        viewModel.zScoreHeadCircumference.postValue(zScoreValueHeadCircumference[0])
+//                    }
+//
+//                }
+//            }
+//        }
 
         binding.btnUpdateChild.setOnClickListener {
             val weight = binding.weightBodyField.text.toString()
@@ -120,18 +120,18 @@ class BottomSheetUpdateChildData: BottomSheetDialogFragment() {
                     }
                 }
                 ROLE_POSYANDU -> {
-                    val zScoreHeight = viewModel.zScoreHeight.value
-                    val zScoreWeight = viewModel.zScoreWeight.value
-                    val zScoreHeadCircumference = viewModel.zScoreHeadCircumference.value
+//                    val zScoreHeight = viewModel.zScoreHeight.value
+//                    val zScoreWeight = viewModel.zScoreWeight.value
+//                    val zScoreHeadCircumference = viewModel.zScoreHeadCircumference.value
                     if (this.userRole == ROLE_POSYANDU && weight.isNotEmpty() && height.isNotEmpty() && headCircumference.isNotEmpty() && token != null && childId != null) {
                         val updateChildDataRequest = UpdateChildDataRequest(
                             childId = this.childId!!,
                             weight = weight.toInt(),
                             height = height.toInt(),
                             headCircumference = headCircumference.toInt(),
-                            heightZScore = zScoreHeight,
-                            weightZScore = zScoreWeight,
-                            headCircumferenceZScore = zScoreHeadCircumference
+//                            heightZScore = zScoreHeight,
+//                            weightZScore = zScoreWeight,
+//                            headCircumferenceZScore = zScoreHeadCircumference
                         )
                         updateDataChild(updateChildDataRequest)
                     }
