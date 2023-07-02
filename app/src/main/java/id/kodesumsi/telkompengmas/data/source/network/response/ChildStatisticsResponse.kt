@@ -22,8 +22,14 @@ data class ChildStatisticsResponse(
     @field:SerializedName("id_anak")
     val id_anak: Int,
 
-    @field:SerializedName("z_score")
-    val z_score: Float,
+    @field:SerializedName("z_score_tinggi")
+    val z_score_tinggi: Float,
+
+    @field:SerializedName("z_score_berat")
+    val z_score_berat: Float,
+
+    @field:SerializedName("z_score_lingkar_kepala")
+    val z_score_lingkar_kepala: Float,
 
     @field:SerializedName("statistik")
     val statistik: StatistikResponse

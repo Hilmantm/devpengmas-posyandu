@@ -14,7 +14,11 @@ data class ChildStatistics(
 
     val childId: Int,
 
-    val zScore: Float,
+    val zScoreHeight: Float,
+
+    val zScoreWeight: Float,
+
+    val zScoreHeadCircumference: Float,
 
     val statistics: Statistics
 

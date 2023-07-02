@@ -118,9 +118,9 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 binding.childDetailGlance.childDetailGlanceHeadCircumferenceStatus.text = headCircumferenceStatistics
 
                                 // set action based on the data
-                                binding.weightAction.text = getActionFromStatus(this, WEIGHT, weightStatistics)
-                                binding.heightAction.text = getActionFromStatus(this, HEIGHT, heightStatistics)
-                                binding.headCircumferenceAction.text = getActionFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)
+                                binding.weightAction.text = "Z Score berat terhadap umur ${lastData?.zScoreWeight} maka ${getActionFromStatus(this, WEIGHT, weightStatistics)}"
+                                binding.heightAction.text = "Z Score tinggi terhadap umur ${lastData?.zScoreHeight} maka ${getActionFromStatus(this, HEIGHT, heightStatistics)}"
+                                binding.headCircumferenceAction.text = "Z Score lingkar kepala terhadap umur ${lastData?.zScoreHeadCircumference} maka ${getActionFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)}"
 
                                 // set color status based on the data
                                 binding.childDetailGlance.childDetailGlanceWeightCard.background.setTint(getColorFromStatus(this, WEIGHT, weightStatistics))
