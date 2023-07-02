@@ -3,9 +3,11 @@ package id.kodesumsi.telkompengmas.utils
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import id.kodesumsi.telkompengmas.R
+import id.kodesumsi.telkompengmas.data.source.network.ApiResponse
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.GEMUK
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEAD_CIRCUMFERENCE
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEIGHT
@@ -19,10 +21,27 @@ import id.kodesumsi.telkompengmas.utils.Constant.Companion.SANGAT_KURUS
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.SANGAT_PENDEK
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.TINGGI
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.WEIGHT
+import org.json.JSONObject
+import retrofit2.HttpException
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 object Utility {
+
+    fun getErrorMessage(error: Throwable): String {
+        var errorMessage = ""
+        if (error is HttpException) {
+            val httpError = error.response()?.errorBody()?.string() ?: "{\"message\":\"API Error\"}"
+            try {
+                val jObjError = JSONObject(httpError)
+                errorMessage = jObjError.getString("message")
+            } catch (e: Exception) {
+                errorMessage = e.message.toString()
+            }
+        }
+
+        return errorMessage
+    }
 
     fun getSpinnerValue(attribute: String): ArrayList<Float> {
         return when (attribute) {
