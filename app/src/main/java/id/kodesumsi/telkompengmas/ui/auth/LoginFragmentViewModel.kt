@@ -1,5 +1,6 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,9 @@ class LoginFragmentViewModel @Inject constructor(
     private val localDataSource: LocalDataSource
 ): ViewModel() {
 
-     fun login(email: String, password: String, userRole: Int) = userUseCase.login(email, password, userRole).toLiveData()
+    fun login(email: String, password: String, userRole: Int) = userUseCase.login(email, password, userRole).toLiveData()
+
+    val seePassword: MutableLiveData<Boolean> = MutableLiveData()
 
 //    val loginResult: MutableLiveData<Boolean> = MutableLiveData()
 //

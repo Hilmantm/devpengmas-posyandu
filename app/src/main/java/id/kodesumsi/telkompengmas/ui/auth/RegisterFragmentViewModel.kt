@@ -15,6 +15,7 @@ class RegisterFragmentViewModel @Inject constructor(
 
     val idDesa: MutableLiveData<Int> = MutableLiveData()
     val idPosyandu: MutableLiveData<Int> = MutableLiveData()
+    val seePassword: MutableLiveData<Boolean> = MutableLiveData()
 
     fun register(userRole: Int, registerRequest: RegisterRequest) = userUseCase.register(userRole, registerRequest).toLiveData()
 

@@ -1,9 +1,13 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -31,7 +35,30 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         return FragmentRegisterBinding::inflate
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.seePassword.postValue(false)
+        viewModel.seePassword.observe(viewLifecycleOwner) { visible ->
+            if (visible) {
+                binding.passwordField.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                viewModel.seePassword.postValue(true)
+            } else {
+                binding.passwordField.transformationMethod = PasswordTransformationMethod.getInstance()
+                viewModel.seePassword.postValue(false)
+            }
+        }
+
+        binding.passwordField.setOnTouchListener { _, motionEvent ->
+            val DRAWABLE_RIGHT = 2;
+
+            if (motionEvent.action == MotionEvent.ACTION_UP) {
+                if (motionEvent.rawX >= (binding.passwordField.right - binding.passwordField.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
+                    viewModel.seePassword.postValue(!viewModel.seePassword.value!!)
+                }
+            }
+            false
+        }
+
         viewModel.getListDesa().observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {

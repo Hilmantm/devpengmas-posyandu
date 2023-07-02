@@ -1,10 +1,14 @@
 package id.kodesumsi.telkompengmas.ui.auth
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -32,9 +36,32 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         return FragmentLoginBinding::inflate
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val endpoint = arguments?.getInt(ROLE)
         Log.d("LoginFragment", "onViewCreated: $endpoint")
+        viewModel.seePassword.postValue(false)
+        viewModel.seePassword.observe(viewLifecycleOwner) { visible ->
+            if (visible) {
+                binding.loginPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                viewModel.seePassword.postValue(true)
+            } else {
+                binding.loginPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                viewModel.seePassword.postValue(false)
+            }
+        }
+
+        binding.loginPassword.setOnTouchListener { _, motionEvent ->
+            val DRAWABLE_RIGHT = 2;
+
+            if (motionEvent.action == MotionEvent.ACTION_UP) {
+                if (motionEvent.rawX >= (binding.loginPassword.right - binding.loginPassword.compoundDrawables[DRAWABLE_RIGHT].bounds.width())) {
+                    viewModel.seePassword.postValue(!viewModel.seePassword.value!!)
+                }
+            }
+            false
+        }
+
         binding.loginToRegister.setOnClickListener {
             val data = bundleOf(ROLE to endpoint)
             view?.findNavController()?.navigate(R.id.action_loginFragment_to_registerFragment, data)
