@@ -110,7 +110,10 @@ fun StatistikResponse.toStatisticsModel(): Statistics {
     return Statistics(
         weight = this.berat,
         height = this.tinggi,
-        headCircumference = this.lingkar_kepala
+        headCircumference = this.lingkar_kepala,
+        normalWeight = this.normal_weight,
+        normalHeight = this.normal_height,
+        normalHeadCircumference = this.normal_headcircumference,
     )
 }
 

@@ -6,6 +6,12 @@ data class Statistics(
 
     val height: String? = null,
 
-    val headCircumference: String? = null
+    val headCircumference: String? = null,
+
+    val normalWeight: String? = null,
+
+    val normalHeight: String? = null,
+
+    val normalHeadCircumference: String? = null,
 
 )
