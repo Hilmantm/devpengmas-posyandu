@@ -20,6 +20,8 @@ data class ChildStatistics(
 
     val zScoreHeadCircumference: Float,
 
+    val zScoreImt: Float,
+
     val statistics: Statistics
 
 )

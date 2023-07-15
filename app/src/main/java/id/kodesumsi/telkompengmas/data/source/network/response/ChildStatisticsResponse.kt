@@ -31,6 +31,9 @@ data class ChildStatisticsResponse(
     @field:SerializedName("z_score_lingkar_kepala")
     val z_score_lingkar_kepala: Float,
 
+    @field:SerializedName("z_score_imt")
+    val z_score_imt: Float,
+
     @field:SerializedName("statistik")
     val statistik: StatistikResponse
 

@@ -102,6 +102,7 @@ fun ChildStatisticsResponse.toChildStatistics(): ChildStatistics {
         zScoreHeight = this.z_score_tinggi,
         zScoreWeight = this.z_score_berat,
         zScoreHeadCircumference = this.z_score_lingkar_kepala,
+        zScoreImt = this.z_score_imt,
         statistics = this.statistik.toStatisticsModel()
     )
 }
@@ -111,6 +112,7 @@ fun StatistikResponse.toStatisticsModel(): Statistics {
         weight = this.berat,
         height = this.tinggi,
         headCircumference = this.lingkar_kepala,
+        imt = this.imt,
         normalWeight = this.normal_weight,
         normalHeight = this.normal_height,
         normalHeadCircumference = this.normal_headcircumference,

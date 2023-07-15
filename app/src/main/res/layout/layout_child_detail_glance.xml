@@ -45,10 +45,11 @@
                 android:id="@+id/child_detail_glance_height_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pendek"
+                android:text="Pendek\n3.5"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="12sp"
+                android:gravity="center"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="3dp"
                 android:layout_marginStart="10dp"
@@ -91,7 +92,8 @@
                 android:id="@+id/child_detail_glance_weight_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Normal"
+                android:text="Normal\n3.5"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="12sp"
@@ -109,7 +111,7 @@
             android:text="Lingkar Kepala"
             app:layout_constraintTop_toTopOf="@id/child_detail_glance_weight_title"
             app:layout_constraintStart_toEndOf="@id/child_detail_glance_weight_title"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="@id/child_detail_glance_imt_title"/>
 
         <TextView
             android:id="@+id/child_detail_glance_head_circumference"
@@ -137,7 +139,59 @@
                 android:id="@+id/child_detail_glance_head_circumference_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mikrosefali"
+                android:text="Mikrosefali\n3.5"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/child_detail_glance_imt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IMT"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintTop_toTopOf="@id/child_detail_glance_head_circumference_title"
+            app:layout_constraintStart_toEndOf="@id/child_detail_glance_head_circumference_title"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/child_detail_glance_imt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/child_detail_glance_imt_title"
+            app:layout_constraintEnd_toEndOf="@id/child_detail_glance_imt_title"
+            app:layout_constraintStart_toStartOf="@id/child_detail_glance_imt_title"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/child_detail_glance_imt_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#DCBE1E"
+            app:layout_constraintTop_toBottomOf="@id/child_detail_glance_imt"
+            app:layout_constraintStart_toStartOf="@id/child_detail_glance_imt_title"
+            app:layout_constraintEnd_toEndOf="@id/child_detail_glance_imt_title">
+
+            <TextView
+                android:id="@+id/child_detail_glance_imt_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="50dp"
+                android:maxLines="3"
+                android:text="Obesitas\n3.5"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="12sp"

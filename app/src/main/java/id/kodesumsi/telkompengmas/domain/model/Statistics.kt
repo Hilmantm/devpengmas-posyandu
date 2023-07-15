@@ -8,6 +8,8 @@ data class Statistics(
 
     val headCircumference: String? = null,
 
+    val imt: String? = null,
+
     val normalWeight: String? = null,
 
     val normalHeight: String? = null,

@@ -102,17 +102,20 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                             binding.childDetailGlance.childDetailGlanceHeight.text = lastData?.height.toString()
                             binding.childDetailGlance.childDetailGlanceWeight.text = lastData?.weight.toString()
                             binding.childDetailGlance.childDetailGlanceHeadCircumference.text = lastData?.headCircumference.toString()
+                            binding.childDetailGlance.childDetailGlanceImt.text = String.format("%.1f", showImt(lastData?.weight ?: 0.0f, lastData?.height ?: 0.0f))
 
                             // data statistics
                             val weightStatistics = lastData?.statistics?.weight
                             val heightStatistics = lastData?.statistics?.height
                             val headCircumferenceStatistics = lastData?.statistics?.headCircumference
+                            val imtStatistics = lastData?.statistics?.imt
 
                             if (weightStatistics != null && heightStatistics != null && headCircumferenceStatistics != null) {
                                 // set status from last data
-                                binding.childDetailGlance.childDetailGlanceWeightStatus.text = weightStatistics
-                                binding.childDetailGlance.childDetailGlanceHeightStatus.text = heightStatistics
-                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceStatus.text = headCircumferenceStatistics
+                                binding.childDetailGlance.childDetailGlanceWeightStatus.text = "$weightStatistics\n${lastData.zScoreWeight}"
+                                binding.childDetailGlance.childDetailGlanceHeightStatus.text = "$heightStatistics\n${lastData.zScoreHeight}"
+                                binding.childDetailGlance.childDetailGlanceHeadCircumferenceStatus.text = "$headCircumferenceStatistics\n${lastData.zScoreHeadCircumference}"
+                                binding.childDetailGlance.childDetailGlanceImtStatus.text = "$imtStatistics\n${lastData.zScoreImt}"
 
                                 // set action based on the data
                                 // binding.weightAction.text = "Z Score berat terhadap umur ${lastData?.zScoreWeight} maka ${getActionFromStatus(this, WEIGHT, weightStatistics)}"
@@ -216,6 +219,10 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getChildAgeInMonth(birthDate: String?): String? {
         return birthDate?.toLocalDate()?.getAgeInMonth().toString()
+    }
+
+    private fun showImt(weight: Float, height: Float): Float {
+        return weight / height * height
     }
 
     // from this, dummy data for line chart
