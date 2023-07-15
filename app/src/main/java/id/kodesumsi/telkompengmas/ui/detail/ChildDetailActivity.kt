@@ -1,13 +1,13 @@
 package id.kodesumsi.telkompengmas.ui.detail
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.viewModels
-import androidx.cardview.widget.CardView
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -22,15 +22,12 @@ import id.kodesumsi.telkompengmas.base.BaseActivity
 import id.kodesumsi.telkompengmas.data.source.Resource
 import id.kodesumsi.telkompengmas.databinding.ActivityChildDetailBinding
 import id.kodesumsi.telkompengmas.domain.model.ChildStatistics
-import id.kodesumsi.telkompengmas.domain.model.Statistics
 import id.kodesumsi.telkompengmas.ui.main.BerandaFragment
 import id.kodesumsi.telkompengmas.utils.Constant
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEAD_CIRCUMFERENCE
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.HEIGHT
-import id.kodesumsi.telkompengmas.utils.Constant.Companion.ROLE_PARENT
 import id.kodesumsi.telkompengmas.utils.Constant.Companion.WEIGHT
 import id.kodesumsi.telkompengmas.utils.Utility.countMonthDiff
-import id.kodesumsi.telkompengmas.utils.Utility.getActionFromStatus
 import id.kodesumsi.telkompengmas.utils.Utility.getAgeInMonth
 import id.kodesumsi.telkompengmas.utils.Utility.getColorFromStatus
 import id.kodesumsi.telkompengmas.utils.Utility.isStunting
@@ -60,7 +57,7 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
 
         // set child data
         binding.childDetailName.text = name
-        binding.childDetailAge.text = "${birthDate?.toLocalDate()?.getAgeInMonth().toString()} bulan"
+        binding.childDetailAge.text = "${getChildAgeInMonth(birthDate)} bulan"
         if (image == null) {
             when (gender) {
                 Constant.MAN -> Glide.with(this).load(R.drawable.boy_illustration).into(binding.childDetailAvatar)
@@ -118,9 +115,12 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 binding.childDetailGlance.childDetailGlanceHeadCircumferenceStatus.text = headCircumferenceStatistics
 
                                 // set action based on the data
-                                binding.weightAction.text = "Z Score berat terhadap umur ${lastData?.zScoreWeight} maka ${getActionFromStatus(this, WEIGHT, weightStatistics)}"
-                                binding.heightAction.text = "Z Score tinggi terhadap umur ${lastData?.zScoreHeight} maka ${getActionFromStatus(this, HEIGHT, heightStatistics)}"
-                                binding.headCircumferenceAction.text = "Z Score lingkar kepala terhadap umur ${lastData?.zScoreHeadCircumference} maka ${getActionFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)}"
+                                // binding.weightAction.text = "Z Score berat terhadap umur ${lastData?.zScoreWeight} maka ${getActionFromStatus(this, WEIGHT, weightStatistics)}"
+                                // binding.heightAction.text = "Z Score tinggi terhadap umur ${lastData?.zScoreHeight} maka ${getActionFromStatus(this, HEIGHT, heightStatistics)}"
+                                // binding.headCircumferenceAction.text = "Z Score lingkar kepala terhadap umur ${lastData?.zScoreHeadCircumference} maka ${getActionFromStatus(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)}"
+                                binding.weightAction.text = "Ukuran berat badan normalnya diumur ini adalah ${lastData.statistics.normalWeight} dalam satuan kg"
+                                binding.heightAction.text = "Ukuran tinggi badan normalnya diumur ini adalah ${lastData.statistics.normalHeight} dalam satuan cm"
+                                binding.headCircumferenceAction.text = "Ukuran lingkar kepala normalnya diumur ini adalah ${lastData.statistics.normalHeadCircumference} dalam satuan cm"
 
                                 // set color status based on the data
                                 binding.childDetailGlance.childDetailGlanceWeightCard.background.setTint(getColorFromStatus(this, WEIGHT, weightStatistics))
@@ -133,7 +133,8 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
                                 Log.d("ChildDetailActivity", "height stunting: ${isStunting(this, HEIGHT, heightStatistics)}")
                                 Log.d("ChildDetailActivity", "head circumference stunting: ${isStunting(this, HEAD_CIRCUMFERENCE, headCircumferenceStatistics)}")
                                 Log.d("ChildDetailActivity", "isStunting: $isStuntingConclusion")
-                                binding.stuntingConclusion.text = if (isStuntingConclusion) getString(R.string.stunting_conclusion_yes) else getString(R.string.stunting_conclusion_no)
+                                // binding.stuntingConclusion.text = if (isStuntingConclusion) getString(R.string.stunting_conclusion_yes) else getString(R.string.stunting_conclusion_no)
+                                binding.stuntingConclusion.text = getString(R.string.default_saran)
                             } else {
                                 binding.childDetailAction.visibility = View.GONE
                                 binding.childDetailGlance.childDetailGlanceWeightStatus.visibility = View.GONE
@@ -210,6 +211,11 @@ class ChildDetailActivity : BaseActivity<ActivityChildDetailBinding>() {
             }
         }
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getChildAgeInMonth(birthDate: String?): String? {
+        return birthDate?.toLocalDate()?.getAgeInMonth().toString()
     }
 
     // from this, dummy data for line chart

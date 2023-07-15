@@ -95,12 +95,14 @@
     <string name="lingkar_kepala_makrosefali_action">Rujuk ke rumah sakit</string>
     <string name="lingkar_kepala_normal_action">Beri pujian kepada ibu dan anak</string>
     <string name="lingkar_kepala_mikrosefali_action">Rujuk ke rumah sakit</string>
-    <string name="tindakan_berat_badan">Tindakan Berat Badan</string>
-    <string name="tindakan_tinggi_badan">Tindakan Tinggi Badan</string>
-    <string name="tindakan_lingkar_kepala">Tindakan Lingkar Kepala</string>
+    <string name="tindakan_berat_badan">Berat Badan normal</string>
+    <string name="tindakan_tinggi_badan">Tinggi Badan normal</string>
+    <string name="tindakan_lingkar_kepala">Lingkar Kepala normal</string>
     <string name="kesimpulan">Kesimpulan</string>
     <string name="stunting_conclusion_yes">Anak ini berstatus stunting, lihat status apa yang berwarna merah dan konsultasikan dengan dokter</string>
     <string name="stunting_conclusion_no">Anak ini tidak stunting</string>
+    <string name="saran">Saran</string>
+    <string name="default_saran">Jika grafik tidak naik dua tahap, maka rujuk ke rumah sakit</string>
 
     <!--Article -->
     <string name="stunting">Stunting</string>
